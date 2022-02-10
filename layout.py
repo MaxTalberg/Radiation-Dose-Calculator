@@ -16,8 +16,127 @@ def get_dashboard_layout(app):
 
         html.Div(
             [
-                html.H3('Web App Communicating Radiation Risk'),
+                dbc.Row([
+                    dbc.Col([
+                        html.I('margin')
+                    ], width=1),
+                    dbc.Col([
+                        html.H3('Web App Communicating Radiation Risk')
+                    ], width=10),
+                    dbc.Col([
+                        html.I('margin')
+                    ], width=1)
+                ]),
                 html.Br(),
+                dbc.Row([
+                    dbc.Col([
+                        html.I('margin')
+                    ], width=1),
+                    dbc.Col([
+                        html.B(['1. '], style={'display': 'inline-block'}),
+                        html.H6(['How many Xrays have you had in the last year?'], style={'display': 'inline-block'})
+                    ], width=6),
+                    dbc.Col([
+                    ], width=1),
+                    dbc.Col([
+                        html.Img(id="xray-logo",
+                                 src=app.get_asset_url('xray.svg'),
+                                 height=80,
+                                 width=80,
+                                 style={'align-items': 'center'})
+                    ], width=3),
+                    dbc.Col([
+                        html.I('margin')
+                    ], width=1)
+                ], id='row-1-Q'),
+                dbc.Row([
+                    dbc.Col([
+                        html.I('margin')
+                    ], width=1),
+                    dbc.Col([
+                        html.Div([
+                            html.I('Dental Xrays'),
+                            dcc.Dropdown(id='Q-1a-ddown',
+                                         options=[
+                                             {"label": value, "value": value} for value in range(100)
+                                         ])
+                        ])
+                    ], width=3),
+                    dbc.Col([
+                        html.Div([
+                            html.I('Wrist Xrays'),
+                            dcc.Dropdown(id='Q-1b-ddown',
+                                         options=[
+                                             {"label": value, "value": value} for value in range(100)
+                                         ])
+                        ])
+                    ], width=3),
+                    dbc.Col([
+                    ], width=4),
+                    dbc.Col([
+                        html.I('margin')
+                    ], width=1)
+                ], id='row-1-A'),
+                html.Br(),
+                dbc.Row([
+                    dbc.Col([
+                        html.I('margin')
+                    ], width=1),
+                    dbc.Col([
+                        html.I('Question')
+                    ], width=7),
+                    dbc.Col([
+                        html.I('Picture')
+                    ], width=3),
+                    dbc.Col([
+                        html.I('margin')
+                    ], width=1)
+                ], id='row-2-Q'),
+                html.Br(),
+                dbc.Row([
+                    dbc.Col([
+                        html.I('margin')
+                    ], width=1),
+                    dbc.Col([
+                        html.I('Answer')
+                    ], width=7),
+                    dbc.Col([
+                        html.I('Picture')
+                    ], width=3),
+                    dbc.Col([
+                        html.I('margin')
+                    ], width=1)
+                ], id='row-2-A'),
+                html.Br(),
+                dbc.Row([
+                    dbc.Col([
+                        html.I('margin')
+                    ], width=1),
+                    dbc.Col([
+                        html.I('Question')
+                    ], width=7),
+                    dbc.Col([
+                        html.I('Picture')
+                    ], width=3),
+                    dbc.Col([
+                        html.I('margin')
+                    ], width=1)
+                ], id='row-3-Q'),
+                html.Br(),
+                dbc.Row([
+                    dbc.Col([
+                        html.I('margin')
+                    ], width=1),
+                    dbc.Col([
+                        html.I('Answer')
+                    ], width=7),
+                    dbc.Col([
+                        html.I('Picture')
+                    ], width=3),
+                    dbc.Col([
+                        html.I('margin')
+                    ], width=1)
+                ], id='row-3-A'),
                 html.I('Food and Drink'),
                 html.Br(),
                 html.I('Question 1?'),
