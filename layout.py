@@ -137,32 +137,89 @@ def get_dashboard_layout(app):
                         html.I('margin')
                     ], width=1)
                 ], id='row-3-A'),
-                html.I('Food and Drink'),
                 html.Br(),
-                html.I('Question 1?'),
+                dbc.Row([
+                    dbc.Col([
+                        html.I('margin')
+                    ], width=1),
+                    dbc.Col([
+                        html.Button('Submit', id='submit-val', n_clicks=0)
+                    ], width=7),
+                    dbc.Col([
+                        html.I('Picture')
+                    ], width=3),
+                    dbc.Col([
+                        html.I('margin')
+                    ], width=1)
+                ], id='row-4-Button'),
                 html.Br(),
-                dcc.Input(id='input1', type='text', placeholder=''),
-                html.Br(),
-                html.I('Question 2?'),
-                html.Br(),
-                dcc.Input(id='input2', type='text', placeholder=''),
-                html.Br(),
-                html.I('Question 3?'),
-                html.Br(),
-                dcc.Input(id='input3', type='text', placeholder=''),
-                html.Br(),
-                html.Div(id='output')
+                dbc.Row([
+                    dbc.Col([
+                        html.I('margin')
+                    ], width=1),
+                    dbc.Col([
+                        html.Div(id='tabs-graph'),
+                        html.Div(id='tabs-content')
+                    ], width=7),
+                    dbc.Col([
+                        html.I('Picture')
+                    ], width=3),
+                    dbc.Col([
+                        html.I('margin')
+                    ], width=1)
+                ], id='row-5-Output'),
         ])
 
     ])
 
     @app.callback(
-        Output('output', 'children'),
-        Input('input1', 'value'),
-        Input('input2', 'value'),
-        Input('input3', 'value'),
+        Output(component_id='tabs-graph', component_property='children'),
+        [Input(component_id='submit-val', component_property='n_clicks')]
     )
-    def update_outpute(input1, input2, input3):
-        return u' Radiation dose {}, your fucked!'.format(input1)
+    def update_output(n_clicks):
+        while n_clicks != 0:
+            return html.H6('Output Demo'),\
+                   html.Div([dcc.Tabs(value='tab-graph', children=[
+                       dcc.Tab(label='Tab One', value='tab-1'),
+                       dcc.Tab(label='Tab Two', value='tab-2')
+                   ]),
+                             ])
+
+    @app.callback(
+        Output(component_id='tabs-content', component_property='children'),
+        Input(component_id='tab-graph', component_property='value')
+    )
+    def testing(tab):
+        if tab == 'tab-1':
+            return html.H6('Hello')
+    '''    def render_content(tab):
+        if tab == 'tab-1':
+            return html.Div([
+                html.H3('Tab content 1'),
+                dcc.Graph(
+                    id='graph-1-tabs',
+                    figure={
+                        'data': [{
+                            'x': [1, 2, 3],
+                            'y': [3, 1, 2],
+                            'type': 'bar'
+                        }]
+                    }
+                )
+            ])
+        elif tab == 'tab-2':
+            return html.Div([
+                html.H3('Tab content 2'),
+                dcc.Graph(
+                    id='graph-2-tabs',
+                    figure={
+                        'data': [{
+                            'x': [1, 2, 3],
+                            'y': [5, 10, 6],
+                            'type': 'bar'
+                        }]
+                    }
+                )
+            ])'''
 
     return layout
