@@ -162,7 +162,7 @@ def get_dashboard_layout(app):
                         html.Div(id='tabs-content')
                     ], width=7),
                     dbc.Col([
-                        html.I('Picture')
+                        html.I('hallloooo0oo'),
                     ], width=3),
                     dbc.Col([
                         html.I('margin')
@@ -179,7 +179,7 @@ def get_dashboard_layout(app):
     def update_output(n_clicks):
         while n_clicks != 0:
             return html.H6('Output Demo'),\
-                   html.Div([dcc.Tabs(value='tab-graph', children=[
+                   html.Div([dcc.Tabs(id='tab-graph', value='tab-graph-value', children=[
                        dcc.Tab(label='Tab One', value='tab-1'),
                        dcc.Tab(label='Tab Two', value='tab-2')
                    ]),
@@ -187,12 +187,9 @@ def get_dashboard_layout(app):
 
     @app.callback(
         Output(component_id='tabs-content', component_property='children'),
-        Input(component_id='tab-graph', component_property='value')
+        [Input(component_id='tab-graph', component_property='value')]
     )
-    def testing(tab):
-        if tab == 'tab-1':
-            return html.H6('Hello')
-    '''    def render_content(tab):
+    def render_content(tab):
         if tab == 'tab-1':
             return html.Div([
                 html.H3('Tab content 1'),
@@ -220,6 +217,6 @@ def get_dashboard_layout(app):
                         }]
                     }
                 )
-            ])'''
+            ])
 
     return layout
