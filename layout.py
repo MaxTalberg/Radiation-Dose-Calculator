@@ -435,6 +435,9 @@ def get_dashboard_layout(app):
                         html.Br(),
                         html.Br(),
                         html.Div(id='radio-items'),
+                        html.Div('radio-content'),
+                        html.Br(),
+                        html.Br(),
                         html.Div(id='radio-content')
                     ], width=3),
                     dbc.Col([
@@ -500,7 +503,7 @@ def get_dashboard_layout(app):
         while n_clicks != 0:
             return html.Div([
                 html.H4('Select an option'),
-                dcc.RadioItems(
+                dcc.RadioItems(id='radio-items',
                     options=[
                         {'label': 'Pints of Beer', 'value': 'beer'},
                         {'label': 'Bananas', 'value': 'banana'},
@@ -508,5 +511,27 @@ def get_dashboard_layout(app):
                         {'label': 'Cups of Coffee', 'value': 'coffee'},
                     ], labelStyle={'display': 'block'})
             ])
+
+    @app.callback(
+        Output(component_id='radio-content', component_property='children'),
+        [Input(component_id='radio-items', component_property='value')]
+    )
+    def render_output(value):
+        if value == 'beer':
+            return html.H3('This is the equivilent of '),\
+                   html.H2('XXX'),\
+                   html.H3('pints of beer!')
+        elif value == 'banana':
+            return html.H3('This is the equivilent of '), \
+                   html.H2('XXX'), \
+                   html.H3('bananas!')
+        elif value == 'power-plant':
+            return html.H3('This is the equivilent of '),\
+                   html.H2('XXX'),\
+                   html.H3('years working in a power plant!')
+        elif value == 'coffee':
+            return html.H3('This is the equivilent of '), \
+                   html.H2('XXX'), \
+                   html.H3('coffees!')
 
     return layout
