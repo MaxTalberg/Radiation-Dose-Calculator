@@ -6,13 +6,26 @@ import pandas as pd
 from header import get_header
 # from app import server
 
+#Hex
 EDF_BLUE = '#103579'
 EDF_ORANGE = '#ff5716'
+
+#Code to create drop down values
+def dropdown(min_val, max_val, name):
+    name = []
+    for i in range(min_val, max_val + 1):
+        name.append(i)
+    return (name)
+
+
+
+
 
 def get_dashboard_layout(app):
     layout = html.Div([
 
         get_header(app=app),
+
 
         # TITLE *************************************************************************
         html.Div(
@@ -22,7 +35,7 @@ def get_dashboard_layout(app):
                         html.I('margin')
                     ], width=1),
                     dbc.Col([
-                        html.H3('Radiation Dose Calculator',
+                        html.H2('Radiation Dose Calculator',
 
                                 style={
                                     'textAlign': 'center',
@@ -48,15 +61,15 @@ def get_dashboard_layout(app):
                         html.I('margin')
                     ], width=1),
                     dbc.Col([
-                        html.B(['1. '], style={'display': 'inline-block'}),
-                        html.H6(['How many Xrays have you had in the last year?'], style={'display': 'inline-block'})
+                        html.H5(['1. '], style={'display': 'inline-block'}),
+                        html.H5(['How many x-rays have you had in the last year?'], style={'display': 'inline-block'})
                     ], width=6),
 
                     dbc.Col([
                     ], width=1),
                     dbc.Col([
                         html.Img(id="xray-logo",
-                                 src=app.get_asset_url('xray.svg'),
+                                 src='/assets/xray.png',
                                  height=80,
                                  width=80,
                                  style={'align-items': 'center'})
@@ -65,25 +78,28 @@ def get_dashboard_layout(app):
                         html.I('margin')
                     ], width=1)
                 ], id='row-1-Q'),
+
                 dbc.Row([
                     dbc.Col([
                         html.I('margin')
                     ], width=1),
                     dbc.Col([
                         html.Div([
-                            html.I('Dental Xrays'),
+                            html.I('Dental X-ray'),
                             dcc.Dropdown(id='Q-1a-ddown',
                                          options=[
-                                             {"label": value, "value": value} for value in range(100)
+                                             {"label": value, "value": value} for value in range(6)
                                          ])
+
                         ])
                     ], width=3),
+
                     dbc.Col([
                         html.Div([
-                            html.I('Wrist Xrays'),
+                            html.I('Wrist X-ray'),
                             dcc.Dropdown(id='Q-1b-ddown',
                                          options=[
-                                             {"label": value, "value": value} for value in range(100)
+                                             {"label": value, "value": value} for value in range(6)
                                          ])
                         ])
                     ], width=3),
@@ -101,8 +117,8 @@ def get_dashboard_layout(app):
                         html.I('margin')
                     ], width=1),
                     dbc.Col([
-                        html.B(['2. '], style={'display': 'inline-block'}),
-                        html.H6(['How many CT scans have you had in the last year?'], style={'display': 'inline-block'})
+                        html.H5(['2. '], style={'display': 'inline-block'}),
+                        html.H5(['How many CT scans have you had in the last year?'], style={'display': 'inline-block'})
                     ], width=6),
                     dbc.Col([
                     ], width=1),
@@ -126,7 +142,7 @@ def get_dashboard_layout(app):
                             html.I('Head CT Scan'),
                             dcc.Dropdown(id='Q-2a-ddown',
                                          options=[
-                                             {"label": value, "value": value} for value in range(100)
+                                             {"label": value, "value": value} for value in range(6)
                                          ])
                         ])
                     ], width=3),
@@ -135,7 +151,7 @@ def get_dashboard_layout(app):
                             html.I('Chest CT Scan'),
                             dcc.Dropdown(id='Q-2b-ddown',
                                          options=[
-                                             {"label": value, "value": value} for value in range(100)
+                                             {"label": value, "value": value} for value in range(6)
                                          ])
                         ])
                     ], width=3),
@@ -144,7 +160,7 @@ def get_dashboard_layout(app):
                             html.I('Abdomen CT Scan'),
                             dcc.Dropdown(id='Q-2c-ddown',
                                          options=[
-                                             {"label": value, "value": value} for value in range(100)
+                                             {"label": value, "value": value} for value in range(6)
                                          ])
                         ])
                     ], width=3),
@@ -162,8 +178,8 @@ def get_dashboard_layout(app):
                         html.I('margin')
                     ], width=1),
                     dbc.Col([
-                        html.B(['3. '], style={'display': 'inline-block'}),
-                        html.H6(['How many coffees do you drink a week?'], style={'display': 'inline-block'})
+                        html.H5(['3. '], style={'display': 'inline-block'}),
+                        html.H5(['How many coffees do you drink a week?'], style={'display': 'inline-block'})
                     ], width=6),
 
                     dbc.Col([
@@ -187,7 +203,7 @@ def get_dashboard_layout(app):
                         html.Div([
                             dcc.Dropdown(id='Q-3a-ddown',
                                          options=[
-                                             {"label": value, "value": value} for value in range(100)
+                                             {"label": value, "value": value} for value in range(6)
                                          ])
                         ])
                     ], width=3),
@@ -206,15 +222,15 @@ def get_dashboard_layout(app):
                         html.I('margin')
                     ], width=1),
                     dbc.Col([
-                        html.B(['4. '], style={'display': 'inline-block'}),
-                        html.H6(['How many bananas do you eat a week?'], style={'display': 'inline-block'})
+                        html.H5(['4. '], style={'display': 'inline-block'}),
+                        html.H5(['How many bananas do you eat a week?'], style={'display': 'inline-block'})
                     ], width=6),
 
                     dbc.Col([
                     ], width=1),
                     dbc.Col([
                         html.Img(id="banana-logo",
-                                 src=app.get_asset_url('xray.svg'),
+                                 src='/assets/banana.png',
                                  height=80,
                                  width=80,
                                  style={'align-items': 'center'})
@@ -231,7 +247,7 @@ def get_dashboard_layout(app):
                         html.Div([
                             dcc.Dropdown(id='Q-4a-ddown',
                                          options=[
-                                             {"label": value, "value": value} for value in range(100)
+                                             {"label": value, "value": value} for value in range(6)
                                          ])
                         ])
                     ], width=3),
@@ -250,8 +266,8 @@ def get_dashboard_layout(app):
                         html.I('margin')
                     ], width=1),
                     dbc.Col([
-                        html.B(['5. '], style={'display': 'inline-block'}),
-                        html.H6(['How many beers do you drink a week?'], style={'display': 'inline-block'})
+                        html.H5(['5. '], style={'display': 'inline-block'}),
+                        html.H5(['How many beers do you drink a week?'], style={'display': 'inline-block'})
                     ], width=6),
 
                     dbc.Col([
@@ -275,7 +291,7 @@ def get_dashboard_layout(app):
                         html.Div([
                             dcc.Dropdown(id='Q-5a-ddown',
                                          options=[
-                                             {"label": value, "value": value} for value in range(100)
+                                             {"label": value, "value": value} for value in range(6)
                                          ])
                         ])
                     ], width=3),
@@ -294,8 +310,8 @@ def get_dashboard_layout(app):
                         html.I('margin')
                     ], width=1),
                     dbc.Col([
-                        html.B(['6. '], style={'display': 'inline-block'}),
-                        html.H6(['Where do you live?'], style={'display': 'inline-block'})
+                        html.H5(['6. '], style={'display': 'inline-block'}),
+                        html.H5(['Where do you live?'], style={'display': 'inline-block'})
                     ], width=6),
 
                     dbc.Col([
@@ -319,7 +335,7 @@ def get_dashboard_layout(app):
                         html.Div([
                             dcc.Dropdown(id='Q-6a-ddown',
                                          options=[
-                                             {"label": value, "value": value} for value in range(100)
+                                             {"label": value, "value": value} for value in range(6)
                                          ])
                         ])
                     ], width=3),
@@ -339,8 +355,8 @@ def get_dashboard_layout(app):
                         html.I('margin')
                     ], width=1),
                     dbc.Col([
-                        html.B(['7. '], style={'display': 'inline-block'}),
-                        html.H6(['Have you been on holiday this year?'], style={'display': 'inline-block'})
+                        html.H5(['7. '], style={'display': 'inline-block'}),
+                        html.H5(['Have you been on holiday this year?'], style={'display': 'inline-block'})
                     ], width=7),
                     dbc.Col([
                         html.I('Picture')
@@ -355,7 +371,7 @@ def get_dashboard_layout(app):
                         html.I('margin')
                     ], width=1),
                     dbc.Col([
-                        html.H6(['Pick your holiday'], style={'display': 'inline-block'})
+                        html.H5(['Pick your holiday'], style={'display': 'inline-block'})
                     ], width=7),
 
                     dbc.Col([
@@ -413,7 +429,7 @@ def get_dashboard_layout(app):
                         html.I('margin')
                     ], width=1),
                     dbc.Col([
-                        html.Button('Submit', id='submit-val', n_clicks=0)
+                        html.Button('Calculate', id='submit-val', n_clicks=0)
                     ], width=7),
                     dbc.Col([
                         html.I('Picture')
@@ -518,19 +534,19 @@ def get_dashboard_layout(app):
     )
     def render_output(value):
         if value == 'beer':
-            return html.H3('This is the equivilent of '),\
+            return html.H3('This is the equivalent to '),\
                    html.H2('XXX'),\
                    html.H3('pints of beer!')
         elif value == 'banana':
-            return html.H3('This is the equivilent of '), \
+            return html.H3('This is the equivalent to '), \
                    html.H2('XXX'), \
                    html.H3('bananas!')
         elif value == 'power-plant':
-            return html.H3('This is the equivilent of '),\
+            return html.H3('This is the equivalent to '),\
                    html.H2('XXX'),\
-                   html.H3('years working in a power plant!')
+                   html.H3('years working in a nuclear power plant!')
         elif value == 'coffee':
-            return html.H3('This is the equivilent of '), \
+            return html.H3('This is the equivalent to '), \
                    html.H2('XXX'), \
                    html.H3('coffees!')
 
