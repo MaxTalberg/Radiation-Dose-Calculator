@@ -413,7 +413,7 @@ def get_dashboard_layout(app):
                         html.I('margin')
                     ], width=1),
                     dbc.Col([
-                        dbc.Button('Submit', id='submit-val', n_clicks=0)
+                        html.Button('Submit', id='submit-val', n_clicks=0)
                     ], width=7),
                     dbc.Col([
                         html.I('Picture')
