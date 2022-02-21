@@ -88,7 +88,23 @@ def get_dashboard_layout(app):
                         html.I('margin')
                     ], width=1),
                     dbc.Col([
-                        dbc.Badge("How many x-rays have you had in the last year?", pill=True, color="#e3652e", className="me-1"),
+                        html.Div([
+                            dbc.Badge("How many x-rays have you had in the last year?",
+                                      pill=True,
+                                      color="#e3652e",
+                                      className="me-1"),
+                            html.Div([
+                                html.I(className="fa fa-info-circle")
+                            ], style={'display': 'inline-block',
+                                      'margin-left': '10px'},
+                                id='question-1'
+                            ),
+                            dbc.Tooltip("Hello"
+                                        "Mate",
+                                        target='question-1',
+                                        placement='right'
+                                        )
+                        ])
                     ], width=6),
 
                     dbc.Col([
@@ -157,8 +173,23 @@ def get_dashboard_layout(app):
                         html.I('margin')
                     ], width=1),
                     dbc.Col([
-                        html.H5(['2. '], style={'display': 'inline-block'}),
-                        html.H5(['How many CT scans have you had in the last year?'], style={'display': 'inline-block'})
+                        html.Div([
+                            html.H5(['2. '], style={'display': 'inline-block'}),
+                            html.H5(['How many CT scans have you had in the last year?'],
+                                    style={'display': 'inline-block'}),
+
+                            html.Div([
+                                html.I(className="fa fa-info-circle")
+                            ], style={'display': 'inline-block',
+                                      'margin-left': '10px'},
+                                id='question-2'
+                            ),
+                            dbc.Tooltip("Hello"
+                                        "Mate",
+                                        target='question-2',
+                                        placement='right'
+                                        )
+                        ])
                     ], width=6),
                     dbc.Col([
                     ], width=1),
@@ -239,8 +270,22 @@ def get_dashboard_layout(app):
                         html.I('margin')
                     ], width=1),
                     dbc.Col([
-                        html.H5(['3. '], style={'display': 'inline-block'}),
-                        html.H5(['How many coffees do you drink a week?'], style={'display': 'inline-block'})
+                        html.Div([
+                            html.H5(['3. '], style={'display': 'inline-block'}),
+                            html.H5(['How many coffees do you drink a week?'], style={'display': 'inline-block'}),
+
+                            html.Div([
+                                html.I(className="fa fa-info-circle")
+                            ], style={'display': 'inline-block',
+                                      'margin-left': '10px'},
+                                id='question-3'
+                            ),
+                            dbc.Tooltip("Hello"
+                                        "Mate",
+                                        target='question-3',
+                                        placement='right'
+                                        )
+                        ])
                     ], width=6),
 
                     dbc.Col([
@@ -290,8 +335,22 @@ def get_dashboard_layout(app):
                         html.I('margin')
                     ], width=1),
                     dbc.Col([
-                        html.H5(['4. '], style={'display': 'inline-block'}),
-                        html.H5(['How many bananas do you eat a week?'], style={'display': 'inline-block'})
+                        html.Div([
+                            html.H5(['4. '], style={'display': 'inline-block'}),
+                            html.H5(['How many bananas do you eat a week?'], style={'display': 'inline-block'}),
+
+                            html.Div([
+                                html.I(className="fa fa-info-circle")
+                            ], style={'display': 'inline-block',
+                                      'margin-left': '10px'},
+                                id='question-4'
+                            ),
+                            dbc.Tooltip("Hello"
+                                        "Mate",
+                                        target='question-4',
+                                        placement='right'
+                                        )
+                        ])
                     ], width=6),
 
                     dbc.Col([
@@ -341,8 +400,22 @@ def get_dashboard_layout(app):
                         html.I('margin')
                     ], width=1),
                     dbc.Col([
-                        html.H5(['5. '], style={'display': 'inline-block'}),
-                        html.H5(['How many beers do you drink a week?'], style={'display': 'inline-block'})
+                        html.Div([
+                            html.H5(['5. '], style={'display': 'inline-block'}),
+                            html.H5(['How many beers do you drink a week?'], style={'display': 'inline-block'}),
+
+                            html.Div([
+                                html.I(className="fa fa-info-circle")
+                            ], style={'display': 'inline-block',
+                                      'margin-left': '10px'},
+                                id='question-5'
+                            ),
+                            dbc.Tooltip("Hello"
+                                        "Mate",
+                                        target='question-5',
+                                        placement='right'
+                                        )
+                        ])
                     ], width=6),
 
                     dbc.Col([
@@ -392,8 +465,22 @@ def get_dashboard_layout(app):
                         html.I('margin')
                     ], width=1),
                     dbc.Col([
-                        html.H5(['6. '], style={'display': 'inline-block'}),
-                        html.H5(['Where do you live?'], style={'display': 'inline-block'})
+                        html.Div([
+                            html.H5(['6. '], style={'display': 'inline-block'}),
+                            html.H5(['Where do you live?'], style={'display': 'inline-block'}),
+
+                            html.Div([
+                                html.I(className="fa fa-info-circle")
+                            ], style={'display': 'inline-block',
+                                      'margin-left': '10px'},
+                                id='question-6'
+                            ),
+                            dbc.Tooltip("Hello"
+                                        "Mate",
+                                        target='question-6',
+                                        placement='right'
+                                        )
+                        ])
                     ], width=6),
 
                     dbc.Col([
@@ -444,8 +531,22 @@ def get_dashboard_layout(app):
                         html.I('margin')
                     ], width=1),
                     dbc.Col([
-                        html.H5(['7. '], style={'display': 'inline-block'}),
-                        html.H5(['Have you been on holiday this year?'], style={'display': 'inline-block'})
+                        html.Div([
+                            html.H5(['7. '], style={'display': 'inline-block'}),
+                            html.H5(['Have you been on holiday this year?'], style={'display': 'inline-block'}),
+
+                            html.Div([
+                                html.I(className="fa fa-info-circle")
+                            ], style={'display': 'inline-block',
+                                      'margin-left': '10px'},
+                                id='question-7'
+                            ),
+                            dbc.Tooltip("Hello"
+                                        "Mate",
+                                        target='question-7',
+                                        placement='right'
+                                        )
+                        ])
                     ], width=7),
                     dbc.Col([
                         html.I('Picture')
@@ -496,6 +597,11 @@ def get_dashboard_layout(app):
                     dbc.Col([
                         html.Div([
                             html.I('Short Haul'),
+                            html.Div([
+                                dcc.Dropdown(id='Q-6a-dddown',
+                                         options=[
+                                             {"label": value, "value": value} for value in range(5)])
+                            ], style={"width": "50%"}),
                             dbc.DropdownMenu(id='Q-7b-ddown',
                                          label="Select",
                                          children=[
@@ -598,40 +704,6 @@ def get_dashboard_layout(app):
         ])
 
     ])
-
-
-#Information Box
-    modal = html.Div(
-        [
-            dbc.Button("Information", id="open", n_clicks=0),
-            dbc.Modal(
-                [
-                    dbc.ModalHeader(dbc.ModalTitle("Information")),
-                    dbc.ModalBody("This is a radiation dose calculator"),
-                    dbc.ModalFooter(
-                        dbc.Button(
-                            "Close", id="close", className="ms-auto", n_clicks=0
-                        )
-                    ),
-                ],
-                id="modal",
-                is_open=False,
-            ),
-        ]
-    )
-
-
-    @app.callback(
-        Output("modal", "is_open"),
-        [Input("open", "n_clicks"), Input("close", "n_clicks")],
-        [State("modal", "is_open")],
-    )
-    def toggle_modal(n1, n2, is_open):
-        if n1 or n2:
-            return not is_open
-        return is_open
-
-
 
     @app.callback(
         Output(component_id='tabs-graph', component_property='children'),
