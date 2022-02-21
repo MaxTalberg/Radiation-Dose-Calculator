@@ -1,4 +1,4 @@
-from dash import dcc, html
+from dash import dcc, html, State
 import dash_bootstrap_components as dbc
 from dash.dependencies import Input, Output
 import pandas as pd
@@ -9,19 +9,19 @@ from header import get_header
 #Hex
 EDF_BLUE = '#103579'
 EDF_ORANGE = '#ff5716'
+Miles_Blue = '#64c3db'
+Miles_Orange = '#e3652e'
 
-#Code to create drop down values
-def dropdown(min_val, max_val, name):
-    name = []
-    for i in range(min_val, max_val + 1):
-        name.append(i)
-    return (name)
+
 
 
 
 
 
 def get_dashboard_layout(app):
+
+
+#Layout begins
     layout = html.Div([
 
         get_header(app=app),
@@ -29,13 +29,40 @@ def get_dashboard_layout(app):
 
         # TITLE *************************************************************************
         html.Div(
+        dbc.Container(
+            [
+                html.H1("Radiation Dose Calculator ", className="display-3"),
+                html.P(
+                    "Discover your radiation exposure by answering the questions and clicking calculate",
+                    className="lead",
+                ),
+                html.Hr(className="my-2"),
+                html.P(
+                    "Radiation is part of our everyday life. Did you know there is naturally occuring radiation in the food you eat,.."
+                ),
+                html.P(
+                    "Want to learn more? Check out our fact sheet below"
+                ),
+
+                html.P(
+                    dbc.Button("Link to inforgraphics", color="primary"), className="lead"
+                ),
+            ],
+            fluid=True,
+            className="py-3",
+        ),
+        className="p-3 bg-light rounded-3",
+    ),
+
+#***NEED TO DELETE IDK HOW THO
+        html.Div(
             [
                 dbc.Row([
                     dbc.Col([
                         html.I('margin')
                     ], width=1),
                     dbc.Col([
-                        html.H2('Radiation Dose Calculator',
+                        html.H2('',
 
                                 style={
                                     'textAlign': 'center',
@@ -61,8 +88,7 @@ def get_dashboard_layout(app):
                         html.I('margin')
                     ], width=1),
                     dbc.Col([
-                        html.H5(['1. '], style={'display': 'inline-block'}),
-                        html.H5(['How many x-rays have you had in the last year?'], style={'display': 'inline-block'})
+                        dbc.Badge("How many x-rays have you had in the last year?", pill=True, color="#e3652e", className="me-1"),
                     ], width=6),
 
                     dbc.Col([
@@ -86,10 +112,17 @@ def get_dashboard_layout(app):
                     dbc.Col([
                         html.Div([
                             html.I('Dental X-ray'),
-                            dcc.Dropdown(id='Q-1a-ddown',
-                                         options=[
-                                             {"label": value, "value": value} for value in range(6)
-                                         ])
+                            dbc.DropdownMenu(id='Q-1a-ddown',
+                                             label="Select",
+                                             children=[
+                                                 dbc.DropdownMenuItem("0"),
+                                                 dbc.DropdownMenuItem("1"),
+                                                 dbc.DropdownMenuItem("2"),
+                                                 dbc.DropdownMenuItem("3"),
+                                                 dbc.DropdownMenuItem("4"),
+                                                 dbc.DropdownMenuItem("5"),
+                                             ],
+                                             )
 
                         ])
                     ], width=3),
@@ -97,10 +130,17 @@ def get_dashboard_layout(app):
                     dbc.Col([
                         html.Div([
                             html.I('Wrist X-ray'),
-                            dcc.Dropdown(id='Q-1b-ddown',
-                                         options=[
-                                             {"label": value, "value": value} for value in range(6)
-                                         ])
+                            dbc.DropdownMenu(id='Q-1b-ddown',
+                                             label="Select",
+                                             children=[
+                                                 dbc.DropdownMenuItem("0"),
+                                                 dbc.DropdownMenuItem("1"),
+                                                 dbc.DropdownMenuItem("2"),
+                                                 dbc.DropdownMenuItem("3"),
+                                                 dbc.DropdownMenuItem("4"),
+                                                 dbc.DropdownMenuItem("5"),
+                                             ],
+                                             )
                         ])
                     ], width=3),
                     dbc.Col([
@@ -140,28 +180,49 @@ def get_dashboard_layout(app):
                     dbc.Col([
                         html.Div([
                             html.I('Head CT Scan'),
-                            dcc.Dropdown(id='Q-2a-ddown',
-                                         options=[
-                                             {"label": value, "value": value} for value in range(6)
-                                         ])
+                            dbc.DropdownMenu(id='Q-2a-ddown',
+                                             label="Select",
+                                             children=[
+                                                 dbc.DropdownMenuItem("0"),
+                                                 dbc.DropdownMenuItem("1"),
+                                                 dbc.DropdownMenuItem("2"),
+                                                 dbc.DropdownMenuItem("3"),
+                                                 dbc.DropdownMenuItem("4"),
+                                                 dbc.DropdownMenuItem("5"),
+                                             ],
+                                             )
                         ])
                     ], width=3),
                     dbc.Col([
                         html.Div([
                             html.I('Chest CT Scan'),
-                            dcc.Dropdown(id='Q-2b-ddown',
-                                         options=[
-                                             {"label": value, "value": value} for value in range(6)
-                                         ])
+                            dbc.DropdownMenu(id='Q-2bb-ddown',
+                                             label="Select",
+                                             children=[
+                                                 dbc.DropdownMenuItem("0"),
+                                                 dbc.DropdownMenuItem("1"),
+                                                 dbc.DropdownMenuItem("2"),
+                                                 dbc.DropdownMenuItem("3"),
+                                                 dbc.DropdownMenuItem("4"),
+                                                 dbc.DropdownMenuItem("5"),
+                                             ],
+                                             )
                         ])
                     ], width=3),
                     dbc.Col([
                         html.Div([
                             html.I('Abdomen CT Scan'),
-                            dcc.Dropdown(id='Q-2c-ddown',
-                                         options=[
-                                             {"label": value, "value": value} for value in range(6)
-                                         ])
+                            dbc.DropdownMenu(id='Q-2b-ddown',
+                                             label="Select",
+                                             children=[
+                                                 dbc.DropdownMenuItem("0"),
+                                                 dbc.DropdownMenuItem("1"),
+                                                 dbc.DropdownMenuItem("2"),
+                                                 dbc.DropdownMenuItem("3"),
+                                                 dbc.DropdownMenuItem("4"),
+                                                 dbc.DropdownMenuItem("5"),
+                                             ],
+                                             )
                         ])
                     ], width=3),
                     dbc.Col([
@@ -201,10 +262,17 @@ def get_dashboard_layout(app):
                     ], width=1),
                     dbc.Col([
                         html.Div([
-                            dcc.Dropdown(id='Q-3a-ddown',
-                                         options=[
-                                             {"label": value, "value": value} for value in range(6)
-                                         ])
+                            dbc.DropdownMenu(id='Q-3b-ddown',
+                                             label="Select",
+                                             children=[
+                                                 dbc.DropdownMenuItem("0"),
+                                                 dbc.DropdownMenuItem("1"),
+                                                 dbc.DropdownMenuItem("2"),
+                                                 dbc.DropdownMenuItem("3"),
+                                                 dbc.DropdownMenuItem("4"),
+                                                 dbc.DropdownMenuItem("5"),
+                                             ],
+                                             )
                         ])
                     ], width=3),
 
@@ -245,10 +313,17 @@ def get_dashboard_layout(app):
                     ], width=1),
                     dbc.Col([
                         html.Div([
-                            dcc.Dropdown(id='Q-4a-ddown',
-                                         options=[
-                                             {"label": value, "value": value} for value in range(6)
-                                         ])
+                            dbc.DropdownMenu(id='Q-4b-ddown',
+                                             label="Select",
+                                             children=[
+                                                 dbc.DropdownMenuItem("0"),
+                                                 dbc.DropdownMenuItem("1"),
+                                                 dbc.DropdownMenuItem("2"),
+                                                 dbc.DropdownMenuItem("3"),
+                                                 dbc.DropdownMenuItem("4"),
+                                                 dbc.DropdownMenuItem("5"),
+                                             ],
+                                             )
                         ])
                     ], width=3),
 
@@ -289,10 +364,17 @@ def get_dashboard_layout(app):
                     ], width=1),
                     dbc.Col([
                         html.Div([
-                            dcc.Dropdown(id='Q-5a-ddown',
-                                         options=[
-                                             {"label": value, "value": value} for value in range(6)
-                                         ])
+                            dbc.DropdownMenu(id='Q-5b-ddown',
+                                             label="Select",
+                                             children=[
+                                                 dbc.DropdownMenuItem("0"),
+                                                 dbc.DropdownMenuItem("1"),
+                                                 dbc.DropdownMenuItem("2"),
+                                                 dbc.DropdownMenuItem("3"),
+                                                 dbc.DropdownMenuItem("4"),
+                                                 dbc.DropdownMenuItem("5"),
+                                             ],
+                                             )
                         ])
                     ], width=3),
 
@@ -333,10 +415,17 @@ def get_dashboard_layout(app):
                     ], width=1),
                     dbc.Col([
                         html.Div([
-                            dcc.Dropdown(id='Q-6a-ddown',
-                                         options=[
-                                             {"label": value, "value": value} for value in range(6)
-                                         ])
+                            dbc.DropdownMenu(id='Q-6a-ddown',
+                                             label="Select",
+                                             children=[
+                                                 dbc.DropdownMenuItem("0"),
+                                                 dbc.DropdownMenuItem("1"),
+                                                 dbc.DropdownMenuItem("2"),
+                                                 dbc.DropdownMenuItem("3"),
+                                                 dbc.DropdownMenuItem("4"),
+                                                 dbc.DropdownMenuItem("5"),
+                                             ],
+                                             )
                         ])
                     ], width=3),
 
@@ -371,7 +460,7 @@ def get_dashboard_layout(app):
                         html.I('margin')
                     ], width=1),
                     dbc.Col([
-                        html.H5(['Pick your holiday'], style={'display': 'inline-block'})
+                        html.I(['How many flights have you taken?'], style={'display': 'inline-block'})
                     ], width=7),
 
                     dbc.Col([
@@ -387,13 +476,59 @@ def get_dashboard_layout(app):
                     dbc.Col([
                         html.I('margin')
                     ], width=1),
+                    dbc.Col([
+                        html.Div([
+                            html.I('Long Haul'),
+                            dbc.DropdownMenu(id='Q-7a-ddown',
+                                             label="Select",
+                                             children=[
+                                                 dbc.DropdownMenuItem("0"),
+                                                 dbc.DropdownMenuItem("1"),
+                                                 dbc.DropdownMenuItem("2"),
+                                                 dbc.DropdownMenuItem("3"),
+                                                 dbc.DropdownMenuItem("4"),
+                                                 dbc.DropdownMenuItem("5"),
+                                             ],
+                                             )
+                        ])
+                    ], width=3),
 
                     dbc.Col([
-                        dcc.Checklist(
+                        html.Div([
+                            html.I('Short Haul'),
+                            dbc.DropdownMenu(id='Q-7b-ddown',
+                                         label="Select",
+                                         children=[
+                                             dbc.DropdownMenuItem("0"),
+                                             dbc.DropdownMenuItem("1"),
+                                             dbc.DropdownMenuItem("2"),
+                                             dbc.DropdownMenuItem("3"),
+                                             dbc.DropdownMenuItem("4"),
+                                             dbc.DropdownMenuItem("5"),
+                                         ],
+                                         )
+
+                        ])
+                    ], width=3),
+                    dbc.Col([
+                    ], width=4),
+                    dbc.Col([
+                        html.I('margin')
+                    ], width=1)
+                ], id='row-7-A'),
+
+                html.Br(),
+
+
+                dbc.Row([
+                    dbc.Col([
+                        html.I('margin')
+                    ], width=1),
+
+                    dbc.Col([
+                        dbc.Checklist(
                             options=[
-                                {'label': 'Cornwall', 'value': 'c'},
-                                {'label': 'Long Haul', 'value': 'lh'},
-                                {'label': 'Short Haul', 'value': 'sh'},
+                                {'label': '3-Day Holiday to Cornwall', 'value': 'c'},
                             ],labelStyle={'display': 'block'}
                         )
                     ], width=7),
@@ -429,7 +564,7 @@ def get_dashboard_layout(app):
                         html.I('margin')
                     ], width=1),
                     dbc.Col([
-                        html.Button('Calculate', id='submit-val', n_clicks=0)
+                        dbc.Button('Calculate', id='submit-val', n_clicks=0)
                     ], width=7),
                     dbc.Col([
                         html.I('Picture')
@@ -463,6 +598,40 @@ def get_dashboard_layout(app):
         ])
 
     ])
+
+
+#Information Box
+    modal = html.Div(
+        [
+            dbc.Button("Information", id="open", n_clicks=0),
+            dbc.Modal(
+                [
+                    dbc.ModalHeader(dbc.ModalTitle("Information")),
+                    dbc.ModalBody("This is a radiation dose calculator"),
+                    dbc.ModalFooter(
+                        dbc.Button(
+                            "Close", id="close", className="ms-auto", n_clicks=0
+                        )
+                    ),
+                ],
+                id="modal",
+                is_open=False,
+            ),
+        ]
+    )
+
+
+    @app.callback(
+        Output("modal", "is_open"),
+        [Input("open", "n_clicks"), Input("close", "n_clicks")],
+        [State("modal", "is_open")],
+    )
+    def toggle_modal(n1, n2, is_open):
+        if n1 or n2:
+            return not is_open
+        return is_open
+
+
 
     @app.callback(
         Output(component_id='tabs-graph', component_property='children'),
