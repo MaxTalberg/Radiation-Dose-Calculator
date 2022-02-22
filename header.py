@@ -5,11 +5,11 @@ import dash_bootstrap_components as dbc
 
 def get_button_header(id, label, active=False, visible=True, disabled=False, style=None):
     if not style:
-        style = {'color': 'white', 'font-size': '110%', 'outline': 'none', 'border': '2px solid black'}
+        style = {'color': '#e3652e', 'font-size': '110%', 'outline': 'none', 'border': '2px solid black'}
         if active:
-            style['background-color'] = 'rgba(102,51,153,0.2)'
+            style['background-color'] = '#e3652e'
         else:
-            style['background-color'] = 'black'
+            style['background-color'] = '#e3652e'
         if not visible:
             style['display'] = 'none'
 
@@ -30,24 +30,13 @@ def get_header(app):
     id='page-header',
     children=[
         dbc.Row([
-            dbc.Col([
-                html.Div([
-                    html.Span(id="title", children='Radiation App'),
-                ], style={'padding-top': '15px'})
-            ],
-                width=3,
-                className="align-middle"),
-            dbc.Col(
-                ),
+
             dbc.Col(
                     children=[
-                        html.Img(id="edf-logo",
-                                 src=app.get_asset_url('edf-logo.svg'),
-                                 height=80,
-                                 width=80,
-                                 style={'padding-right': '10px'}),
+                        html.Img(id="logo",
+                                 src=app.get_asset_url('1.png'),
+                                 style={'textAlign': 'center', 'height': '10', 'width':'30'}),
                     ],
-                    width=1,
                     className="align-middle d-flex justify-content-center"),
 
         ])

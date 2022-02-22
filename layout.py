@@ -1,16 +1,16 @@
+#Import Libraries
 from dash import dcc, html, State
 import dash_bootstrap_components as dbc
 from dash.dependencies import Input, Output
 import pandas as pd
 import time
-
 from header import get_header
 from title import get_title
 
 from questions.xray import get_question1
 
 
-#Hex
+#Hex Colours
 EDF_BLUE = '#103579'
 EDF_ORANGE = '#ff5716'
 Miles_Blue = '#64c3db'
@@ -451,20 +451,22 @@ def get_dashboard_layout(app):
 
                 html.Br(),
 
-
+                #Holiday to Cornwall
                 dbc.Row([
                     dbc.Col([
                         html.I('margin')
                     ], width=1),
 
                     dbc.Col([
-                        dbc.Checklist(
-                            options=[
-                                {'label': '3-Day Holiday to Cornwall', 'value': 'c'},
-                            ],labelStyle={'display': 'block'}
-                        )
-                    ], width=7),
-
+                        html.Div([
+                            html.I('How many days have you spent on a holiday to Cornwall?'),
+                            html.Div([
+                                dcc.Dropdown(id='Q-7c-ddown',
+                                             options=[
+                                                 {"label": value, "value": value} for value in range(10)])
+                            ], style={"width": "50%"}),
+                        ]),
+                        ]),
                     dbc.Col([
                         html.I('Picture')
                     ], width=3),
