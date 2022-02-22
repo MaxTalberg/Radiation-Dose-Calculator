@@ -31,7 +31,7 @@ def get_dashboard_layout(app):
             [
                 html.H1("Radiation Dose Calculator ", className="display-3"),
                 html.P(
-                    "Discover your radiation exposure by answering the questions and clicking calculate",
+                    "Discover your radiation exposure by answering the questions and by clicking calculate",
                     className="lead",
                 ),
                 html.Hr(className="my-2"),
@@ -87,18 +87,23 @@ def get_dashboard_layout(app):
                     ], width=1),
                     dbc.Col([
                         html.Div([
-                            dbc.Badge("How many x-rays have you had in the last year?",
+                                html.H4(["",dbc.Badge("How many x-rays have you had in the last year?",
                                       pill=True,
                                       color="#e3652e",
-                                      className="me-1"),
+                                      className="me-1")
+                                     ]),
+
                             html.Div([
                                 html.I(className="fa fa-info-circle")
                             ], style={'display': 'inline-block',
                                       'margin-left': '10px'},
                                 id='question-1'
                             ),
-                            dbc.Tooltip("Hello"
-                                        "Mate",
+                            dbc.Tooltip(html.Div(["X-rays subject the patient to small doses of radiation"
+                                        "Effective Dose: 0.005 mSv (dental x-ray) and 0.001 mSv (wrist x-ray)"
+                                        "This is the same dose as eating 1/2 and 1/10 of a banana"
+
+                                                 ]),
                                         target='question-1',
                                         placement='right'
                                         )
@@ -155,9 +160,11 @@ def get_dashboard_layout(app):
                     ], width=1),
                     dbc.Col([
                         html.Div([
-                            html.H5(['2. '], style={'display': 'inline-block'}),
-                            html.H5(['How many CT scans have you had in the last year?'],
-                                    style={'display': 'inline-block'}),
+                            html.H4(["",dbc.Badge("How many CT scans have you had in the last year?",
+                                      pill=True,
+                                      color="#e3652e",
+                                      className="me-1")
+                                     ]),
 
                             html.Div([
                                 html.I(className="fa fa-info-circle")
@@ -165,8 +172,14 @@ def get_dashboard_layout(app):
                                       'margin-left': '10px'},
                                 id='question-2'
                             ),
-                            dbc.Tooltip("Hello"
-                                        "Mate",
+                            dbc.Tooltip(html.Div(
+                                "CT Scans form images of your body using many x-rays. X-rays subject your body"
+                                "to a dose of radiation"
+                                "Effective Dose: 2mSv (Head CT Scan), 8mSv (Chest CT Scan) and  10mSv (Abdomen CT Scan)"
+                                "This is the same dose as eating 200, 800 and 1000 bananas"
+
+                            ),
+
                                         target='question-2',
                                         placement='right'
                                         )
@@ -228,8 +241,11 @@ def get_dashboard_layout(app):
                     ], width=1),
                     dbc.Col([
                         html.Div([
-                            html.H5(['3. '], style={'display': 'inline-block'}),
-                            html.H5(['How many coffees do you drink a week?'], style={'display': 'inline-block'}),
+                                html.H4(["",dbc.Badge("How many coffees do you drink a week?",
+                                      pill=True,
+                                      color="#e3652e",
+                                      className="me-1")
+                                     ]),
 
                             html.Div([
                                 html.I(className="fa fa-info-circle")
@@ -237,8 +253,11 @@ def get_dashboard_layout(app):
                                       'margin-left': '10px'},
                                 id='question-3'
                             ),
-                            dbc.Tooltip("Hello"
-                                        "Mate",
+                            dbc.Tooltip("Coffee contains naturally occurring radioactive nuclides from"
+                                        "the soil coffee plants are grown in."
+                                        "When you drink a coffee you ingest a tiny amount of radiation."
+                                        "Effective Dose: 0.0006 mSv (approx. one coffee)."
+                                        "This is the same eating 1/17 bananas",
                                         target='question-3',
                                         placement='right'
                                         )
@@ -285,8 +304,11 @@ def get_dashboard_layout(app):
                     ], width=1),
                     dbc.Col([
                         html.Div([
-                            html.H5(['4. '], style={'display': 'inline-block'}),
-                            html.H5(['How many bananas do you eat a week?'], style={'display': 'inline-block'}),
+                            html.H4(["", dbc.Badge("How many bananas do you eat a week?",
+                                                   pill=True,
+                                                   color="#e3652e",
+                                                   className="me-1"),
+                                    ]),
 
                             html.Div([
                                 html.I(className="fa fa-info-circle")
@@ -294,8 +316,9 @@ def get_dashboard_layout(app):
                                       'margin-left': '10px'},
                                 id='question-4'
                             ),
-                            dbc.Tooltip("Hello"
-                                        "Mate",
+                            dbc.Tooltip("Bananas are famous for containing radioactive nuclide potassium-40."
+                                        "When you eat a banana you ingest a small dose of this nuclide."
+                                        "Effective Dose: 0.01 mSv (per banana)",
                                         target='question-4',
                                         placement='right'
                                         )
@@ -342,8 +365,12 @@ def get_dashboard_layout(app):
                     ], width=1),
                     dbc.Col([
                         html.Div([
-                            html.H5(['5. '], style={'display': 'inline-block'}),
-                            html.H5(['How many beers do you drink a week?'], style={'display': 'inline-block'}),
+
+                        html.H4(["", dbc.Badge("How many beers do you drink a week?",
+                                                   pill=True,
+                                                   color="#e3652e",
+                                                   className="me-1"),
+                                    ]),
 
                             html.Div([
                                 html.I(className="fa fa-info-circle")
@@ -351,8 +378,10 @@ def get_dashboard_layout(app):
                                       'margin-left': '10px'},
                                 id='question-5'
                             ),
-                            dbc.Tooltip("Hello"
-                                        "Mate",
+                            dbc.Tooltip("Beer contains a very small amount of radioactive nuclides sourced from the water"
+                                        "used to create beer."
+                                        "Effective Dose: 0.0004 mSv (per pint)"
+                                        "This is the same as eating 1/25 of a banana",
                                         target='question-5',
                                         placement='right'
                                         )
@@ -399,17 +428,19 @@ def get_dashboard_layout(app):
                     ], width=1),
                     dbc.Col([
                         html.Div([
-                            html.H5(['6. '], style={'display': 'inline-block'}),
-                            html.H5(['Where do you live?'], style={'display': 'inline-block'}),
-
+                            html.H4(["", dbc.Badge("Where do you live?",
+                                                   pill=True,
+                                                   color="#e3652e",
+                                                   className="me-1"),
+                                     ]),
                             html.Div([
                                 html.I(className="fa fa-info-circle")
                             ], style={'display': 'inline-block',
                                       'margin-left': '10px'},
                                 id='question-6'
                             ),
-                            dbc.Tooltip("Hello"
-                                        "Mate",
+                            dbc.Tooltip("COMPLETE LATER"
+                                        ,
                                         target='question-6',
                                         placement='right'
                                         )
@@ -437,7 +468,7 @@ def get_dashboard_layout(app):
                         html.Div([
                             dcc.Dropdown(id='Q-6a-ddown',
                                          options=[
-                                             {"label": 'London', "value": 'london'},
+                                             {"label": 'Sheffield', "value": 'london'},
                                              {"label": 'Rest of UK', "value": 'rest'}])
                         ], style={"width": "50%"}),
                     ], width=3),
@@ -458,9 +489,11 @@ def get_dashboard_layout(app):
                     ], width=1),
                     dbc.Col([
                         html.Div([
-                            html.H5(['7. '], style={'display': 'inline-block'}),
-                            html.H5(['Have you been on holiday this year?'], style={'display': 'inline-block'}),
-
+                            html.H4(["", dbc.Badge("Have you been on holiday this year?",
+                                                   pill=True,
+                                                   color="#e3652e",
+                                                   className="me-1"),
+                                    ]),
                             html.Div([
                                 html.I(className="fa fa-info-circle")
                             ], style={'display': 'inline-block',
