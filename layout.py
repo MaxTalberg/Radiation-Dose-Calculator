@@ -8,6 +8,13 @@ from header import get_header
 from title import get_title
 
 from questions.xray import get_question1
+from questions.ct import get_question2
+from questions.coffee import get_question3
+from questions.banana import get_question4
+from questions.beer import get_question5
+from questions.live import get_question6
+from questions.holiday import get_question7
+
 
 
 #Hex Colours
@@ -25,456 +32,37 @@ def get_dashboard_layout(app):
 #Layout begins
     layout = html.Div([
 
+        #Header
         get_header(app=app),
-
-
-        # TITLE *************************************************************************
+        #Title
         get_title(app=app),
 
-#***NEED TO DELETE IDK HOW THO
+        #Questions
         get_question1(app=app),
 
         html.Br(),
 
+        get_question2(app=app),
 
-                dbc.Row([
+        html.Br(),
 
-                ], id='row-1-A'),
+        get_question3(app=app),
 
-                # (2) CT SCANS
-                html.Br(),
-                dbc.Row([
-                    dbc.Col([
-                        html.I('margin')
-                    ], width=1),
-                    dbc.Col([
-                        html.Div([
-                            html.H4(["",dbc.Badge("How many CT scans have you had in the last year?",
-                                      pill=True,
-                                      color="#e3652e",
-                                      className="me-1")
-                                     ]),
+        html.Br(),
 
-                            html.Div([
-                                html.I(className="fa fa-info-circle")
-                            ], style={'display': 'inline-block',
-                                      'margin-left': '10px'},
-                                id='question-2'
-                            ),
-                            dbc.Tooltip(html.Div(
-                                "CT Scans form images of your body using many x-rays. X-rays subject your body to a dose of radiation"
-                                "Effective Dose: 2mSv (Head CT Scan), 8mSv (Chest CT Scan) and  10mSv (Abdomen CT Scan)"
-                                "This is the same dose as eating 200, 800 and 1000 bananas"
+        get_question4(app=app),
 
-                            ),
+        html.Br(),
 
-                                        target='question-2',
-                                        placement='right'
-                                        )
-                        ])
-                    ], width=6),
-                    dbc.Col([
-                    ], width=1),
-                    dbc.Col([
-                        html.Img(id="ct-logo",
-                                 src=app.get_asset_url('xray.svg'),
-                                 height=80,
-                                 width=80,
-                                 style={'align-items': 'center'})
-                    ], width=3),
-                    dbc.Col([
-                        html.I('margin')
-                    ], width=1)
-                ], id='row-2-Q'),
-                dbc.Row([
-                    dbc.Col([
-                        html.I('margin')
-                    ], width=1),
-                    dbc.Col([
-                        html.Div([
-                            html.I('Head CT Scan'),
-                            dcc.Dropdown(id='Q-2a-ddown',
-                                         options=[
-                                             {"label": value, "value": value} for value in range(5)])
-                        ], style={"width": "50%"})
-                    ], width=3),
-                    dbc.Col([
-                        html.Div([
-                            html.I('Chest CT Scan'),
-                            dcc.Dropdown(id='Q-2b-ddown',
-                                         options=[
-                                             {"label": value, "value": value} for value in range(5)])
-                        ], style={"width": "50%"})
-                    ], width=3),
-                    dbc.Col([
-                        html.Div([
-                            html.I('Abdomen CT Scan'),
-                            dcc.Dropdown(id='Q-2c-ddown',
-                                         options=[
-                                                 {"label": value, "value": value} for value in range(5)])
-                            ], style={"width": "50%"}),
-                    ], width=3),
-                    dbc.Col([
-                    ], width=4),
-                    dbc.Col([
-                        html.I('margin')
-                    ], width=1)
-                ], id='row-2-A'),
+        get_question5(app=app),
 
-                # (3) COFFEE
-                html.Br(),
-                dbc.Row([
-                    dbc.Col([
-                        html.I('margin')
-                    ], width=1),
-                    dbc.Col([
-                        html.Div([
-                                html.H4(["",dbc.Badge("How many coffees do you drink a week?",
-                                      pill=True,
-                                      color="#e3652e",
-                                      className="me-1")
-                                     ]),
+        html.Br(),
 
-                            html.Div([
-                                html.I(className="fa fa-info-circle")
-                            ], style={'display': 'inline-block',
-                                      'margin-left': '10px'},
-                                id='question-3'
-                            ),
-                            dbc.Tooltip("Coffee contains naturally occurring radioactive nuclides from"
-                                        "the soil coffee plants are grown in."
-                                        "When you drink a coffee you ingest a tiny amount of radiation."
-                                        "Effective Dose: 0.0006 mSv (approx. one coffee)."
-                                        "This is the same eating 1/17 bananas",
-                                        target='question-3',
-                                        placement='right'
-                                        )
-                        ])
-                    ], width=6),
+        get_question6(app=app),
 
-                    dbc.Col([
-                    ], width=1),
-                    dbc.Col([
-                        html.Img(id="coffee-logo",
-                                 src=app.get_asset_url('xray.svg'),
-                                 height=80,
-                                 width=80,
-                                 style={'align-items': 'center'})
-                    ], width=3),
-                    dbc.Col([
-                        html.I('margin')
-                    ], width=1)
-                ], id='row-3-Q'),
-                dbc.Row([
-                    dbc.Col([
-                        html.I('margin')
-                    ], width=1),
-                    dbc.Col([
-                        html.Div([
-                            dcc.Dropdown(id='Q-3a-ddown',
-                                         options=[
-                                             {"label": value, "value": value} for value in range(5)])
-                        ], style={"width": "50%"}),
-                    ], width=3),
+        html.Br(),
 
-                    dbc.Col([
-                    ], width=4),
-                    dbc.Col([
-                        html.I('margin')
-                    ], width=1)
-                ], id='row-3-A'),
-
-                # (4) BANANAS
-                html.Br(),
-                dbc.Row([
-                    dbc.Col([
-                        html.I('margin')
-                    ], width=1),
-                    dbc.Col([
-                        html.Div([
-                            html.H5(['4. '], style={'display': 'inline-block'}),
-                            html.H5(['How many bananas do you eat a week?'], style={'display': 'inline-block'}),
-                            html.Div([
-                                html.I(className="fa fa-info-circle")
-                            ], style={'display': 'inline-block',
-                                      'margin-left': '10px'},
-                                id='question-4'
-                            ),
-                            dbc.Tooltip("Bananas are famous for containing radioactive nuclide potassium-40."
-                                        "When you eat a banana you ingest a small dose of this nuclide."
-                                        "Effective Dose: 0.01 mSv (per banana)",
-                                        target='question-4',
-                                        placement='right'
-                                        ),
-                        ])
-                    ], width=6),
-
-                    dbc.Col([
-                    ], width=1),
-                    dbc.Col([
-                        html.Img(id="banana-logo",
-                                 src='/assets/banana.png',
-                                 height=80,
-                                 width=80,
-                                 style={'align-items': 'center'})
-                    ], width=3),
-                    dbc.Col([
-                        html.I('margin')
-                    ], width=1)
-                ], id='row-4-Q'),
-                dbc.Row([
-                    dbc.Col([
-                        html.I('margin')
-                    ], width=1),
-                    dbc.Col([
-                        html.Div([
-                            dcc.Dropdown(id='Q-4a-ddown',
-                                         options=[
-                                             {"label": value, "value": value} for value in range(5)])
-                        ], style={"width": "50%"}),
-                    ], width=3),
-
-                    dbc.Col([
-                    ], width=4),
-                    dbc.Col([
-                        html.I('margin')
-                    ], width=1)
-                ], id='row-4-A'),
-
-                # (5) BEER
-                html.Br(),
-                dbc.Row([
-                    dbc.Col([
-                        html.I('margin')
-                    ], width=1),
-                    dbc.Col([
-                        html.Div([
-
-                        html.H4(["", dbc.Badge("How many beers do you drink a week?",
-                                                   pill=True,
-                                                   color="#e3652e",
-                                                   className="me-1"),
-                                    ]),
-
-                            html.Div([
-                                html.I(className="fa fa-info-circle")
-                            ], style={'display': 'inline-block',
-                                      'margin-left': '10px'},
-                                id='question-5'
-                            ),
-                            dbc.Tooltip("Beer contains a very small amount of radioactive nuclides sourced from the water"
-                                        "used to create beer."
-                                        "Effective Dose: 0.0004 mSv (per pint)"
-                                        "This is the same as eating 1/25 of a banana",
-                                        target='question-5',
-                                        placement='right'
-                                        )
-                        ])
-                    ], width=6),
-
-                    dbc.Col([
-                    ], width=1),
-                    dbc.Col([
-                        html.Img(id="beer-logo",
-                                 src=app.get_asset_url('xray.svg'),
-                                 height=80,
-                                 width=80,
-                                 style={'align-items': 'center'})
-                    ], width=3),
-                    dbc.Col([
-                        html.I('margin')
-                    ], width=1)
-                ], id='row-5-Q'),
-                dbc.Row([
-                    dbc.Col([
-                        html.I('margin')
-                    ], width=1),
-                    dbc.Col([
-                        html.Div([
-                            dcc.Dropdown(id='Q-5a-ddown',
-                                         options=[
-                                             {"label": value, "value": value} for value in range(5)])
-                        ], style={"width": "50%"}),
-                    ], width=3),
-
-                    dbc.Col([
-                    ], width=4),
-                    dbc.Col([
-                        html.I('margin')
-                    ], width=1)
-                ], id='row-5-A'),
-
-                # (6) LIVING LOCATION (Not sure about the inputs and image, you're gonna have to do that)
-                html.Br(),
-                dbc.Row([
-                    dbc.Col([
-                        html.I('margin')
-                    ], width=1),
-                    dbc.Col([
-                        html.Div([
-                            html.H4(["", dbc.Badge("Where do you live?",
-                                                   pill=True,
-                                                   color="#e3652e",
-                                                   className="me-1"),
-                                     ]),
-                            html.Div([
-                                html.I(className="fa fa-info-circle")
-                            ], style={'display': 'inline-block',
-                                      'margin-left': '10px'},
-                                id='question-6'
-                            ),
-                            dbc.Tooltip("COMPLETE LATER"
-                                        ,
-                                        target='question-6',
-                                        placement='right'
-                                        )
-                        ])
-                    ], width=6),
-
-                    dbc.Col([
-                    ], width=1),
-                    dbc.Col([
-                        html.Img(id="map-logo",
-                                 src=app.get_asset_url('xray.svg'),
-                                 height=80,
-                                 width=80,
-                                 style={'align-items': 'center'})
-                    ], width=3),
-                    dbc.Col([
-                        html.I('margin')
-                    ], width=1)
-                ], id='row-6-Q'),
-                dbc.Row([
-                    dbc.Col([
-                        html.I('margin')
-                    ], width=1),
-                    dbc.Col([
-                        html.Div([
-                            dcc.Dropdown(id='Q-6a-ddown',
-                                         options=[
-                                             {"label": 'Sheffield', "value": 'london'},
-                                             {"label": 'Rest of UK', "value": 'rest'}])
-                        ], style={"width": "50%"}),
-                    ], width=3),
-
-                    dbc.Col([
-                    ], width=4),
-                    dbc.Col([
-                        html.I('margin')
-                    ], width=1)
-                ], id='row-6-A'),
-
-                # (7) HOLIDAY
-
-                html.Br(),
-                dbc.Row([
-                    dbc.Col([
-                        html.I('margin')
-                    ], width=1),
-                    dbc.Col([
-                        html.Div([
-                            html.H4(["", dbc.Badge("Have you been on holiday this year?",
-                                                   pill=True,
-                                                   color="#e3652e",
-                                                   className="me-1"),
-                                    ]),
-                            html.Div([
-                                html.I(className="fa fa-info-circle")
-                            ], style={'display': 'inline-block',
-                                      'margin-left': '10px'},
-                                id='question-7'
-                            ),
-                            dbc.Tooltip("Hello loads of phyiscs stuff that is importnt"
-                                        "Mate more physics stuff that is important"
-                                        "j,nm,,,m",
-                                        target='question-7',
-                                        placement='right'
-                                        )
-                        ])
-                    ], width=7),
-                    dbc.Col([
-                        html.I('Picture')
-                    ], width=3),
-                    dbc.Col([
-                        html.I('margin')
-                    ], width=1)
-                ], id='row-99-Q'),
-
-                dbc.Row([
-                    dbc.Col([
-                        html.I('margin')
-                    ], width=1),
-                    dbc.Col([
-                        html.H6(['How many flights have you taken?'], style={'display': 'inline-block'})
-                    ], width=7),
-
-                    dbc.Col([
-                        html.I('Picture')
-                    ], width=3),
-
-                    dbc.Col([
-                        html.I('margin')
-                    ], width=1)
-                ], id='row-100-Q'),
-
-                dbc.Row([
-                    dbc.Col([
-                        html.I('margin')
-                    ], width=1),
-                    dbc.Col([
-                        html.Div([
-                            html.I('Long Haul'),
-                            html.Div([
-                                dcc.Dropdown(id='Q-7a-ddown',
-                                             options=[
-                                                 {"label": value, "value": value} for value in range(5)])
-                            ], style={"width": "50%"}),
-                        ])
-                    ], width=3),
-
-                    dbc.Col([
-                        html.Div([
-                            html.I('Short Haul'),
-                            html.Div([
-                                dcc.Dropdown(id='Q-7b-ddown',
-                                             options=[
-                                                 {"label": value, "value": value} for value in range(5)])
-                            ], style={"width": "50%"}),
-                        ])
-                    ], width=3),
-                    dbc.Col([
-                    ], width=4),
-                    dbc.Col([
-                        html.I('margin')
-                    ], width=1)
-                ], id='row-7-A'),
-
-                html.Br(),
-
-                #Holiday to Cornwall
-                dbc.Row([
-                    dbc.Col([
-                        html.I('margin')
-                    ], width=1),
-
-                    dbc.Col([
-                        html.Div([
-                            html.I('How many days have you spent on a holiday to Cornwall?'),
-                            html.Div([
-                                dcc.Dropdown(id='Q-7c-ddown',
-                                             options=[
-                                                 {"label": value, "value": value} for value in range(10)])
-                            ], style={"width": "50%"}),
-                        ]),
-                        ]),
-                    dbc.Col([
-                        html.I('Picture')
-                    ], width=3),
-
-                    dbc.Col([
-                        html.I('margin')
-                    ], width=1)
-                ], id='row-101-Q'),
+        get_question7(app=app),
 
                 # Other
                 html.Br(),
@@ -642,22 +230,22 @@ def get_dashboard_layout(app):
     )
     def render_output(value):
         if value == 'beer':
-            return html.H3('Your annual does of'),\
+            return html.H3('Your annual dose of'),\
                    html.H3('radiation is equivalent to '),\
                    html.H2('XXX'),\
                    html.H3('pints of beer!')
         elif value == 'banana':
-            return html.H3('Your annual does of'),\
+            return html.H3('Your annual dose of'),\
                    html.H3('radiation is equivalent to '),\
                    html.H2('XXX'), \
                    html.H3('bananas!')
         elif value == 'power-plant':
-            return html.H3('Your annual does of'),\
+            return html.H3('Your annual dose of'),\
                    html.H3('radiation is equivalent to '),\
                    html.H2(id='data'),\
                    html.H3('years working in a nuclear power plant!')
         elif value == 'coffee':
-            return html.H3('Your annual does of'),\
+            return html.H3('Your annual dose of'),\
                    html.H3('radiation is equivalent to '),\
                    html.H2(id='data'), \
                    html.H3('coffees!')

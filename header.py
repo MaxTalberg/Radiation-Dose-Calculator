@@ -31,13 +31,46 @@ def get_header(app):
     children=[
         dbc.Row([
 
+            dbc.Col([
+                html.Div([
+                    html.Img(src='/assets/bath.jpeg',
+                             height='80', width='80',
+                             style={'textAlign': 'right'}
+                             ),
+                ]),
+
+            ], width=1),
+
+            dbc.Col([],
+
+            width=1),
+
             dbc.Col(
-                    children=[
+                children=[
+                    html.Div([
                         html.Img(id="logo",
-                                 src=app.get_asset_url('1.png'),
-                                 style={'textAlign': 'center', 'height': '10', 'width':'30'}),
-                    ],
-                    className="align-middle d-flex justify-content-center"),
+                                 src='/assets/1.png',
+                                 height='80', width = '240',
+                                 style={'textAlign': 'center'}),
+                    ]),
+                ],width=8,
+                className="align-middle d-flex justify-content-center"),
+
+            dbc.Col([
+
+            ], width=1),
+
+
+            dbc.Col([
+                html.Div([
+                    html.Img(src='/assets/edf-logo.svg',
+                             height='70', width='70',
+                             style={'textAlign': 'right'}
+                             )
+                ])
+            ], width=1),
+
+
 
         ])
     ],

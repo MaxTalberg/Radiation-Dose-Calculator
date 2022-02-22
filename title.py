@@ -9,7 +9,7 @@ def get_title(app):
             [
                 html.H1("Radiation Dose Calculator ", className="display-3"),
                 html.P(
-                    "Discover your radiation exposure by answering the questions and clicking calculate",
+                    "Discover your radiation exposure from everyday activities by answering the questions and clicking calculate",
                     className="lead",
                 ),
                 html.Hr(className="my-2"),
