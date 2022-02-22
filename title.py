@@ -7,7 +7,7 @@ def get_title(app):
     layout = html.Div(
         dbc.Container(
             [
-                html.H1("Radiation Dose Calculator ", className="display-3"),
+                html.H1("FIXED IT MUTHAFUCKER", className="display-3"),
                 html.P(
                     "Discover your radiation exposure from everyday activities by answering the questions and clicking calculate",
                     className="lead",
