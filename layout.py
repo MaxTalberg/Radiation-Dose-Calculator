@@ -12,7 +12,7 @@ from questions.ct import get_question2
 from questions.coffee import get_question3
 from questions.banana import get_question4
 from questions.beer import get_question5
-from questions.live import get_question6
+from questions.home import get_question6
 from questions.holiday import get_question7
 
 
