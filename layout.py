@@ -31,7 +31,7 @@ def get_dashboard_layout(app):
             [
                 html.H1("Radiation Dose Calculator ", className="display-3"),
                 html.P(
-                    "Discover your radiation exposure by answering the questions and by clicking calculate",
+                    "Discover your radiation exposure by answering the questions and clicking calculate",
                     className="lead",
                 ),
                 html.Hr(className="my-2"),
@@ -87,19 +87,18 @@ def get_dashboard_layout(app):
                     ], width=1),
                     dbc.Col([
                         html.Div([
-                                html.H4(["",dbc.Badge("How many x-rays have you had in the last year?",
-                                      pill=True,
-                                      color="#e3652e",
-                                      className="me-1")
+                            html.H4(["",dbc.Badge("How many x-rays have you had in the last year?",
+                                                  pill=True,
+                                                  color="#e3652e",
+                                                  className="me-1")
                                      ]),
 
-                            html.Div([
                                 html.I(className="fa fa-info-circle")
                             ], style={'display': 'inline-block',
                                       'margin-left': '10px'},
                                 id='question-1'
                             ),
-                            dbc.Tooltip(html.Div(["X-rays subject the patient to small doses of radiation"
+                        dbc.Tooltip(html.Div(["X-rays subject the patient to small doses of radiation"
                                         "Effective Dose: 0.005 mSv (dental x-ray) and 0.001 mSv (wrist x-ray)"
                                         "This is the same dose as eating 1/2 and 1/10 of a banana"
 
@@ -107,7 +106,7 @@ def get_dashboard_layout(app):
                                         target='question-1',
                                         placement='right'
                                         )
-                        ])
+
                     ], width=6),
 
                     dbc.Col([
@@ -173,8 +172,7 @@ def get_dashboard_layout(app):
                                 id='question-2'
                             ),
                             dbc.Tooltip(html.Div(
-                                "CT Scans form images of your body using many x-rays. X-rays subject your body"
-                                "to a dose of radiation"
+                                "CT Scans form images of your body using many x-rays. X-rays subject your body to a dose of radiation"
                                 "Effective Dose: 2mSv (Head CT Scan), 8mSv (Chest CT Scan) and  10mSv (Abdomen CT Scan)"
                                 "This is the same dose as eating 200, 800 and 1000 bananas"
 
@@ -304,12 +302,8 @@ def get_dashboard_layout(app):
                     ], width=1),
                     dbc.Col([
                         html.Div([
-                            html.H4(["", dbc.Badge("How many bananas do you eat a week?",
-                                                   pill=True,
-                                                   color="#e3652e",
-                                                   className="me-1"),
-                                    ]),
-
+                            html.H5(['4. '], style={'display': 'inline-block'}),
+                            html.H5(['How many bananas do you eat a week?'], style={'display': 'inline-block'}),
                             html.Div([
                                 html.I(className="fa fa-info-circle")
                             ], style={'display': 'inline-block',
@@ -321,7 +315,7 @@ def get_dashboard_layout(app):
                                         "Effective Dose: 0.01 mSv (per banana)",
                                         target='question-4',
                                         placement='right'
-                                        )
+                                        ),
                         ])
                     ], width=6),
 
@@ -500,8 +494,9 @@ def get_dashboard_layout(app):
                                       'margin-left': '10px'},
                                 id='question-7'
                             ),
-                            dbc.Tooltip("Hello"
-                                        "Mate",
+                            dbc.Tooltip("Hello loads of phyiscs stuff that is importnt"
+                                        "Mate more physics stuff that is important"
+                                        "j,nm,,,m",
                                         target='question-7',
                                         placement='right'
                                         )
@@ -650,11 +645,31 @@ def get_dashboard_layout(app):
     @app.callback(
         Output(component_id='data', component_property='children'),
         [Input(component_id='Q-1a-ddown', component_property='value'),
-         Input(component_id='Q-1b-ddown', component_property='value')]
+         Input(component_id='Q-1b-ddown', component_property='value'),
+         Input(component_id='Q-2a-ddown', component_property='value'),
+         Input(component_id='Q-2b-ddown', component_property='value'),
+         Input(component_id='Q-2c-ddown', component_property='value'),
+         Input(component_id='Q-3a-ddown', component_property='value'),
+         Input(component_id='Q-4a-ddown', component_property='value'),
+         Input(component_id='Q-5a-ddown', component_property='value'),
+         Input(component_id='Q-6a-ddown', component_property='value')
+         ]
     )
-    def organise_data(dental, wrist):
-        q1 = (dental*database['Dental'][0]) + (wrist*database['Wrist'][0])
+    def organise_data(dental, wrist, head, chest, abdomen, coffee, bananas, beer, location):
+        weeks = 52.1429
+        values = dental, wrist, head, chest, abdomen, coffee, bananas, beer, location
+        conv = lambda i: i or 0
+        res = [conv(i) for i in values]
+        values = res[:]
+
+        q1 = (values[0]*database['Dental'][0]) + (values[1]*database['Wrist'][0])
+        q2 = (values[2]*database['CT_head'][0]) + (values[3]*database['CT_chest'][0]) + (values[4]*database['CT_abdomen'][0])
+        q3 = (values[5]*database['Coffee'][0]) * weeks # For an annual dose
+        q4 = (values[6]*database['Banana'][0]) * weeks
+        q5 = (values[7]*database['Pint'][0]) * weeks
+        q6 = (values[8]) # where you live ??
         return q1
+
     @app.callback(
         Output(component_id='loading-output-1', component_property='children'),
         [Input(component_id='submit-val', component_property='n_clicks')]
@@ -662,12 +677,13 @@ def get_dashboard_layout(app):
     def load_sign(n_clicks):
         time.sleep(1)
         return
+
     @app.callback(
         Output(component_id='tabs-graph', component_property='children'),
         [Input(component_id='submit-val', component_property='n_clicks')]
     )
     def update_output(n_clicks):
-        time.sleep(1.5)
+        time.sleep(1.1)
         while n_clicks != 0:
             return html.Div([
                 dcc.Tabs(id='tab-graph', value='tab-graph-value', children=[
@@ -715,7 +731,7 @@ def get_dashboard_layout(app):
         [Input(component_id='submit-val', component_property='n_clicks')]
     )
     def render_items(n_clicks):
-        time.sleep(1.5)
+        time.sleep(1.1)
         while n_clicks != 0:
             return html.Div([
                 html.H4('Select an option'),
