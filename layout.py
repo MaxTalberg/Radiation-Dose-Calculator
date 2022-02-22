@@ -5,7 +5,10 @@ import pandas as pd
 import time
 
 from header import get_header
-# from app import server
+from title import get_title
+
+from questions.xray import get_question1
+
 
 #Hex
 EDF_BLUE = '#103579'
@@ -26,129 +29,16 @@ def get_dashboard_layout(app):
 
 
         # TITLE *************************************************************************
-        html.Div(
-        dbc.Container(
-            [
-                html.H1("Radiation Dose Calculator ", className="display-3"),
-                html.P(
-                    "Discover your radiation exposure by answering the questions and clicking calculate",
-                    className="lead",
-                ),
-                html.Hr(className="my-2"),
-                html.P(
-                    "Radiation is part of our everyday life. Did you know there is naturally occuring radiation in the food you eat,.."
-                ),
-                html.P(
-                    "Want to learn more? Check out our fact sheet below"
-                ),
-
-                html.P(
-                    dbc.Button("Link to inforgraphics", color="primary"), className="lead"
-                ),
-            ],
-            fluid=True,
-            className="py-3",
-        ),
-        className="p-3 bg-light rounded-3",
-    ),
+        get_title(app=app),
 
 #***NEED TO DELETE IDK HOW THO
-        html.Div(
-            [
-                dbc.Row([
-                    dbc.Col([
-                        html.I('margin')
-                    ], width=1),
-                    dbc.Col([
-                        html.H2('',
+        get_question1(app=app),
 
-                                style={
-                                    'textAlign': 'center',
-                                    'font_family': 'sans-serif'
-                                }
-                                )
-                    ], width=10),
-                    dbc.Col([
-                        html.I('margin')
-                    ], width=1)
-                ]),
+        html.Br(),
 
-                html.Br(),
-                html.Br(),
-                html.Br(),
-
-                # QUESTIONS BEGIN *********************************************************************
-
-                # (1) X-rays
-                html.Br(),
-                dbc.Row([
-                    dbc.Col([
-                        html.I('margin')
-                    ], width=1),
-                    dbc.Col([
-                        html.Div([
-                            html.H4(["",dbc.Badge("How many x-rays have you had in the last year?",
-                                                  pill=True,
-                                                  color="#e3652e",
-                                                  className="me-1")
-                                     ]),
-
-                                html.I(className="fa fa-info-circle")
-                            ], style={'display': 'inline-block',
-                                      'margin-left': '10px'},
-                                id='question-1'
-                            ),
-                        dbc.Tooltip(html.Div(["X-rays subject the patient to small doses of radiation"
-                                        "Effective Dose: 0.005 mSv (dental x-ray) and 0.001 mSv (wrist x-ray)"
-                                        "This is the same dose as eating 1/2 and 1/10 of a banana"
-
-                                                 ]),
-                                        target='question-1',
-                                        placement='right'
-                                        )
-
-                    ], width=6),
-
-                    dbc.Col([
-                    ], width=1),
-                    dbc.Col([
-                        html.Img(id="xray-logo",
-                                 src='/assets/xray.png',
-                                 height=80,
-                                 width=80,
-                                 style={'align-items': 'center'})
-                    ], width=3),
-                    dbc.Col([
-                        html.I('margin')
-                    ], width=1)
-                ], id='row-1-Q'),
 
                 dbc.Row([
-                    dbc.Col([
-                        html.I('margin')
-                    ], width=1),
-                    dbc.Col([
-                        html.Div([
-                            html.I('Dental X Ray'),
-                            dcc.Dropdown(id='Q-1a-ddown',
-                                         options=[
-                                             {"label": value, "value": value} for value in range(6)])
-                        ], style={"width": "50%"})
-                    ], width=3),
 
-                    dbc.Col([
-                        html.Div([
-                            html.I('Wrist X Ray'),
-                            dcc.Dropdown(id='Q-1b-ddown',
-                                         options=[
-                                             {"label": value, "value": value} for value in range(5)])
-                        ], style={"width": "50%"})
-                    ], width=3),
-                    dbc.Col([
-                    ], width=4),
-                    dbc.Col([
-                        html.I('margin')
-                    ], width=1)
                 ], id='row-1-A'),
 
                 # (2) CT SCANS
@@ -639,7 +529,7 @@ def get_dashboard_layout(app):
                         html.I('margin')
                     ], width=1)
                 ], id='row-5-Output'),
-        ])
+
 
     ])
     @app.callback(
