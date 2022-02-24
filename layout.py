@@ -7,7 +7,7 @@ import time
 from header import get_header
 from title import get_title
 
-from questions.xray import get_question1, xray_image
+from questions.xray import get_question1, pplant_image
 from questions.ct import get_question2
 from questions.coffee import get_question3, coffee_image
 from questions.banana import get_question4, banana_image
@@ -253,6 +253,8 @@ def get_dashboard_layout(app):
     def render_output(value, data_output):
         Total_ED = data_output[0]
         pints = Total_ED/database['Pint'][0]
+        bananas = Total_ED/database['Banana'][0]
+        coffees = Total_ED/database['Coffee'][0]
         if value == 'beer':
             out = html.Div([
                 html.Br(),
@@ -276,15 +278,15 @@ def get_dashboard_layout(app):
             out = html.Div([
                 html.Br(),
                 html.Div([
-                    html.H3('Your annual dose of radiation is equivalent to: ')
+                    html.H4('Your annual dose of radiation is equivalent to: ')
                 ], style={"textAlign": "center"}),
                 html.Br(),
                 html.Div([
-                    html.H2('XXX')
+                    html.H1('{:,}'.format(round(bananas)).replace(',', ' ,'))
                 ], style={"textAlign": "center"}),
                 html.Br(),
                 html.Div([
-                    html.H3('bananas!')
+                    html.H4('bananas!')
                 ], style={"textAlign": "center"})
             ])
             image = html.Div([
@@ -295,21 +297,21 @@ def get_dashboard_layout(app):
             out = html.Div([
                 html.Br(),
                 html.Div([
-                    html.H3('Your annual dose of radiation is equivalent to: ')
+                    html.H4('Your annual dose of radiation is equivalent to: ')
                 ], style={"textAlign": "center"}),
                 html.Br(),
                 html.Div([
-                    html.H2(id='data')
+                    html.H1(id='data')
                 ], style={"textAlign": "center"}),
                 html.Br(),
                 html.Div([
-                    html.H3('years working in a nuclear power plant!')
+                    html.H4('years working in a nuclear power plant!')
                 ], style={"textAlign": "center"})
             ])
             image = html.Div([
                 html.Br(),
                 html.Br(),
-                xray_image])
+                pplant_image])
         elif value == 'coffee':
             out = html.Div([
                 html.Br(),
@@ -318,7 +320,7 @@ def get_dashboard_layout(app):
                 ], style={"textAlign": "center"}),
                 html.Br(),
                 html.Div([
-                    html.H1('XXX')
+                    html.H1('{:,}'.format(round(coffees)).replace(',', ' ,'))
                 ], style={"textAlign": "center"}),
                 html.Br(),
                 html.Div([

@@ -60,6 +60,15 @@ xray_image = html.Div([
              height=100,
              width=100,
              style={'align-items': 'center'})
+
+])
+
+pplant_image = html.Div([
+    html.Img(id="pplant-logo",
+             src='/assets/pplant_black.png',
+             height=100,
+             width=100,
+             style={'align-items': 'center'})
 ])
 
 def get_question1(app):
