@@ -91,7 +91,8 @@ def get_dashboard_layout(app):
             ], width=1),
             dbc.Col([
                 html.Div(id='tabs-graph'),
-                html.Div(id='tabs-content')
+                html.Div(id='tabs-content'),
+                dcc.Store(id='store-data-output')
             ], width=10),
             dbc.Col([
                 html.I('margin')
@@ -117,8 +118,9 @@ def get_dashboard_layout(app):
         html.Br()
 
     ])
+
     @app.callback(
-        Output(component_id='data', component_property='children'),
+        Output(component_id='store-data-output', component_property='data'),
         [Input(component_id='Q-1a-ddown', component_property='value'),
          Input(component_id='Q-1b-ddown', component_property='value'),
          Input(component_id='Q-2a-ddown', component_property='value'),
@@ -149,7 +151,8 @@ def get_dashboard_layout(app):
         q6 = (values[8]) # where you live ??
         q7 = (values[9]*database['Plane'][0]) + (values[11]*(database['Cornwall'][0]/3)) # Longhaul flight !?
         Total_ED = q1 + q2 + q3 + q4 + q5 + q6 + q7 + database['Cosmic'][0]
-        return Total_ED #q1, q2, q3, q4, q5, q6, q7,
+        data_output = [Total_ED, q1, q2, q3, q4, q5, q6, q7]
+        return data_output
 
     @app.callback(
         Output(component_id='loading-output-1', component_property='children'),
@@ -244,9 +247,12 @@ def get_dashboard_layout(app):
     @app.callback(
         Output(component_id='radio-content', component_property='children'),
         Output(component_id='radio-image', component_property='children'),
-        [Input(component_id='radio-items', component_property='value')]
+        [Input(component_id='radio-items', component_property='value'),
+         Input(component_id='store-data-output', component_property='data')]
     )
-    def render_output(value):
+    def render_output(value, data_output):
+        Total_ED = data_output[0]
+        pints = Total_ED/database['Pint'][0]
         if value == 'beer':
             out = html.Div([
                 html.Br(),
@@ -255,7 +261,7 @@ def get_dashboard_layout(app):
                 ], style={"textAlign": "center"}),
                 html.Br(),
                 html.Div([
-                    html.H1('XXX')
+                    html.H1('{:,}'.format(round(pints)).replace(',', ' ,'))
                 ], style={"textAlign": "center"}),
                 html.Br(),
                 html.Div([
@@ -270,7 +276,7 @@ def get_dashboard_layout(app):
             out = html.Div([
                 html.Br(),
                 html.Div([
-                    html.H3('Your annual dose of')
+                    html.H3('Your annual dose of radiation is equivalent to: ')
                 ], style={"textAlign": "center"}),
                 html.Br(),
                 html.Div([
@@ -289,7 +295,7 @@ def get_dashboard_layout(app):
             out = html.Div([
                 html.Br(),
                 html.Div([
-                    html.H3('Your annual dose of')
+                    html.H3('Your annual dose of radiation is equivalent to: ')
                 ], style={"textAlign": "center"}),
                 html.Br(),
                 html.Div([
