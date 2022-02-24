@@ -1,5 +1,5 @@
 #Import Libraries
-from dash import dcc, html, State
+from dash import dcc, html
 import dash_bootstrap_components as dbc
 from dash.dependencies import Input, Output
 import pandas as pd
@@ -98,23 +98,15 @@ def get_dashboard_layout(app):
                         html.I('margin')
                     ], width=1)
                 ], id='row-4-Button'),
-                html.Br(),
-                dbc.Row([
+        html.Br(),
+        dbc.Row([
                     dbc.Col([
                         html.I('margin')
                     ], width=1),
                     dbc.Col([
                         html.Div(id='tabs-graph'),
                         html.Div(id='tabs-content')
-                    ], width=7),
-                    dbc.Col([
-                        html.Br(),
-                        html.Br(),
-                        html.Div(id='radio-items'),
-                        html.Br(),
-                        html.Br(),
-                        html.Div(id='radio-content')
-                    ], width=3),
+                    ], width=10),
                     dbc.Col([
                         html.I('margin')
                     ], width=1)
@@ -132,12 +124,16 @@ def get_dashboard_layout(app):
          Input(component_id='Q-3a-ddown', component_property='value'),
          Input(component_id='Q-4a-ddown', component_property='value'),
          Input(component_id='Q-5a-ddown', component_property='value'),
-         Input(component_id='Q-6a-ddown', component_property='value')
+         Input(component_id='Q-6a-ddown', component_property='value'),
+         Input(component_id='Q-7a-ddown', component_property='value'),
+         Input(component_id='Q-7b-ddown', component_property='value'),
+         Input(component_id='Q-7c-ddown', component_property='value')
+
          ]
     )
-    def organise_data(dental, wrist, head, chest, abdomen, coffee, bananas, beer, location):
+    def organise_data(dental, wrist, head, chest, abdomen, coffee, bananas, beer, location, long, short, days):
         weeks = 52.1429
-        values = dental, wrist, head, chest, abdomen, coffee, bananas, beer, location
+        values = dental, wrist, head, chest, abdomen, coffee, bananas, beer, location, long, short, days
         conv = lambda i: i or 0
         res = [conv(i) for i in values]
         values = res[:]
@@ -148,7 +144,9 @@ def get_dashboard_layout(app):
         q4 = (values[6]*database['Banana'][0]) * weeks
         q5 = (values[7]*database['Pint'][0]) * weeks
         q6 = (values[8]) # where you live ??
-        return q1
+        q7 = (values[9]*database['Plane'][0]) + (values[11]*(database['Cornwall'][0]/3)) # Longhaul flight !?
+        Total_ED = q1 + q2 + q3 + q4 + q5 + q6 + q7 + 0
+        return Total_ED #q1, q2, q3, q4, q5, q6, q7,
 
     @app.callback(
         Output(component_id='loading-output-1', component_property='children'),
@@ -167,8 +165,9 @@ def get_dashboard_layout(app):
         while n_clicks != 0:
             return html.Div([
                 dcc.Tabs(id='tab-graph', value='tab-graph-value', children=[
-                       dcc.Tab(label='Tab One', value='tab-1'),
-                       dcc.Tab(label='Tab Two', value='tab-2')
+                    dcc.Tab(label='Tab One', value='tab-1'),
+                    dcc.Tab(label='Tab Two', value='tab-2'),
+                    dcc.Tab(label='Tab Three', value='tab-3')
                    ]),
                              ])
 
@@ -191,7 +190,7 @@ def get_dashboard_layout(app):
                     }
                 )
             ])
-        elif tab == 'tab-2':
+        if tab == 'tab-2':
             return html.Div([
                 html.H3('Tab content 2'),
                 dcc.Graph(
@@ -205,13 +204,19 @@ def get_dashboard_layout(app):
                     }
                 )
             ])
+        elif tab == 'tab-3':
+            return html.Div([
+                html.Div(id='radio-items'),
+                html.Br(),
+                html.Br(),
+                html.Div(id='radio-content')
+            ])
 
     @app.callback(
         Output(component_id='radio-items', component_property='children'),
         [Input(component_id='submit-val', component_property='n_clicks')]
     )
     def render_items(n_clicks):
-        time.sleep(1.1)
         while n_clicks != 0:
             return html.Div([
                 html.H4('Select an option'),
