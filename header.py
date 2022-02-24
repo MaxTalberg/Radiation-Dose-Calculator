@@ -34,7 +34,7 @@ def get_header(app):
             dbc.Col([
                 html.Div([
                     html.Img(src='/assets/bath.jpeg',
-                             height='80', width='80',
+                             height='70', width='70',
                              style={'textAlign': 'right'}
                              ),
                 ]),

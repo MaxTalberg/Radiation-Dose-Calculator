@@ -81,7 +81,7 @@ card_content = [
 
 image = html.Div([
     html.Img(id="holiday-logo",
-             src='/assets/xray.png',
+             src='/assets/holiday_black.png',
              height=80,
              width=80,
              style={'align-items': 'center'})

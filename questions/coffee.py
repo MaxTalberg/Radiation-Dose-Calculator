@@ -41,9 +41,9 @@ card_content = [
 
 image = html.Div([
     html.Img(id="coffee-logo",
-             src='/assets/xray.png',
-             height=80,
-             width=80,
+             src='/assets/coffee_black.png',
+             height=100,
+             width=100,
              style={'align-items': 'center'})
 ])
 

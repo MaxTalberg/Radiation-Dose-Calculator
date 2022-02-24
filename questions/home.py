@@ -42,9 +42,9 @@ card_content = [
 
 image = html.Div([
     html.Img(id="live-logo",
-             src='/assets/xray.png',
-             height=80,
-             width=80,
+             src='/assets/map_black.png',
+             height=130,
+             width=130,
              style={'align-items': 'center'})
 ])
 

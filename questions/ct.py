@@ -68,9 +68,9 @@ card_content = [
 
 image = html.Div([
     html.Img(id="ct-logo",
-             src='/assets/xray.png',
-             height=80,
-             width=80,
+             src='/assets/ct_black.png',
+             height=100,
+             width=100,
              style={'align-items': 'center'})
 ])
 
