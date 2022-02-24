@@ -54,7 +54,7 @@ card_content = [
     )
 ]
 
-image = html.Div([
+xray_image = html.Div([
     html.Img(id="xray-logo",
              src='/assets/xray_black.png',
              height=100,
@@ -80,7 +80,7 @@ def get_question1(app):
             ], width=1),
 
             dbc.Col([
-                image
+                xray_image
             ], width=3),
 
             dbc.Col([

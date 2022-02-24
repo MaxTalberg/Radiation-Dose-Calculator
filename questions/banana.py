@@ -39,7 +39,7 @@ card_content = [
     )
 ]
 
-image = html.Div([
+banana_image = html.Div([
     html.Img(id="banana-logo",
              src='/assets/banana_black.png',
              height=100,
@@ -65,7 +65,7 @@ def get_question4(app):
             ], width=1),
 
             dbc.Col([
-                image
+                banana_image
             ], width=3),
 
             dbc.Col([

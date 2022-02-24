@@ -21,7 +21,7 @@ def get_title(app):
                 ),
 
                 html.P(
-                    dbc.Button("Link to inforgraphics", color="primary"), className="lead"
+                    dbc.Button("Link to inforgraphics", color="primary", style={'textTransform': 'none'}), className="lead"
                 ),
             ],
             fluid=True,

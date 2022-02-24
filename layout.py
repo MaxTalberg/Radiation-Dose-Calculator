@@ -7,14 +7,13 @@ import time
 from header import get_header
 from title import get_title
 
-from questions.xray import get_question1
+from questions.xray import get_question1, xray_image
 from questions.ct import get_question2
-from questions.coffee import get_question3
-from questions.banana import get_question4
-from questions.beer import get_question5
+from questions.coffee import get_question3, coffee_image
+from questions.banana import get_question4, banana_image
+from questions.beer import get_question5, beer_image
 from questions.home import get_question6
 from questions.holiday import get_question7
-
 
 
 #Hex Colours
@@ -26,10 +25,10 @@ Miles_Orange = '#e3652e'
 #Database
 database = pd.read_csv('assets/database.csv')
 
+
 def get_dashboard_layout(app):
 
-
-#Layout begins
+    #Layout begins
     layout = html.Div([
 
         #Header
@@ -64,54 +63,58 @@ def get_dashboard_layout(app):
 
         get_question7(app=app),
 
-                # Other
-                html.Br(),
-                dbc.Row([
-                    dbc.Col([
-                        html.I('margin')
-                    ], width=1),
-                    dbc.Col([
-                    ], width=7),
-                    dbc.Col([
-                        html.I('Picture')
-                    ], width=3),
-                    dbc.Col([
-                    ], width=1)
-                ], id='row-99-A'),
-                html.Br(),
-                dbc.Row([
-                    dbc.Col([
-                        html.I('margin')
-                    ], width=1),
-                    dbc.Col([
-                        dbc.Button('Calculate', id='submit-val', n_clicks=0, style={'textTransform': 'none'}),
-                        dcc.Loading(
-                            id="loading-1",
-                            type="default",
-                            children=html.Div(id="loading-output-1")
-                        ),
-                    ], width=7),
-                    dbc.Col([
-                        html.I('Picture')
-                    ], width=3),
-                    dbc.Col([
-                        html.I('margin')
-                    ], width=1)
-                ], id='row-4-Button'),
         html.Br(),
-        dbc.Row([
-                    dbc.Col([
-                        html.I('margin')
-                    ], width=1),
-                    dbc.Col([
-                        html.Div(id='tabs-graph'),
-                        html.Div(id='tabs-content')
-                    ], width=10),
-                    dbc.Col([
-                        html.I('margin')
-                    ], width=1)
-                ], id='row-5-Output'),
+        html.Br(),
 
+        dbc.Row([
+            dbc.Col([
+                html.I('margin')
+            ], width=1),
+            dbc.Col([
+                dbc.Button('Calculate', id='submit-val', n_clicks=0, style={'textTransform': 'none'}),
+                dcc.Loading(
+                    id="loading-1",
+                    type="default",
+                    children=html.Div(id="loading-output-1")
+                ),
+            ], width=10),
+            dbc.Col([
+                html.I('margin')
+            ], width=1)
+        ], id='calculate-row'),
+
+        html.Br(),
+
+        dbc.Row([
+            dbc.Col([
+                html.I('margin')
+            ], width=1),
+            dbc.Col([
+                html.Div(id='tabs-graph'),
+                html.Div(id='tabs-content')
+            ], width=10),
+            dbc.Col([
+                html.I('margin')
+            ], width=1)
+        ], id='output-row'),
+
+        html.Br(),
+        html.Br(),
+
+        dbc.Row([
+            dbc.Col([
+                html.I('margin')
+            ], width=1),
+            dbc.Col([
+                html.Div('Write some shit about contact details and '
+                         'potentially a link to our sources or research ect')
+            ], width=10),
+            dbc.Col([
+                html.I('margin')
+            ], width=1)
+        ], id='contact-row'),
+
+        html.Br()
 
     ])
     @app.callback(
@@ -145,7 +148,7 @@ def get_dashboard_layout(app):
         q5 = (values[7]*database['Pint'][0]) * weeks
         q6 = (values[8]) # where you live ??
         q7 = (values[9]*database['Plane'][0]) + (values[11]*(database['Cornwall'][0]/3)) # Longhaul flight !?
-        Total_ED = q1 + q2 + q3 + q4 + q5 + q6 + q7 + 0
+        Total_ED = q1 + q2 + q3 + q4 + q5 + q6 + q7 + database['Cosmic'][0]
         return Total_ED #q1, q2, q3, q4, q5, q6, q7,
 
     @app.callback(
@@ -164,6 +167,7 @@ def get_dashboard_layout(app):
         time.sleep(1.1)
         while n_clicks != 0:
             return html.Div([
+
                 dcc.Tabs(id='tab-graph', value='tab-graph-value', children=[
                     dcc.Tab(label='Tab One', value='tab-1'),
                     dcc.Tab(label='Tab Two', value='tab-2'),
@@ -206,10 +210,17 @@ def get_dashboard_layout(app):
             ])
         elif tab == 'tab-3':
             return html.Div([
-                html.Div(id='radio-items'),
-                html.Br(),
-                html.Br(),
-                html.Div(id='radio-content')
+                dbc.Row(children=[
+                    dbc.Col(children=[
+                        html.Div(id='radio-items')
+                    ], width=3),
+                    dbc.Col(children=[
+                        html.Div(id='radio-content')
+                    ], width=6),
+                    dbc.Col(children=[
+                        html.Div(id='radio-image')
+                    ], width=3)
+                ]),
             ])
 
     @app.callback(
@@ -218,7 +229,7 @@ def get_dashboard_layout(app):
     )
     def render_items(n_clicks):
         while n_clicks != 0:
-            return html.Div([
+            radio_items = html.Div([
                 html.H4('Select an option'),
                 dcc.RadioItems(id='radio-items',
                     options=[
@@ -228,31 +239,98 @@ def get_dashboard_layout(app):
                         {'label': 'Cups of Coffee', 'value': 'coffee'},
                     ], labelStyle={'display': 'block'})
             ])
+            return radio_items
 
     @app.callback(
         Output(component_id='radio-content', component_property='children'),
+        Output(component_id='radio-image', component_property='children'),
         [Input(component_id='radio-items', component_property='value')]
     )
     def render_output(value):
         if value == 'beer':
-            return html.H3('Your annual dose of'),\
-                   html.H3('radiation is equivalent to '),\
-                   html.H2('XXX'),\
-                   html.H3('pints of beer!')
+            out = html.Div([
+                html.Br(),
+                html.Div([
+                    html.H4('Your annual dose of radiation is equivalent to: ')
+                ], style={"textAlign": "center"}),
+                html.Br(),
+                html.Div([
+                    html.H1('XXX')
+                ], style={"textAlign": "center"}),
+                html.Br(),
+                html.Div([
+                    html.H4('pints of beer!')
+                ], style={"textAlign": "center"})
+            ])
+            image = html.Div([
+                html.Br(),
+                html.Br(),
+                beer_image])
         elif value == 'banana':
-            return html.H3('Your annual dose of'),\
-                   html.H3('radiation is equivalent to '),\
-                   html.H2('XXX'), \
-                   html.H3('bananas!')
+            out = html.Div([
+                html.Br(),
+                html.Div([
+                    html.H3('Your annual dose of')
+                ], style={"textAlign": "center"}),
+                html.Br(),
+                html.Div([
+                    html.H2('XXX')
+                ], style={"textAlign": "center"}),
+                html.Br(),
+                html.Div([
+                    html.H3('bananas!')
+                ], style={"textAlign": "center"})
+            ])
+            image = html.Div([
+                html.Br(),
+                html.Br(),
+                banana_image])
         elif value == 'power-plant':
-            return html.H3('Your annual dose of'),\
-                   html.H3('radiation is equivalent to '),\
-                   html.H2(id='data'),\
-                   html.H3('years working in a nuclear power plant!')
+            out = html.Div([
+                html.Br(),
+                html.Div([
+                    html.H3('Your annual dose of')
+                ], style={"textAlign": "center"}),
+                html.Br(),
+                html.Div([
+                    html.H2(id='data')
+                ], style={"textAlign": "center"}),
+                html.Br(),
+                html.Div([
+                    html.H3('years working in a nuclear power plant!')
+                ], style={"textAlign": "center"})
+            ])
+            image = html.Div([
+                html.Br(),
+                html.Br(),
+                xray_image])
         elif value == 'coffee':
-            return html.H3('Your annual dose of'),\
-                   html.H3('radiation is equivalent to '),\
-                   html.H2(id='data'), \
-                   html.H3('coffees!')
+            out = html.Div([
+                html.Br(),
+                html.Div([
+                    html.H4('Your annual dose of radiation is equivalent to: ')
+                ], style={"textAlign": "center"}),
+                html.Br(),
+                html.Div([
+                    html.H1('XXX')
+                ], style={"textAlign": "center"}),
+                html.Br(),
+                html.Div([
+                    html.H4('cups of coffee!')
+                ], style={"textAlign": "center"})
+            ])
+            image = html.Div([
+                html.Br(),
+                html.Br(),
+                coffee_image])
+        else:
+            out = html.Div([
+                html.Br(),
+                html.Br(),
+                html.I('Select an activity...')
+            ], style={"textAlign": "center"}),
+            image = html.Div([
+            ])
+        return out, image
 
     return layout

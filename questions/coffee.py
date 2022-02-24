@@ -39,7 +39,7 @@ card_content = [
     )
 ]
 
-image = html.Div([
+coffee_image = html.Div([
     html.Img(id="coffee-logo",
              src='/assets/coffee_black.png',
              height=100,
@@ -65,7 +65,7 @@ def get_question3(app):
             ], width=1),
 
             dbc.Col([
-                image
+                coffee_image
             ], width=3),
 
             dbc.Col([
