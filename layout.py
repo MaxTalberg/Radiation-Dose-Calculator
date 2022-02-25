@@ -24,7 +24,12 @@ Miles_Orange = '#e3652e'
 
 #Database
 database = pd.read_csv('assets/database.csv')
+location = pd.read_csv('assets/radon_data.csv')
 
+#Quick clean
+clean_location = location.drop(labels=0, axis=0)
+Name = clean_location["County or Area Name"].tolist()
+Dose = clean_location["Effective Dose"].tolist()
 
 def get_dashboard_layout(app):
 
@@ -139,6 +144,11 @@ def get_dashboard_layout(app):
          ]
     )
     def organise_data(dental, wrist, head, chest, abdomen, coffee, bananas, beer, location, long, short, days):
+        count = 0
+        if location is None:
+            location = 0
+        else:
+            location = float(Dose[(Name.index(location))])
         weeks = 52.1429
         values = dental, wrist, head, chest, abdomen, coffee, bananas, beer, location, long, short, days
         conv = lambda i: i or 0

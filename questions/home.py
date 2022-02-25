@@ -1,5 +1,13 @@
 from dash import dcc, html
 import dash_bootstrap_components as dbc
+import pandas as pd
+# Data
+location = pd.read_csv('assets/radon_data.csv')
+
+#Quick clean
+clean_location = location.drop(labels=0, axis=0)
+Name = clean_location["County or Area Name"].tolist()
+Dose = clean_location["Effective Dose"].tolist()
 
 # App layout
 card_content = [
@@ -30,8 +38,8 @@ card_content = [
                     html.Div([
                         dcc.Dropdown(id='Q-6a-ddown',
                                      options=[
-                                         {"label": 'Sheffield', "value": 'london'},
-                                         {"label": 'Rest of UK', "value": 'rest'}])
+                                         {"label": i, "value": i} for i in Name
+                                         ])
                     ], style={"width": "5"}),
                 ], width=3),
             ])
