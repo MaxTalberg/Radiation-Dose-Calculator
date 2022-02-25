@@ -160,7 +160,7 @@ def get_dashboard_layout(app):
         q3 = (values[5]*database['Coffee'][0]) * weeks # For an annual dose
         q4 = (values[6]*database['Banana'][0]) * weeks
         q5 = (values[7]*database['Pint'][0]) * weeks
-        q6 = (values[8]) # where you live ??
+        q6 = (values[8])
         q7 = (values[9]*database['Plane'][0]) + (values[11]*(database['Cornwall'][0]/3)) # Longhaul flight !?
         Total_ED = q1 + q2 + q3 + q4 + q5 + q6 + q7 + database['Cosmic'][0]
         data_output = [Total_ED, q1, q2, q3, q4, q5, q6, q7]
@@ -192,9 +192,21 @@ def get_dashboard_layout(app):
 
     @app.callback(
         Output(component_id='tabs-content', component_property='children'),
-        [Input(component_id='tab-graph', component_property='value')]
+        [Input(component_id='tab-graph', component_property='value'),
+         Input(component_id='store-data-output', component_property='data')]
     )
-    def render_content(tab):
+    def render_content(tab, data):
+        # [Total_ED, q1, q2, q3, q4, q5, q6, q7]
+        xrays = data[1]
+        ct = data[2]
+        coffee = data[3]
+        banana = data[4]
+        pint = data[5]
+        home = data[6]
+        travel = data[7]
+        background = database['Cosmic'][0]
+        total = data[0]
+
         if tab == 'tab-1':
             return html.Div([
                 html.H6('(description) Working a powerplant exposes you to a very small amount of radiation. In the UK...'),
@@ -202,9 +214,9 @@ def get_dashboard_layout(app):
                     id='graph-1-tabs',
                     figure={
                         'data': [
-                           # {'x': [1], 'y':[data_output[0]], 'type': 'bar','name': 'Total radiation'},
-                            {'x': [2], 'y': [0.0001], 'type': 'bar', 'name': 'Living 50 miles from a nuclear powerplant'},
-                            {'x': [3], 'y': [0.5], 'type': 'bar', 'name': u'Working in a nuclear plant'},
+                            {'x': [1], 'y': [total], 'type': 'bar','name': 'Total radiation'},
+                            {'x': [2], 'y': [database['living_plant'][0]], 'type': 'bar', 'name': 'Living 50 miles from a nuclear powerplant'},
+                            {'x': [3], 'y': [database['nuclear_worker'][0]], 'type': 'bar', 'name': u'Working in a nuclear plant'},
                         ],
                         'layout': {
                         }
@@ -218,9 +230,15 @@ def get_dashboard_layout(app):
                     id='graph-2-tabs',
                     figure={
                         'data': [
-                            {'x': [1], 'y': [1], 'type': 'bar', 'name': 'Bananas'},
-                            {'x': [2], 'y': [1], 'type': 'bar', 'name': u'Coffee'},
-                            {'x': [3], 'y': [1], 'type': 'bar', 'name': u'Beer'},
+                            {'x': [1], 'y': [banana], 'type': 'bar', 'name': 'Bananas'},
+                            {'x': [2], 'y': [coffee], 'type': 'bar', 'name': u'Coffee'},
+                            {'x': [3], 'y': [pint], 'type': 'bar', 'name': u'Beer'},
+                            {'x': [4], 'y': [xrays], 'type': 'bar', 'name': u'Xrays'},
+                            {'x': [5], 'y': [ct], 'type': 'bar', 'name': u'CT'},
+                            {'x': [6], 'y': [home], 'type': 'bar', 'name': u'Location'},
+                            {'x': [7], 'y': [travel], 'type': 'bar', 'name': u'Travel'},
+                            {'x': [8], 'y': [background], 'type': 'bar', 'name': u'Background'},
+                            {'x': [9], 'y': [total], 'type': 'bar', 'name': u'Total'},
                         ],
                         'layout': {
 
@@ -271,6 +289,7 @@ def get_dashboard_layout(app):
         Total_ED = data_output[0]
         pints = Total_ED/database['Pint'][0]
         bananas = Total_ED/database['Banana'][0]
+        pplant = Total_ED/database['nuclear_worker'][0]
         coffees = Total_ED/database['Coffee'][0]
         if value == 'beer':
             out = html.Div([
@@ -318,7 +337,7 @@ def get_dashboard_layout(app):
                 ], style={"textAlign": "center"}),
                 html.Br(),
                 html.Div([
-                    html.H1(id='data')
+                    html.H1('{:,}'.format(round(pplant)).replace(',', ' ,'))
                 ], style={"textAlign": "center"}),
                 html.Br(),
                 html.Div([

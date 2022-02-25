@@ -41,7 +41,7 @@ card_content = [
                                          {"label": i, "value": i} for i in Name
                                          ])
                     ], style={"width": "5"}),
-                ], width=3),
+                ], width=7),
             ])
 
         ]
