@@ -68,7 +68,7 @@ def get_dashboard_layout(app):
 
         dbc.Row([
             dbc.Col([
-                html.I('margin')
+                html.I('')
             ], width=1),
             dbc.Col([
                 dbc.Button('Calculate', id='submit-val', n_clicks=0, style={'textTransform': 'none'}),
@@ -79,7 +79,7 @@ def get_dashboard_layout(app):
                 ),
             ], width=10),
             dbc.Col([
-                html.I('margin')
+                html.I('')
             ], width=1)
         ], id='calculate-row'),
 
@@ -87,7 +87,7 @@ def get_dashboard_layout(app):
 
         dbc.Row([
             dbc.Col([
-                html.I('margin')
+                html.I('')
             ], width=1),
             dbc.Col([
                 html.Div(id='tabs-graph'),
@@ -95,23 +95,25 @@ def get_dashboard_layout(app):
                 dcc.Store(id='store-data-output')
             ], width=10),
             dbc.Col([
-                html.I('margin')
+                html.I('')
             ], width=1)
         ], id='output-row'),
 
         html.Br(),
         html.Br(),
+        dbc.Row(),
+        dbc.Row(),
 
         dbc.Row([
             dbc.Col([
-                html.I('margin')
+                html.I('')
             ], width=1),
             dbc.Col([
                 html.Div('Write some shit about contact details and '
                          'potentially a link to our sources or research ect')
             ], width=10),
             dbc.Col([
-                html.I('margin')
+                html.I('')
             ], width=1)
         ], id='contact-row'),
 
@@ -172,9 +174,9 @@ def get_dashboard_layout(app):
             return html.Div([
 
                 dcc.Tabs(id='tab-graph', value='tab-graph-value', children=[
-                    dcc.Tab(label='Tab One', value='tab-1'),
-                    dcc.Tab(label='Tab Two', value='tab-2'),
-                    dcc.Tab(label='Tab Three', value='tab-3')
+                    dcc.Tab(label='Compare to Nuclear Powerplants', value='tab-1'),
+                    dcc.Tab(label='Compare to Food & Drink', value='tab-2'),
+                    dcc.Tab(label='It is the same as....', value='tab-3')
                    ]),
                              ])
 
@@ -185,7 +187,7 @@ def get_dashboard_layout(app):
     def render_content(tab):
         if tab == 'tab-1':
             return html.Div([
-                html.H3('Tab content 1'),
+                html.H6('(description) Working a powerplant exposes you to a very small amount of radiation. In the UK...'),
                 dcc.Graph(
                     id='graph-1-tabs',
                     figure={
@@ -199,7 +201,7 @@ def get_dashboard_layout(app):
             ])
         if tab == 'tab-2':
             return html.Div([
-                html.H3('Tab content 2'),
+                html.H6('Many foods contain small amounts of radiation. Explore the graph below to learn ...'),
                 dcc.Graph(
                     id='graph-2-tabs',
                     figure={
@@ -238,7 +240,7 @@ def get_dashboard_layout(app):
                     options=[
                         {'label': 'Pints of Beer', 'value': 'beer'},
                         {'label': 'Bananas', 'value': 'banana'},
-                        {'label': 'Years working in a power plant', 'value': 'power-plant'},
+                        {'label': 'Working in a power plant', 'value': 'power-plant'},
                         {'label': 'Cups of Coffee', 'value': 'coffee'},
                     ], labelStyle={'display': 'block'})
             ])
@@ -259,7 +261,7 @@ def get_dashboard_layout(app):
             out = html.Div([
                 html.Br(),
                 html.Div([
-                    html.H4('Your annual dose of radiation is equivalent to: ')
+                    html.H4('Your activities across a year expose you to the same radiation as:')
                 ], style={"textAlign": "center"}),
                 html.Br(),
                 html.Div([
@@ -278,7 +280,7 @@ def get_dashboard_layout(app):
             out = html.Div([
                 html.Br(),
                 html.Div([
-                    html.H4('Your annual dose of radiation is equivalent to: ')
+                    html.H4('Your activities across a year expose you to the same radiation as:')
                 ], style={"textAlign": "center"}),
                 html.Br(),
                 html.Div([
@@ -297,7 +299,7 @@ def get_dashboard_layout(app):
             out = html.Div([
                 html.Br(),
                 html.Div([
-                    html.H4('Your annual dose of radiation is equivalent to: ')
+                    html.H4('Your activities across a year expose you to the same radiation as:')
                 ], style={"textAlign": "center"}),
                 html.Br(),
                 html.Div([
@@ -316,7 +318,7 @@ def get_dashboard_layout(app):
             out = html.Div([
                 html.Br(),
                 html.Div([
-                    html.H4('Your annual dose of radiation is equivalent to: ')
+                    html.H4('Your activities across a year expose you to the same radiation as:')
                 ], style={"textAlign": "center"}),
                 html.Br(),
                 html.Div([

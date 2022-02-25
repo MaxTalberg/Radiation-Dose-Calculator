@@ -42,7 +42,7 @@ card_content = [
                         html.Div([
                             dcc.Dropdown(id='Q-7a-ddown',
                                          options=[
-                                             {"label": value, "value": value} for value in range(5)])
+                                             {"label": value, "value": value} for value in range(11)])
                         ], style={"width": "5"}),
                     ])
                 ], width=5),
@@ -53,7 +53,7 @@ card_content = [
                         html.Div([
                             dcc.Dropdown(id='Q-7b-ddown',
                                          options=[
-                                             {"label": value, "value": value} for value in range(5)])
+                                             {"label": value, "value": value} for value in range(11)])
                         ], style={"width": "5"}),
                     ])
                 ], width=5),
@@ -64,14 +64,16 @@ card_content = [
                 html.H5(""),
             ]),
 
+            html.Br(),
+
             dbc.Row([
                 html.Br(),
                 html.Div([
-                    html.I('How many days have you spent on a holiday to Cornwall?'),
+                    html.H6('How many days have you spent on a holiday to Cornwall?'),
                     html.Div([
                         dcc.Dropdown(id='Q-7c-ddown',
                                      options=[
-                                         {"label": value, "value": value} for value in range(10)])
+                                         {"label": value, "value": value} for value in range(11)])
                     ], style={"width": "5"}),
                 ]),
             ]),
@@ -84,7 +86,9 @@ image = html.Div([
              src='/assets/holiday_black.png',
              height=80,
              width=80,
-             style={'align-items': 'center'})
+             style={'align-items': 'center',
+                    "padding": "10px"
+                    })
 ])
 
 def get_question7(app):
@@ -93,7 +97,7 @@ def get_question7(app):
 
             #Margin 1
             dbc.Col([
-                html.I('margin')
+                html.I('')
             ], width=1),
 
             dbc.Col([
@@ -101,7 +105,7 @@ def get_question7(app):
             ], width=6),
 
             dbc.Col([
-                html.I('margin')
+                html.I('')
             ], width=1),
 
             dbc.Col([
@@ -109,7 +113,7 @@ def get_question7(app):
             ], width=3),
 
             dbc.Col([
-                html.I('margin')
+                html.I('')
             ], width=1)
         ]),
     )

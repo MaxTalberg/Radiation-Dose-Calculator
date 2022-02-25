@@ -54,7 +54,7 @@ def get_question6(app):
 
             #Margin 1
             dbc.Col([
-                html.I('margin')
+                html.I('')
             ], width=1),
 
             dbc.Col([
@@ -62,7 +62,7 @@ def get_question6(app):
             ], width=6),
 
             dbc.Col([
-                html.I('margin')
+                html.I('')
             ], width=1),
 
             dbc.Col([
@@ -70,7 +70,7 @@ def get_question6(app):
             ], width=3),
 
             dbc.Col([
-                html.I('margin')
+                html.I('')
             ], width=1)
         ]),
     )

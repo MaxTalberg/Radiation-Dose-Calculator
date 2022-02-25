@@ -32,12 +32,12 @@ card_content = [
                         dcc.Dropdown(id='Q-2a-ddown',
                                      options=[
                                          {"label": value, "value": value} for value in range(5)])
-                    ], style={"width": "50%"})
+                    ], style={"width": "2.5"})
                     ], width=3),
 
                 dbc.Col([
                     html.Div([])
-                ], width=2),
+                ], width=1),
 
                 dbc.Col([
                     html.Div([
@@ -45,8 +45,12 @@ card_content = [
                         dcc.Dropdown(id='Q-2b-ddown',
                                      options=[
                                          {"label": value, "value": value} for value in range(5)])
-                    ], style={"width": "50%"})
+                    ], style={"width": "2.5"})
                 ], width=3),
+
+                dbc.Col([
+                    html.Div([])
+                ], width=1),
 
                 dbc.Col([
                     html.Div([
@@ -54,7 +58,7 @@ card_content = [
                         dcc.Dropdown(id='Q-2c-ddown',
                                      options=[
                                          {"label": value, "value": value} for value in range(5)])
-                    ], style={"width": "50%"}),
+                    ], style={"width": "2.5"}),
                     ], width=3),
 
                 dbc.Col([
@@ -80,7 +84,7 @@ def get_question2(app):
 
             #Margin 1
             dbc.Col([
-                html.I('margin')
+                html.I('')
             ], width=1),
 
             dbc.Col([
@@ -88,7 +92,7 @@ def get_question2(app):
             ], width=6),
 
             dbc.Col([
-                html.I('margin')
+                html.I('')
             ], width=1),
 
             dbc.Col([
@@ -96,7 +100,7 @@ def get_question2(app):
             ], width=3),
 
             dbc.Col([
-                html.I('margin')
+                html.I('')
             ], width=1)
         ]),
     )
