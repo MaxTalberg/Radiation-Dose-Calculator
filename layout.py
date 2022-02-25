@@ -201,11 +201,13 @@ def get_dashboard_layout(app):
                 dcc.Graph(
                     id='graph-1-tabs',
                     figure={
-                        'data': [{
-                            'x': [1, 2, 3],
-                            'y': [3, 1, 2],
-                            'type': 'bar'
-                        }]
+                        'data': [
+                           # {'x': [1], 'y':[data_output[0]], 'type': 'bar','name': 'Total radiation'},
+                            {'x': [2], 'y': [0.0001], 'type': 'bar', 'name': 'Living 50 miles from a nuclear powerplant'},
+                            {'x': [3], 'y': [0.5], 'type': 'bar', 'name': u'Working in a nuclear plant'},
+                        ],
+                        'layout': {
+                        }
                     }
                 )
             ])
@@ -215,11 +217,14 @@ def get_dashboard_layout(app):
                 dcc.Graph(
                     id='graph-2-tabs',
                     figure={
-                        'data': [{
-                            'x': [1, 2, 3],
-                            'y': [5, 10, 6],
-                            'type': 'bar'
-                        }]
+                        'data': [
+                            {'x': [1], 'y': [1], 'type': 'bar', 'name': 'Bananas'},
+                            {'x': [2], 'y': [1], 'type': 'bar', 'name': u'Coffee'},
+                            {'x': [3], 'y': [1], 'type': 'bar', 'name': u'Beer'},
+                        ],
+                        'layout': {
+
+                        }
                     }
                 )
             ])
