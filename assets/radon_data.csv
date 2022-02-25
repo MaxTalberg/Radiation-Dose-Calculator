@@ -1,0 +1,103 @@
+﻿Nation,County or Area Name,"Arithmetic Average 
+","Geometric Average 
+ Bq m-3",Effective Dose,Effective Dose
+n/a,n/a,Bq m-3,Bq m-3,mSv/year,mSv/year
+England,Buckinghamshire,48,36,2.6613576,1.9960182
+England,Cambridgeshire,38,27,2.1069081,1.49701365
+England,Cumbria,98,61,5.4336051,3.38214195
+England,Derbyshire,103,49,5.71082985,2.71680255
+England,Devon,100,54,5.544495,2.9940273
+England,Dorset,44,29,2.4395778,1.60790355
+England,East Sussex,63,34,3.49303185,1.8851283
+England,Essex,24,19,1.3306788,1.05345405
+England,Gloucestershire,96,56,5.3227152,3.1049172
+England,Hampshire,52,32,2.8831374,1.7742384
+England,Hertfordshire,41,30,2.27324295,1.6633485
+England,Kent,40,27,2.217798,1.49701365
+England,Lancashire,77,48,4.26926115,2.6613576
+England,Leicestershire,72,40,3.9920364,2.217798
+England,Lincolnshire,82,52,4.5464859,2.8831374
+England,Norfolk,32,25,1.7742384,1.38612375
+England,North Yorkshire,75,45,4.15837125,2.49502275
+England,Northamptonshire,71,40,3.93659145,2.217798
+England,Nottinghamshire,67,38,3.71481165,2.1069081
+England,Oxfordshire,101,60,5.59993995,3.326697
+England,Somerset,63,42,3.49303185,2.3286879
+England,Staffordshire,79,40,4.38015105,2.217798
+England,Suffolk,34,25,1.8851283,1.38612375
+England,Surrey,33,23,1.82968335,1.27523385
+England,Warwickshire,47,34,2.60591265,1.8851283
+England,West Sussex,52,34,2.8831374,1.8851283
+England,Worcestershire,41,31,2.27324295,1.71879345
+England,Greater London,28,18,1.5524586,0.9980091
+England,Greater Manchester,25,17,1.38612375,0.94256415
+England,Merseyside,16,12,0.8871192,0.6653394
+England,South Yorkshire,43,28,2.38413285,1.5524586
+England,Tyne and Wear,27,13,1.49701365,0.72078435
+England,West Midlands,25,18,1.38612375,0.9980091
+England,West Yorkshire,50,32,2.7722475,1.7742384
+Wales,Blaenau Gwent,20,11,1.108899,0.60989445
+Wales,Bridgend,53,33,2.93858235,1.82968335
+Wales,Caerphilly,26,17,1.4415687,0.94256415
+Wales,Cardiff,53,33,2.93858235,1.82968335
+Wales,Carmarthenshire,80,46,4.435596,2.5504677
+Wales,Ceredigion,75,50,4.15837125,2.7722475
+Wales,Conwy,67,42,3.71481165,2.3286879
+Wales,Denbighshire,111,63,6.15438945,3.49303185
+Wales,Flintshire,114,60,6.3207243,3.326697
+Wales,Gwynedd,53,36,2.93858235,1.9960182
+Wales,Isle of Anglesey,107,58,5.93260965,3.2158071
+Wales,Merthyr Tydfil,74,25,4.1029263,1.38612375
+Wales,Monmouthshire,58,41,3.2158071,2.27324295
+Wales,Neath Port Talbot,22,15,1.2197889,0.83167425
+Wales,Newport,31,23,1.71879345,1.27523385
+Wales,Pembrokeshire,107,67,5.93260965,3.71481165
+Wales,Powys,76,48,4.2138162,2.6613576
+Wales,Rhondda Cynon Taf,36,19,1.9960182,1.05345405
+Wales,Swansea,53,29,2.93858235,1.60790355
+Wales,Torfaen,26,17,1.4415687,0.94256415
+Wales,Vale of Glamorgan,88,54,4.8791556,2.9940273
+Wales,Wrexham,76,43,4.2138162,2.38413285
+Northern Ireland,Antrim and Newtownabbey,25,18,1.38612375,0.9980091
+Northern Ireland,"Armagh, Banbridge and Craigavon",44,33,2.4395778,1.82968335
+Northern Ireland,Belfast,23,19,1.27523385,1.05345405
+Northern Ireland,Causeway Coast and Glens,38,27,2.1069081,1.49701365
+Northern Ireland,Derry and Strabane,80,51,4.435596,2.82769245
+Northern Ireland,Fermanagh and Omagh,60,37,3.326697,2.05146315
+Northern Ireland,Lisburn and Castlereagh,46,34,2.5504677,1.8851283
+Northern Ireland,Mid and East Antrim,24,18,1.3306788,0.9980091
+Northern Ireland,Mid Ulster,57,38,3.16036215,2.1069081
+Northern Ireland,"Newry, Mourne and Down",78,53,4.3247061,2.93858235
+Northern Ireland,North Down and Ards,43,33,2.38413285,1.82968335
+Scotland,Aberdeen City,43,29,2.38413285,1.60790355
+Scotland,Aberdeenshire,93,53,5.15638035,2.93858235
+Scotland,Angus,29,22,1.60790355,1.2197889
+Scotland,Argyll and Bute,22,13,1.2197889,0.72078435
+Scotland,City of Edinburgh,28,19,1.5524586,1.05345405
+Scotland,Clackmannanshire,23,15,1.27523385,0.83167425
+Scotland,Comhairle Nan Eilean Siar,11,7,0.60989445,0.38811465
+Scotland,Dumfries and Galloway,35,24,1.94057325,1.3306788
+Scotland,Dundee City,26,20,1.4415687,1.108899
+Scotland,East Ayrshire,15,11,0.83167425,0.60989445
+Scotland,East Dunbartonshire,19,14,1.05345405,0.7762293
+Scotland,East Lothian,39,23,2.16235305,1.27523385
+Scotland,East Renfrewshire,23,18,1.27523385,0.9980091
+Scotland,Falkirk,17,12,0.94256415,0.6653394
+Scotland,Fife,22,17,1.2197889,0.94256415
+Scotland,Glasgow City,22,16,1.2197889,0.8871192
+Scotland,Highland,53,27,2.93858235,1.49701365
+Scotland,Inverclyde,16,12,0.8871192,0.6653394
+Scotland,Midlothian,54,32,2.9940273,1.7742384
+Scotland,Moray,30,21,1.6633485,1.16434395
+Scotland,North Ayrshire,18,13,0.9980091,0.72078435
+Scotland,North Lanarkshire,12,9,0.6653394,0.49900455
+Scotland,Orkney Islands,131,56,7.26328845,3.1049172
+Scotland,Perth and Kinross,34,25,1.8851283,1.38612375
+Scotland,Renfrewshire,18,13,0.9980091,0.72078435
+Scotland,Scottish Borders,44,30,2.4395778,1.6633485
+Scotland,Shetland Islands,57,21,3.16036215,1.16434395
+Scotland,South Ayrshire,18,13,0.9980091,0.72078435
+Scotland,South Lanarkshire,23,16,1.27523385,0.8871192
+Scotland,Stirling,22,17,1.2197889,0.94256415
+Scotland,West Dunbartonshire,21,15,1.16434395,0.83167425
+Scotland,West Lothian,17,12,0.94256415,0.6653394
