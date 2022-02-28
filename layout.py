@@ -15,6 +15,7 @@ from questions.beer import get_question5, beer_image
 from questions.home import get_question6
 from questions.holiday import get_question7
 from questions.background import get_question8
+from questions.answer import get_answer
 
 
 #Hex Colours
@@ -98,6 +99,7 @@ def get_dashboard_layout(app):
                 html.I('')
             ], width=1),
             dbc.Col([
+                html.Div(id='total-radiation'),
                 html.Div(id='tabs-graph'),
                 html.Div(id='tabs-content'),
                 dcc.Store(id='store-data-output')
@@ -117,8 +119,9 @@ def get_dashboard_layout(app):
                 html.I('')
             ], width=1),
             dbc.Col([
-                html.Div('References '
-                         'Creators: Max Talberg & Funmi Looi-Somoye')
+                html.Div(
+                         'Created by: Max Talberg & Funmi Looi-Somoye'
+                )
             ], width=10),
             dbc.Col([
                 html.I('')
@@ -179,20 +182,80 @@ def get_dashboard_layout(app):
 
     @app.callback(
         Output(component_id='tabs-graph', component_property='children'),
-        [Input(component_id='submit-val', component_property='n_clicks')]
+        [Input(component_id='submit-val', component_property='n_clicks'),
+         Input(component_id='store-data-output', component_property='data')]
     )
-    def update_output(n_clicks):
+    def update_output(n_clicks, data):
+        total = data[0]
         time.sleep(1.1)
+        card_content = html.Div(children=[
+                    dbc.CardHeader(
+
+                        html.Div(children=[
+                            html.H5(children=['Total Radiation'], style={'display': 'inline-block'}),
+                            html.Div(children=[
+                                html.I(className="fa fa-info-circle")
+                            ], style={'display': 'inline-block',
+                                      'margin-left': '10px'},
+                                id='answer'),
+                            dbc.Tooltip(
+                                html.Div(children=[
+                                    "", html.Br(),
+                                    "", html.Br(), html.Br(),
+                                    ""
+                                ]),
+                                target='answer',
+                                placement='right'
+                            )
+                        ])
+                    ),
+                    dbc.CardBody(
+
+                            dbc.Row(
+
+                                dbc.Col(children=[
+
+                                    html.Div(children=[
+                                        html.H5('{:,} mSv'.format(round(total, 2)).replace(',', ' ,')),
+                                    ], style={"width": "50%"}),
+                                ], width=12),
+                            )
+
+                    )
+                ])
         while n_clicks != 0:
-            return html.Div([
+            tabs = html.Div([
+                html.Div(
+                    dbc.Row([
 
-                dcc.Tabs(id='tab-graph', value='tab-graph-value', children=[
-                    dcc.Tab(label='Results', value='tab-3'),
-                    dcc.Tab(label='Compare to Nuclear Powerplants', value='tab-1'),
-                    dcc.Tab(label='Breakdown', value='tab-2'),
+            #Margin 1
 
-                   ]),
-                             ])
+            dbc.Col([
+                dbc.Card(card_content, color="warning", outline=True)
+            ], width=7),
+
+            dbc.Col([
+                html.I('')
+            ], width=1),
+
+            dbc.Col([
+                banana_image
+            ], width=4),
+
+        ]),
+    ),
+                html.Br(),
+                html.Br(),
+                html.Div(
+                    dcc.Tabs(id='tab-graph', value='tab-graph-value', children=[
+                        dcc.Tab(label='Results', value='tab-3'),
+                        dcc.Tab(label='Compare to Nuclear Powerplants', value='tab-1'),
+                        dcc.Tab(label='Breakdown', value='tab-2'),
+                    ])
+                ),
+                             ]),
+
+            return tabs
 
     @app.callback(
         Output(component_id='tabs-content', component_property='children'),
@@ -221,6 +284,8 @@ def get_dashboard_layout(app):
                             {'x': [1], 'y': [total], 'type': 'bar','name': 'Total radiation'},
                             {'x': [2], 'y': [database['living_plant'][0]], 'type': 'bar', 'name': 'Living 50 miles from a nuclear powerplant'},
                             {'x': [3], 'y': [database['nuclear_worker'][0]], 'type': 'bar', 'name': u'Working in a nuclear plant'},
+                            {'x': [0, 3.5], 'y': [database['uk_limit'][0], database['uk_limit'][0]],
+                             'type': 'line', 'name': 'UK Limit'}
                         ],
                         'layout': {
                         }
