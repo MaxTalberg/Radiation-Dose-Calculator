@@ -14,6 +14,7 @@ from questions.banana import get_question4, banana_image
 from questions.beer import get_question5, beer_image
 from questions.home import get_question6
 from questions.holiday import get_question7
+from questions.background import get_question8
 
 
 #Hex Colours
@@ -69,6 +70,8 @@ def get_dashboard_layout(app):
         get_question7(app=app),
 
         html.Br(),
+        get_question8(app=app),
+
         html.Br(),
 
         dbc.Row([
@@ -114,8 +117,8 @@ def get_dashboard_layout(app):
                 html.I('')
             ], width=1),
             dbc.Col([
-                html.Div('Write some shit about contact details and '
-                         'potentially a link to our sources or research ect')
+                html.Div('References '
+                         'Creators: Max Talberg & Funmi Looi-Somoye')
             ], width=10),
             dbc.Col([
                 html.I('')
@@ -184,9 +187,10 @@ def get_dashboard_layout(app):
             return html.Div([
 
                 dcc.Tabs(id='tab-graph', value='tab-graph-value', children=[
+                    dcc.Tab(label='Results', value='tab-3'),
                     dcc.Tab(label='Compare to Nuclear Powerplants', value='tab-1'),
-                    dcc.Tab(label='Compare to Food & Drink', value='tab-2'),
-                    dcc.Tab(label='It is the same as....', value='tab-3')
+                    dcc.Tab(label='Breakdown', value='tab-2'),
+
                    ]),
                              ])
 
@@ -209,7 +213,7 @@ def get_dashboard_layout(app):
 
         if tab == 'tab-1':
             return html.Div([
-                html.H6('(description) Working a powerplant exposes you to a very small amount of radiation. In the UK...'),
+                html.H6(''),
                 dcc.Graph(
                     id='graph-1-tabs',
                     figure={
@@ -225,7 +229,7 @@ def get_dashboard_layout(app):
             ])
         if tab == 'tab-2':
             return html.Div([
-                html.H6('Many foods contain small amounts of radiation. Explore the graph below to learn ...'),
+                html.H6(''),
                 dcc.Graph(
                     id='graph-2-tabs',
                     figure={

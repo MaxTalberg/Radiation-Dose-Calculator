@@ -12,7 +12,8 @@ card_content = [
                       'margin-left': '10px'},
                 id='question-1'),
             dbc.Tooltip(
-                html.Div(["X-rays subject the patient to small doses of x-ray radiation", html.Br(),
+                html.Div(["X-rays subject the patient to small amount of x-ray radiation.", html.Br(),
+                          "X-rays are useful because they can penetrate through the body, allowing doctors to see organs and bones", html.Br(),
                           "Effective Dose: 0.005 mSv (dental x-ray) and 0.001 mSv (wrist x-ray)", html.Br(), html.Br(),
                           html.I("(This is the same dose as eating 1/2 and 1/10 of a banana)"),
                           ]),

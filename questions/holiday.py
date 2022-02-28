@@ -12,9 +12,10 @@ card_content = [
                       'margin-left': '10px'},
                 id='question-7'),
             dbc.Tooltip(
-                html.Div(["Get miles to write", html.Br(),
-                          "", html.Br(),
-                          ""
+                html.Div(["Travelling in planes, at high altitude expose you to greater amounts of cosmic radiation fron the sun.", html.Br(),
+                          "At higher altitudes, the air becomes thinner resulting in a lesser shielding effect from the air molecules ", html.Br(),
+                          "Effective Dose: (xxx) mSv for a long haul flight to XXX, and (xxx) mSv for a short haul flight (London to Ibiza)",html.Br(),
+                          "This is the same radiation dose as (xxx) and (xx) bananas."
                           ]),
                 target='question-7',
                 placement='right'
@@ -69,12 +70,22 @@ card_content = [
             dbc.Row([
                 html.Br(),
                 html.Div([
-                    html.H6('How many days have you spent on a holiday to Cornwall?'),
+                    html.H6('How many days have you spent on a holiday to Cornwall?', id='cornwall_qu'),
                     html.Div([
                         dcc.Dropdown(id='Q-7c-ddown',
                                      options=[
                                          {"label": value, "value": value} for value in range(11)])
                     ], style={"width": "5"}),
+
+                    dbc.Tooltip(
+                        html.Div(["Cornwall is known for having higher level of natural radioactive radon gas compared to other locations in the UK", html.Br(),
+                          "The levels of radon are of course safe, and are always monitored by the government", html.Br(),
+                          "To compare the average cornish person recieves 6.9 mSv/year and the average person in the UK recieves 1.3 mSv/year",html.Br(),
+                                  "This is the same as eating 690 bananas in a year vs 130 bananas in a year."
+                          ]),
+                        target='cornwall_qu',
+                        placement='right'
+                )
                 ]),
             ]),
         ]

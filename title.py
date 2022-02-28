@@ -9,15 +9,22 @@ def get_title(app):
             [
                 html.H1("Radiation Dose Calculator", className="display-3"),
                 html.P(
-                    "Discover your radiation exposure from everyday activities by answering the questions and clicking calculate",
+                    "Discover your radiation exposure from everyday activities!",
                     className="lead",
                 ),
                 html.Hr(className="my-2"),
                 html.P(
-                    "Radiation is part of our everyday life. Did you know there is naturally occuring radiation in the food you eat,.."
+                    "Radiation is part of our everyday life and this has a very small impact on our health.",
                 ),
                 html.P(
-                    "Want to learn more? Check out our fact sheet below"
+                    "Did you know, your normal day-to-day activities expose you to more radiation than someone working in a nuclear power plant for a year?",
+                ),
+                html.P(
+
+                    "To understand more, test out the tool below and discover your everyday radioactive activities by pressing calculate.",
+                ),
+                html.P(
+                    "Check out our fact sheet below to discover more:"
                 ),
 
                 html.P(

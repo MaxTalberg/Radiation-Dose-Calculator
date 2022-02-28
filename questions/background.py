@@ -5,19 +5,19 @@ import dash_bootstrap_components as dbc
 card_content = [
     dbc.CardHeader(
         html.Div([
-            html.H5(['How many bananas do you eat a week?'], style={'display': 'inline-block'}),
+            html.H5(['Background Radiation'], style={'display': 'inline-block'}),
             html.Div([
                 html.I(className="fa fa-info-circle")
             ], style={'display': 'inline-block',
                       'margin-left': '10px'},
-                id='question-4'),
+                id='question-8'),
             dbc.Tooltip(
                 html.Div([
-                    "Bananas are famous for containing a small fraction of radioactive nuclide potassium-40.", html.Br(),
-                    "When you eat a banana you ingest a small dose of this nuclide.", html.Br(), html.Br(),
-                    "Effective Dose: 0.01 mSv (per banana)"
+                    "", html.Br(),
+                    "", html.Br(), html.Br(),
+                    ""
                           ]),
-                target='question-4',
+                target='question-8',
                 placement='right'
                 )
         ])
@@ -28,9 +28,8 @@ card_content = [
             dbc.Row([
                 dbc.Col([
                     html.Div([
-                        dcc.Dropdown(id='Q-4a-ddown',
-                                     options=[
-                                         {"label": value, "value": value} for value in range(21)])
+                        html.H5(' 2.3 mSv'),
+
                     ], style={"width": "50%"}),
                 ], width=5),
             ])
@@ -40,14 +39,14 @@ card_content = [
 ]
 
 banana_image = html.Div([
-    html.Img(id="banana-logo",
-             src='/assets/banana_black.png',
+    html.Img(id="no_logo",
+             #src='/assets/banana_black.png',
              height=100,
              width=100,
              style={'align-items': 'center'})
 ])
 
-def get_question4(app):
+def get_question8(app):
     layout = html.Div(
         dbc.Row([
 
