@@ -5,7 +5,7 @@ import dash_bootstrap_components as dbc
 card_content = [
     dbc.CardHeader(
         html.Div([
-            html.H5(['Background Radiation'], style={'display': 'inline-block'}),
+            html.H5(['Cosmic Background Radiation'], style={'display': 'inline-block'}),
             html.Div([
                 html.I(className="fa fa-info-circle")
             ], style={'display': 'inline-block',
@@ -40,7 +40,7 @@ card_content = [
 
 banana_image = html.Div([
     html.Img(id="no_logo",
-             #src='/assets/banana_black.png',
+             src='/assets/sun_black.png',
              height=100,
              width=100,
              style={'align-items': 'center'})

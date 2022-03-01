@@ -189,37 +189,21 @@ def get_dashboard_layout(app):
         total = data[0]
         time.sleep(1.1)
         card_content = html.Div(children=[
-                    dbc.CardHeader(
+            dbc.CardHeader(
 
+                html.Div(children=[
+                    html.H5(children=['Total Effective Dose'], style={ 'textAlign': 'center'}),
+
+                ])
+            ),
+            dbc.CardBody(
+                dbc.Row(
+                    dbc.Col(children=[
                         html.Div(children=[
-                            html.H5(children=['Total Radiation'], style={'display': 'inline-block'}),
-                            html.Div(children=[
-                                html.I(className="fa fa-info-circle")
-                            ], style={'display': 'inline-block',
-                                      'margin-left': '10px'},
-                                id='answer'),
-                            dbc.Tooltip(
-                                html.Div(children=[
-                                    "", html.Br(),
-                                    "", html.Br(), html.Br(),
-                                    ""
-                                ]),
-                                target='answer',
-                                placement='right'
-                            )
-                        ])
-                    ),
-                    dbc.CardBody(
-
-                            dbc.Row(
-
-                                dbc.Col(children=[
-
-                                    html.Div(children=[
-                                        html.H5('{:,} mSv'.format(round(total, 2)).replace(',', ' ,')),
-                                    ], style={"width": "50%"}),
-                                ], width=12),
-                            )
+                            html.H5('{:,} mSv'.format(round(total, 2)).replace(',', ' ,')),
+                        ], style={'textAlign': 'center'}),
+                    ], width=12),
+                ),
 
                     )
                 ])
@@ -231,16 +215,16 @@ def get_dashboard_layout(app):
             #Margin 1
 
             dbc.Col([
-                dbc.Card(card_content, color="warning", outline=True)
-            ], width=7),
-
-            dbc.Col([
                 html.I('')
             ], width=1),
 
             dbc.Col([
-                banana_image
-            ], width=4),
+                dbc.Card(card_content, color="warning", inverse=True)
+            ], width=5),
+
+            dbc.Col([
+                html.I('')
+            ], width=6),
 
         ]),
     ),
@@ -285,7 +269,7 @@ def get_dashboard_layout(app):
                             {'x': [2], 'y': [database['living_plant'][0]], 'type': 'bar', 'name': 'Living 50 miles from a nuclear powerplant'},
                             {'x': [3], 'y': [database['nuclear_worker'][0]], 'type': 'bar', 'name': u'Working in a nuclear plant'},
                             {'x': [0, 3.5], 'y': [database['uk_limit'][0], database['uk_limit'][0]],
-                             'type': 'line', 'name': 'UK Limit'}
+                             'type': 'line', 'name': 'UK Limit for Occupational Workers'}
                         ],
                         'layout': {
                         }

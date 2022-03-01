@@ -11,20 +11,26 @@ card_content = [
             ], style={'display': 'inline-block',
                       'margin-left': '10px'},
                 id='answer'),
-            dbc.Tooltip(
-                html.Div([
-                    "", html.Br(),
-                    "", html.Br(), html.Br(),
-                    ""
-                          ]),
-                target='answer',
-                placement='right'
-                )
+            #dbc.Tooltip(
+            #    html.Div([
+            #        "", html.Br(),
+            #        "", html.Br(), html.Br(),
+            #        ""
+            #              ]),
+            #    target='answer',
+            #    placement='right'
+            #    )
         ])
     ),
 
     dbc.CardBody(
         [
+            dbc.Row([
+                html.Div([
+                    html.H4('Total Radiation Dose'),
+
+                ]),
+            ]),
             dbc.Row([
                 dbc.Col([
                     html.Div([
@@ -38,13 +44,13 @@ card_content = [
     )
 ]
 
-banana_image = html.Div([
-    html.Img(id="no_logo",
-             #src='/assets/banana_black.png',
-             height=100,
-             width=100,
-             style={'align-items': 'center'})
-])
+#banana_image = html.Div([
+#    html.Img(id="no_logo",
+#             #src='/assets/banana_black.png',
+#             height=100,
+#             width=100,
+#             style={'align-items': 'center'})
+#])
 
 def get_answer(app):
     layout = html.Div(
@@ -64,7 +70,8 @@ def get_answer(app):
             ], width=1),
 
             dbc.Col([
-                banana_image
+                html.I('')
+                #banana_image
             ], width=3),
 
             dbc.Col([
