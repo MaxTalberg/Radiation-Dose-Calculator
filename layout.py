@@ -275,6 +275,12 @@ def get_dashboard_layout(app):
                              'type': 'line', 'name': 'UK Limit for Occupational Workers'}
                         ],
                         'layout': {
+                            'xaxis': {
+                                'title': 'Comparisons'
+                            },
+                            'yaxis': {
+                                'title': 'Effective Dose [mSv]'
+                            },
                         }
                     }
                 )
@@ -297,6 +303,12 @@ def get_dashboard_layout(app):
                             {'x': [9], 'y': [total], 'type': 'bar', 'name': u'Total'},
                         ],
                         'layout': {
+                            'xaxis': {
+                                'title': 'Everyday Activity'
+                            },
+                            'yaxis': {
+                                'title': 'Effective Dose [mSv]'
+                            },
 
                         }
                     }

@@ -36,6 +36,7 @@ card_content = [
             dbc.Row([
                 dbc.Col([
                     html.Div([
+                        html.I('Select your county'),
                         dcc.Dropdown(id='Q-6a-ddown',
                                      options=[
                                          {"label": i, "value": i} for i in Name

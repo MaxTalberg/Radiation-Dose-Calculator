@@ -72,6 +72,7 @@ card_content = [
                 html.Div([
                     html.H6('How many days have you spent on a holiday to Cornwall?', id='cornwall_qu'),
                     html.Div([
+
                         dcc.Dropdown(id='Q-7c-ddown',
                                      options=[
                                          {"label": value, "value": value} for value in range(11)])
@@ -95,8 +96,8 @@ card_content = [
 image = html.Div([
     html.Img(id="holiday-logo",
              src='/assets/holiday_black.png',
-             height=90,
-             width=90,
+             height=110,
+             width=110,
              style={'align-items': 'center',
                     "padding": "30"
                     })
