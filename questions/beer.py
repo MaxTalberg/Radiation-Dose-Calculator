@@ -16,7 +16,7 @@ card_content = [
                     "Beer contains a very small amount of radioactive nuclides sourced from the water used to produce beer."
                     ,html.Br(),"Drinking beer subjects you to a tiny amount radation."
                     ,html.Br(), "Effective Dose: 0.0004 mSv (per pint)"
-                    ,html.Br(),html.Br(), html.I("(This is the same as eating 1/25 of a banana)"),
+                    ,html.Br(),html.Br(), html.I("(This is the same as eating 4 bananas)"),
                           ]),
                 target='question-5',
                 placement='right'

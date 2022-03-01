@@ -121,7 +121,10 @@ def get_dashboard_layout(app):
             dbc.Col([
                 html.Div(
                          'Created by: Max Talberg & Funmi Looi-Somoye'
-                )
+                ),
+                html.Div([
+                    html.A("References", href='', target="_blank")
+                ])
             ], width=10),
             dbc.Col([
                 html.I('')

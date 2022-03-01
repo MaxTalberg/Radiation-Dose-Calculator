@@ -13,9 +13,9 @@ card_content = [
                 id='question-7'),
             dbc.Tooltip(
                 html.Div(["Travelling in planes, at high altitude expose you to greater amounts of cosmic radiation fron the sun.", html.Br(),
-                          "At higher altitudes, the air becomes thinner resulting in a lesser shielding effect from the air molecules ", html.Br(),
-                          "Effective Dose: (xxx) mSv for a long haul flight to XXX, and (xxx) mSv for a short haul flight (London to Ibiza)",html.Br(),
-                          "This is the same radiation dose as (xxx) and (xx) bananas."
+                          "At higher altitudes, the air becomes thinner resulting in a lesser shielding effect from the air molecules ", html.Br(),html.Br(),
+                          "Effective Dose: 0.065 mSv for a long haul flight to (London to Melbourne), and 0.0015 mSv for a short haul flight (London to Ibiza)",html.Br(),html.Br(),
+                          html.I("(This is the same radiation dose as 650 and 15 bananas.)")
                           ]),
                 target='question-7',
                 placement='right'
@@ -80,8 +80,8 @@ card_content = [
                     dbc.Tooltip(
                         html.Div(["Cornwall is known for having higher level of natural radioactive radon gas compared to other locations in the UK", html.Br(),
                           "The levels of radon are of course safe, and are always monitored by the government", html.Br(),
-                          "To compare the average cornish person recieves 6.9 mSv/year and the average person in the UK recieves 1.3 mSv/year",html.Br(),
-                                  "This is the same as eating 690 bananas in a year vs 130 bananas in a year."
+                          "To compare the average cornish person recieves 6.9 mSv/year and the average person in the UK recieves 1.3 mSv/year",html.Br(),html.Br(),
+                        html.I("(This is the same as eating 69,000 bananas in a year vs 13,000 bananas in a year.)"),
                           ]),
                         target='cornwall_qu',
                         placement='right'

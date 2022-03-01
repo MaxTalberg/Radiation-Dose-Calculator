@@ -15,7 +15,7 @@ card_content = [
                 html.Div([
                     "Bananas are famous for containing a small fraction of radioactive nuclide potassium-40.", html.Br(),
                     "When you eat a banana you ingest a small dose of this nuclide.", html.Br(), html.Br(),
-                    "Effective Dose: 0.01 mSv (per banana)"
+                    "Effective Dose: 0.0001 mSv (per banana)"
                           ]),
                 target='question-4',
                 placement='right'

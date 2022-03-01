@@ -13,8 +13,8 @@ card_content = [
                 id='question-2'),
             dbc.Tooltip(
                 html.Div(["CT Scans form images of your body using many x-rays. X-rays subject your body to a amount of radiation", html.Br(),
-                          "Effective Dose: 2mSv (Head CT Scan), 8mSv (Chest CT Scan) and  10mSv (Abdomen CT Scan)", html.Br(), html.Br(),
-                          html.I("(This is the same dose as eating 200, 800 and 1000 bananas)"),
+                          "Effective Dose: 1.4mSv (Head CT Scan), 6.6mSv (Chest CT Scan) and  10mSv (Abdomen CT Scan)", html.Br(), html.Br(),
+                          html.I("(This is the same dose as eating 14,000 , 66,000 and 100,000 bananas)"),
                           ]),
                 target='question-2',
                 placement='right'

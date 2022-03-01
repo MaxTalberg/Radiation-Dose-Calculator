@@ -13,10 +13,11 @@ card_content = [
                 id='question-8'),
             dbc.Tooltip(
                 html.Div([
-                    "", html.Br(),
-                    "", html.Br(), html.Br(),
-                    ""
-                          ]),
+                    "Did you know, we all experience radiation coming from space?", html.Br(),
+                    "X-rays travel through our atmosphere and arrive on the Earth's surface", html.Br(), html.Br(),
+                    "The amount of radiation varies with your altitude but typically, in the UK we experience 2.3mSv a year"
+                     ,html.Br(), html.Br(),
+                    html.I("(This is the same as 23,000 bananas)")]),
                 target='question-8',
                 placement='right'
                 )

@@ -14,8 +14,8 @@ card_content = [
             dbc.Tooltip(
                 html.Div(["Coffee contains naturally occurring radioactive nuclides from the soil coffee plants are grown in.", html.Br(),
                           "When you drink a coffee you ingest a tiny amount of radiation.", html.Br(),
-                          "Effective Dose: 0.0006 mSv (approx. one coffee).", html.Br(),html.Br(),
-                          html.I("(This is the same eating 1/17 of a banana)"),
+                          "Effective Dose: 0.00001 mSv (approx. one coffee).", html.Br(),html.Br(),
+                          html.I("(This is the same eating 1/9th of a banana)"),
                           ]),
                 target='question-3',
                 placement='right'
