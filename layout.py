@@ -268,10 +268,10 @@ def get_dashboard_layout(app):
                     id='graph-1-tabs',
                     figure={
                         'data': [
-                            {'x': [1], 'y': [total], 'type': 'bar','name': 'Total radiation'},
-                            {'x': [2], 'y': [database['living_plant'][0]], 'type': 'bar', 'name': 'Living 50 miles from a nuclear powerplant'},
-                            {'x': [3], 'y': [database['nuclear_worker'][0]], 'type': 'bar', 'name': u'Working in a nuclear plant'},
-                            {'x': [0, 3.5], 'y': [database['uk_limit'][0], database['uk_limit'][0]],
+                            {'x': ["Total Effective Dose"], 'y': [total], 'type': 'bar','name': 'Total effective dose', 'marker' : {"color": '#eb9628'} },
+                            {'x': ["Living Near a Plant"], 'y': [database['living_plant'][0]], 'type': 'bar', 'name': 'Living 50 miles from a nuclear powerplant', 'marker' : {"color": '#15bccf'}},
+                            {'x': ["Nuclear Plant Worker"], 'y': [database['nuclear_worker'][0]], 'type': 'bar', 'name': u'Working in a nuclear plant', 'marker' : {"color": '#3864d1'}},
+                            {'x': '', 'y': [database['uk_limit'][0], database['uk_limit'][0]],
                              'type': 'line', 'name': 'UK Limit for Occupational Workers'}
                         ],
                         'layout': {
@@ -292,15 +292,15 @@ def get_dashboard_layout(app):
                     id='graph-2-tabs',
                     figure={
                         'data': [
-                            {'x': [1], 'y': [banana], 'type': 'bar', 'name': 'Bananas'},
-                            {'x': [2], 'y': [coffee], 'type': 'bar', 'name': u'Coffee'},
-                            {'x': [3], 'y': [pint], 'type': 'bar', 'name': u'Beer'},
-                            {'x': [4], 'y': [xrays], 'type': 'bar', 'name': u'Xrays'},
-                            {'x': [5], 'y': [ct], 'type': 'bar', 'name': u'CT'},
-                            {'x': [6], 'y': [home], 'type': 'bar', 'name': u'Location'},
-                            {'x': [7], 'y': [travel], 'type': 'bar', 'name': u'Travel'},
-                            {'x': [8], 'y': [background], 'type': 'bar', 'name': u'Background'},
-                            {'x': [9], 'y': [total], 'type': 'bar', 'name': u'Total'},
+                            {'x': ["Total Effective Dose"], 'y': [total], 'type': 'bar', 'name': u'Total Effective Dose', 'marker': {"color": '#eb9628'}},
+                            {'x': ["Cosmic Background"], 'y': [background], 'type': 'bar', 'name': u'Background','marker': {"color": '#7393B3'}},
+                            {'x': ["Bananas"], 'y': [banana], 'type': 'bar', 'name': 'Bananas', 'marker' : {"color": '#0096FF'}},
+                            {'x': ["Coffee"], 'y': [coffee], 'type': 'bar', 'name': u'Coffee', 'marker' : {"color": '#0047AB'}},
+                            {'x': ["Beer"], 'y': [pint], 'type': 'bar', 'name': u'Beer', 'marker' : {"color": '#00A36C'}},
+                            {'x': ["X-rays"], 'y': [xrays], 'type': 'bar', 'name': u'X-rays', 'marker' : {"color": '#ADD8E6'}},
+                            {'x': ["CT Scans"], 'y': [ct], 'type': 'bar', 'name': u'CT', 'marker' : {"color": '#0F52BA'}},
+                            {'x': ["Home Location"], 'y': [home], 'type': 'bar', 'name': u'Home Location', 'marker' : {"color": '#00FFFF'}},
+                            {'x': ["Holidays"], 'y': [travel], 'type': 'bar', 'name': u'Travel', 'marker' : {"color": '#5D3FD3'}},
                         ],
                         'layout': {
                             'xaxis': {
