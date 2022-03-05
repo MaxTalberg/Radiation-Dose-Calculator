@@ -24,7 +24,7 @@ def get_title(app):
                     "To understand more, test out the tool below and discover your everyday radioactive activities by pressing calculate.",
                 ),
                 html.P(
-                    "Check out our fact sheet below to discover more:"
+                    "Check out our fact sheet below to learn more:"
                 ),
 
                 html.P(

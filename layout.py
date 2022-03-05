@@ -123,7 +123,7 @@ def get_dashboard_layout(app):
                          'Created by: Max Talberg & Funmi Looi-Somoye'
                 ),
                 html.Div([
-                    html.A("References", href='', target="_blank")
+                    html.A("Acknowledgements", href='https://github.com/MaxTalberg/PH30096', target="_blank")
                 ])
             ], width=10),
             dbc.Col([
@@ -271,8 +271,8 @@ def get_dashboard_layout(app):
                             {'x': ["Total Effective Dose"], 'y': [total], 'type': 'bar','name': 'Total effective dose', 'marker' : {"color": '#eb9628'} },
                             {'x': ["Living Near a Plant"], 'y': [database['living_plant'][0]], 'type': 'bar', 'name': 'Living 50 miles from a nuclear powerplant', 'marker' : {"color": '#15bccf'}},
                             {'x': ["Nuclear Plant Worker"], 'y': [database['nuclear_worker'][0]], 'type': 'bar', 'name': u'Working in a nuclear plant', 'marker' : {"color": '#3864d1'}},
-                            {'x': '', 'y': [database['uk_limit'][0], database['uk_limit'][0]],
-                             'type': 'line', 'name': 'UK Limit for Occupational Workers'}
+                            {'x': ["Total Effective Dose", "Living Near a Plant", "Nuclear Plant Worker"], 'y': [database['uk_limit'][0], database['uk_limit'][0],database['uk_limit'][0]],
+                             'type': 'line', 'name': 'UK Limit for Occupational Workers'},
                         ],
                         'layout': {
                             'xaxis': {

@@ -27,16 +27,18 @@ def get_button_header(id, label, active=False, visible=True, disabled=False, sty
 
 def get_header(app):
     layout = html.Div(
+
     id='page-header',
+
     children=[
         dbc.Row([
 
             dbc.Col([
                 html.Div([
-                    html.Img(src='/assets/bath.jpeg',
-                             height='70', width='70',
-                             style={'textAlign': 'right'}
-                             ),
+                    #html.Img(src='/assets/bath.jpeg',
+                    #         height='70', width='70',
+                    #         style={'textAlign': 'right'}
+                    #         ),
                 ]),
 
             ], width=1),
@@ -49,8 +51,8 @@ def get_header(app):
                 children=[
                     html.Div([
                         html.Img(id="logo",
-                                 src='/assets/1.png',
-                                 height='80', width = '240',
+                                 src='/assets/uob.png',
+                                 height='64', width = '232',
                                  style={'textAlign': 'center'}),
                     ]),
                 ],width=8,
@@ -63,10 +65,10 @@ def get_header(app):
 
             dbc.Col([
                 html.Div([
-                    html.Img(src='/assets/edf-logo.svg',
-                             height='70', width='70',
-                             style={'textAlign': 'right'}
-                             )
+                    #html.Img(src='/assets/edf-logo.svg',
+                    #         height='70', width='70',
+                    #         style={'textAlign': 'right'}
+                    #         )
                 ])
             ], width=1),
 
@@ -75,6 +77,10 @@ def get_header(app):
         ])
     ],
     className='divSticky',
-    style={'border-bottom': '2px solid #BEBEBE'}, )
+    style={
+        #'border-bottom': '2px solid #BEBEBE',
+           'backgroundColor': '#e1e4e6'
+    },
+    )
 
     return layout
