@@ -1,3 +1,12 @@
+#################################################################################################################
+#Date Created: 08/03/20222
+#Authors: Max Talberg & Funmi Looi-Somoye (University of Bath)
+#Purpose: This code creates the home location question
+#Images: map_black.png
+#################################################################################################################
+
+
+
 from dash import dcc, html
 import dash_bootstrap_components as dbc
 import pandas as pd

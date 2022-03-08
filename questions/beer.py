@@ -1,3 +1,11 @@
+#################################################################################################################
+#Date Created: 08/03/20222
+#Authors: Max Talberg & Funmi Looi-Somoye (University of Bath)
+#Purpose: This code creates the beer question
+#Images: beer_black.png
+#################################################################################################################
+
+
 from dash import dcc, html
 import dash_bootstrap_components as dbc
 
@@ -15,8 +23,8 @@ card_content = [
                 html.Div([
                     "Beer contains a very small amount of radioactive nuclides sourced from the water used to produce beer."
                     ,html.Br(),"Drinking beer subjects you to a tiny amount radation."
-                    ,html.Br(), "Effective Dose: 0.0004 mSv (per pint)"
-                    ,html.Br(),html.Br(), html.I("(This is the same as eating 4 bananas)"),
+                    ,html.Br(), "Effective Dose: 0.000003 mSv (per pint)"
+                    ,html.Br(),html.Br(), html.I("(This is the same as eating 1/29th bananas)"),
                           ]),
                 target='question-5',
                 placement='right'

@@ -1,3 +1,11 @@
+#################################################################################################################
+#Date Created: 08/03/20222
+#Authors: Max Talberg & Funmi Looi-Somoye (University of Bath)
+#Purpose: This code creates the cosmic background radtion question
+#Images: sun_black.png
+#################################################################################################################
+
+
 from dash import dcc, html
 import dash_bootstrap_components as dbc
 

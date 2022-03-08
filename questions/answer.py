@@ -1,3 +1,10 @@
+#################################################################################################################
+#Date Created: 08/03/20222
+#Authors: Max Talberg & Funmi Looi-Somoye (University of Bath)
+#Purpose: DO WE NEED THIS MAX!!!!
+#################################################################################################################
+
+
 from dash import dcc, html
 import dash_bootstrap_components as dbc
 

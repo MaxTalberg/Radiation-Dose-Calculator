@@ -1,7 +1,12 @@
+#################################################################################################################
+#Date Created: 08/03/20222
+#Authors: Max Talberg & Funmi Looi-Somoye (University of Bath)
+#Purpose: This code ????
+#################################################################################################################
+
+
 import dash
-
 import dash_bootstrap_components as dbc
-
 from layout import get_dashboard_layout
 
 # dashboard dash app

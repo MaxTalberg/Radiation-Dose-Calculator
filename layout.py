@@ -1,3 +1,14 @@
+#################################################################################################################
+#Date Created: 08/03/20222
+#Authors: Max Talberg & Funmi Looi-Somoye (University of Bath)
+#Purpose: This code pulls together separete elements to create the webpage.
+#Sources of Data: database.csv (contains effective dose for each activity)
+#                radon_data.csv (contains radon effective dose for each county)
+
+
+#################################################################################################################
+
+
 #Import Libraries
 from dash import dcc, html
 import dash_bootstrap_components as dbc
@@ -33,17 +44,20 @@ clean_location = location.drop(labels=0, axis=0)
 Name = clean_location["County or Area Name"].tolist()
 Dose = clean_location["Effective Dose"].tolist()
 
+
+#Dashboard
 def get_dashboard_layout(app):
 
     #Layout begins
     layout = html.Div([
 
-        #Header
+        #Import Header
         get_header(app=app),
-        #Title
+
+        #Import Title
         get_title(app=app),
 
-        #Questions
+        #Import Questions
         get_question1(app=app),
 
         html.Br(),
@@ -75,6 +89,7 @@ def get_dashboard_layout(app):
 
         html.Br(),
 
+        #Create Calculate Button
         dbc.Row([
             dbc.Col([
                 html.I('')
@@ -94,6 +109,7 @@ def get_dashboard_layout(app):
 
         html.Br(),
 
+        #Create output graphs
         dbc.Row([
             dbc.Col([
                 html.I('')
@@ -114,6 +130,7 @@ def get_dashboard_layout(app):
         dbc.Row(),
         dbc.Row(),
 
+        #Footer (authors and acknowledgements)
         dbc.Row([
             dbc.Col([
                 html.I('')
@@ -135,6 +152,11 @@ def get_dashboard_layout(app):
 
     ])
 
+
+
+
+
+#Running calculations based on the users inputs
     @app.callback(
         Output(component_id='store-data-output', component_property='data'),
         [Input(component_id='Q-1a-ddown', component_property='value'),
@@ -166,11 +188,11 @@ def get_dashboard_layout(app):
 
         q1 = (values[0]*database['Dental'][0]) + (values[1]*database['Wrist'][0])
         q2 = (values[2]*database['CT_head'][0]) + (values[3]*database['CT_chest'][0]) + (values[4]*database['CT_abdomen'][0])
-        q3 = (values[5]*database['Coffee'][0]) * weeks # For an annual dose
+        q3 = (values[5]*database['Coffee'][0]) * weeks #For an annual dose
         q4 = (values[6]*database['Banana'][0]) * weeks
         q5 = (values[7]*database['Pint'][0]) * weeks
         q6 = (values[8])
-        q7 = (values[9]*database['Plane'][0]) + (values[11]*(database['Cornwall'][0]/3)) # Longhaul flight !?
+        q7 = (values[9]*database['Plane'][0]) + (values[10]*database['long_flight'][0]) + (values[11]*(database['Cornwall'][0])) # MADE CHANGES CHECK!!!
         Total_ED = q1 + q2 + q3 + q4 + q5 + q6 + q7 + database['Cosmic'][0]
         data_output = [Total_ED, q1, q2, q3, q4, q5, q6, q7]
         return data_output
