@@ -38,7 +38,7 @@ card_content = [
 
                 dbc.Col([
                     html.Div([
-                        html.I('Dental X-ray'),
+                        html.I('Dental X-Ray'),
                         dcc.Dropdown(
                             id='Q-1a-ddown',
                             options=[
@@ -52,7 +52,7 @@ card_content = [
 
                 dbc.Col([
                     html.Div([
-                        html.I('Wrist X-ray'),
+                        html.I('Wrist X-Ray'),
                         dcc.Dropdown(id='Q-1b-ddown',
                                      options=[
                                          {"label": value, "value": value} for value in range(5)])
@@ -80,6 +80,7 @@ pplant_image = html.Div([
              width=100,
              style={'align-items': 'center'})
 ])
+
 
 def get_question1(app):
     layout = html.Div(

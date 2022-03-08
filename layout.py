@@ -19,7 +19,7 @@ from header import get_header
 from title import get_title
 
 from questions.xray import get_question1, pplant_image
-from questions.ct import get_question2
+from questions.ct import get_question2, home_image
 from questions.coffee import get_question3, coffee_image
 from questions.banana import get_question4, banana_image
 from questions.beer import get_question5, beer_image
@@ -213,7 +213,9 @@ def get_dashboard_layout(app):
     def update_output(n_clicks, data):
         total = data[0]
         time.sleep(1.1)
-        card_content = html.Div(children=[
+
+        #Effective Dose Answer
+        card_answer = html.Div(children=[
             dbc.CardHeader(
 
                 html.Div(children=[
@@ -232,6 +234,30 @@ def get_dashboard_layout(app):
 
                     )
                 ])
+
+        # Effective Dose Answer
+        card_answer = html.Div(children=[
+            dbc.CardHeader(
+
+                html.Div(children=[
+                    html.H5(children=['Total Effective Dose'], style={'textAlign': 'center'}),
+
+                ])
+            ),
+            dbc.CardBody(
+                dbc.Row(
+                    dbc.Col(children=[
+                        html.Div(children=[
+                            html.H5('{:,} mSv'.format(round(total, 2)).replace(',', ' ,')),
+                        ], style={'textAlign': 'center'}),
+                    ], width=12),
+                ),
+
+            )
+        ])
+
+
+
         while n_clicks != 0:
             tabs = html.Div([
                 html.Div(
@@ -244,11 +270,15 @@ def get_dashboard_layout(app):
             ], width=1),
 
             dbc.Col([
-                dbc.Card(card_content, color="warning", inverse=True)
+                dbc.Card(card_answer, color="warning", inverse=True)
             ], width=5),
 
             dbc.Col([
                 html.I('')
+            ], width=1),
+
+            dbc.Col([
+                html.I('add living near a plant and nuclear worker results here????')
             ], width=6),
 
         ]),
@@ -309,11 +339,12 @@ def get_dashboard_layout(app):
             ])
         if tab == 'tab-2':
             return html.Div([
-                html.H6(''),
+                html.H6('MAKE A PIE CHART!'),
                 dcc.Graph(
                     id='graph-2-tabs',
                     figure={
                         'data': [
+
                             {'x': ["Total Effective Dose"], 'y': [total], 'type': 'bar', 'name': u'Total Effective Dose', 'marker': {"color": '#eb9628'}},
                             {'x': ["Cosmic Background"], 'y': [background], 'type': 'bar', 'name': u'Background','marker': {"color": '#7393B3'}},
                             {'x': ["Bananas"], 'y': [banana], 'type': 'bar', 'name': 'Bananas', 'marker' : {"color": '#0096FF'}},
@@ -325,12 +356,12 @@ def get_dashboard_layout(app):
                             {'x': ["Holidays"], 'y': [travel], 'type': 'bar', 'name': u'Travel', 'marker' : {"color": '#5D3FD3'}},
                         ],
                         'layout': {
-                            'xaxis': {
-                                'title': 'Everyday Activity'
-                            },
-                            'yaxis': {
-                                'title': 'Effective Dose [mSv]'
-                            },
+                            #'xaxis': {
+                            #    'title': 'Everyday Activity'
+                           # },
+                           # 'yaxis': {
+                           #     'title': 'Effective Dose [mSv]'
+                           # },
 
                         }
                     }
@@ -361,10 +392,10 @@ def get_dashboard_layout(app):
                 html.H4('Select an option'),
                 dcc.RadioItems(id='radio-items',
                     options=[
-                        {'label': 'Pints of Beer', 'value': 'beer'},
-                        {'label': 'Bananas', 'value': 'banana'},
+                        {'label': 'Living near a plant', 'value': 'living'},
+                        #{'label': 'Bananas', 'value': 'banana'},
                         {'label': 'Working in a power plant', 'value': 'power-plant'},
-                        {'label': 'Cups of Coffee', 'value': 'coffee'},
+                        #{'label': 'Cups of Coffee', 'value': 'coffee'},
                     ], labelStyle={'display': 'block'})
             ])
             return radio_items
@@ -377,11 +408,12 @@ def get_dashboard_layout(app):
     )
     def render_output(value, data_output):
         Total_ED = data_output[0]
+        living_near = Total_ED/database['living_plant'][0]
         pints = Total_ED/database['Pint'][0]
         bananas = Total_ED/database['Banana'][0]
         pplant = Total_ED/database['nuclear_worker'][0]
         coffees = Total_ED/database['Coffee'][0]
-        if value == 'beer':
+        if value == 'living':
             out = html.Div([
                 html.Br(),
                 html.Div([
@@ -389,36 +421,36 @@ def get_dashboard_layout(app):
                 ], style={"textAlign": "center"}),
                 html.Br(),
                 html.Div([
-                    html.H1('{:,}'.format(round(pints)).replace(',', ' ,'))
+                    html.H1('{:,}'.format(round(living_near)).replace(',', ' ,'))
                 ], style={"textAlign": "center"}),
                 html.Br(),
                 html.Div([
-                    html.H4('pints of beer!')
+                    html.H4('years living near a nuclear powerplant')
                 ], style={"textAlign": "center"})
             ])
             image = html.Div([
                 html.Br(),
                 html.Br(),
-                beer_image])
-        elif value == 'banana':
-            out = html.Div([
-                html.Br(),
-                html.Div([
-                    html.H4('Your activities across a year expose you to the same radiation as:')
-                ], style={"textAlign": "center"}),
-                html.Br(),
-                html.Div([
-                    html.H1('{:,}'.format(round(bananas)).replace(',', ' ,'))
-                ], style={"textAlign": "center"}),
-                html.Br(),
-                html.Div([
-                    html.H4('bananas!')
-                ], style={"textAlign": "center"})
-            ])
-            image = html.Div([
-                html.Br(),
-                html.Br(),
-                banana_image])
+                home_image])
+        #elif value == 'banana':
+        #    out = html.Div([
+        #        html.Br(),
+        #        html.Div([
+        #            html.H4('Your activities across a year expose you to the same radiation as:')
+        #        ], style={"textAlign": "center"}),
+        #        html.Br(),
+        #        html.Div([
+        #            html.H1('{:,}'.format(round(bananas)).replace(',', ' ,'))
+        #        ], style={"textAlign": "center"}),
+        #        html.Br(),
+        #        html.Div([
+        #            html.H4('bananas!')
+        #        ], style={"textAlign": "center"})
+        #    ])
+        #    image = html.Div([
+        #        html.Br(),
+        #        html.Br(),
+        #        banana_image])
         elif value == 'power-plant':
             out = html.Div([
                 html.Br(),
@@ -438,25 +470,25 @@ def get_dashboard_layout(app):
                 html.Br(),
                 html.Br(),
                 pplant_image])
-        elif value == 'coffee':
-            out = html.Div([
-                html.Br(),
-                html.Div([
-                    html.H4('Your activities across a year expose you to the same radiation as:')
-                ], style={"textAlign": "center"}),
-                html.Br(),
-                html.Div([
-                    html.H1('{:,}'.format(round(coffees)).replace(',', ' ,'))
-                ], style={"textAlign": "center"}),
-                html.Br(),
-                html.Div([
-                    html.H4('cups of coffee!')
-                ], style={"textAlign": "center"})
-            ])
-            image = html.Div([
-                html.Br(),
-                html.Br(),
-                coffee_image])
+        #elif value == 'coffee':
+        #    out = html.Div([
+        #        html.Br(),
+        #        html.Div([
+        #            html.H4('Your activities across a year expose you to the same radiation as:')
+        #        ], style={"textAlign": "center"}),
+        #        html.Br(),
+        #        html.Div([
+        #            html.H1('{:,}'.format(round(coffees)).replace(',', ' ,'))
+        #        ], style={"textAlign": "center"}),
+        #        html.Br(),
+        #        html.Div([
+        #            html.H4('cups of coffee!')
+        #        ], style={"textAlign": "center"})
+        #    ])
+        #   image = html.Div([
+        #        html.Br(),
+        #        html.Br(),
+        #        coffee_image])
         else:
             out = html.Div([
                 html.Br(),

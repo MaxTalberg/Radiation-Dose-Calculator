@@ -83,6 +83,14 @@ image = html.Div([
              style={'align-items': 'center'})
 ])
 
+home_image = html.Div([
+    html.Img(id="home-logo",
+             src='/assets/home_black.png',
+             height=100,
+             width=100,
+             style={'align-items': 'center'})
+])
+
 def get_question2(app):
     layout = html.Div(
         dbc.Row([

@@ -88,7 +88,7 @@ def get_header(app):
     className='divSticky',
     style={
         #'border-bottom': '2px solid #BEBEBE',
-           'backgroundColor': '#e1e4e6'
+           'backgroundColor': '#A0AEDF'
     },
     )
 
