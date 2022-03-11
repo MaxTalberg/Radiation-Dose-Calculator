@@ -23,7 +23,7 @@ def get_title(app):
                 ),
                 html.Hr(className="my-2"),
                 html.P(
-                    "Radiation is part of our everyday life and this has a very small impact on our health.",
+                    "Radiation is part of our everyday life. It is even present in the food we eat!",
                 ),
                 html.P(
                     "Did you know, your normal day-to-day activities expose you to more radiation than someone working in a nuclear power plant for a year?",
