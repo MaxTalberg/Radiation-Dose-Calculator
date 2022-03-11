@@ -59,34 +59,20 @@ def get_dashboard_layout(app):
 
         #Import Questions
         get_question1(app=app),
-
         html.Br(),
-
         get_question2(app=app),
-
         html.Br(),
-
         get_question3(app=app),
-
         html.Br(),
-
         get_question4(app=app),
-
         html.Br(),
-
         get_question5(app=app),
-
         html.Br(),
-
         get_question6(app=app),
-
         html.Br(),
-
         get_question7(app=app),
-
         html.Br(),
         get_question8(app=app),
-
         html.Br(),
 
         #Create Calculate Button
@@ -140,7 +126,7 @@ def get_dashboard_layout(app):
                          'Created by: Max Talberg & Funmi Looi-Somoye'
                 ),
                 html.Div([
-                    html.A("Acknowledgements", href='https://github.com/MaxTalberg/PH30096', target="_blank")
+                    html.A("Acknowledgements", href='https://github.com/MaxTalberg/PH30096/blob/master/Acknowledgements', target="_blank")
                 ])
             ], width=10),
             dbc.Col([
@@ -417,7 +403,7 @@ def get_dashboard_layout(app):
             out = html.Div([
                 html.Br(),
                 html.Div([
-                    html.H4('Your activities across a year expose you to the same radiation as:')
+                    html.H4('Your activities across a year expose you to the same radiation as living near a nuclear power station for')
                 ], style={"textAlign": "center"}),
                 html.Br(),
                 html.Div([
@@ -425,7 +411,7 @@ def get_dashboard_layout(app):
                 ], style={"textAlign": "center"}),
                 html.Br(),
                 html.Div([
-                    html.H4('years living near a nuclear powerplant')
+                    html.H4('years')
                 ], style={"textAlign": "center"})
             ])
             image = html.Div([
@@ -455,7 +441,7 @@ def get_dashboard_layout(app):
             out = html.Div([
                 html.Br(),
                 html.Div([
-                    html.H4('Your activities across a year expose you to the same radiation as:')
+                    html.H4('Your activities across a year expose you to the same radiation as working')
                 ], style={"textAlign": "center"}),
                 html.Br(),
                 html.Div([
@@ -463,7 +449,7 @@ def get_dashboard_layout(app):
                 ], style={"textAlign": "center"}),
                 html.Br(),
                 html.Div([
-                    html.H4('years working in a nuclear power plant!')
+                    html.H4('years in a nuclear power station!')
                 ], style={"textAlign": "center"})
             ])
             image = html.Div([

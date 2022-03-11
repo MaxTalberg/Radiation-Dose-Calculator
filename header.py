@@ -44,10 +44,10 @@ def get_header(app):
 
             dbc.Col([
                 html.Div([
-                    #html.Img(src='/assets/bath.jpeg',
-                    #         height='70', width='70',
-                    #         style={'textAlign': 'right'}
-                    #         ),
+                    html.Img(src='/assets/uob.png',
+                             height='117', width='249',
+                             style={'textAlign': 'right'}
+                             ),
                 ]),
 
             ], width=1),
@@ -59,10 +59,10 @@ def get_header(app):
             dbc.Col(
                 children=[
                     html.Div([
-                        html.Img(id="logo",
-                                 src='/assets/uob.png',
-                                 height='64', width = '232',
-                                 style={'textAlign': 'center'}),
+                        #html.Img(id="logo",
+                        #         src='/assets/uob.png',
+                        #         height='64', width = '232',
+                        #         style={'textAlign': 'center'}),
                     ]),
                 ],width=8,
                 className="align-middle d-flex justify-content-center"),
@@ -88,7 +88,7 @@ def get_header(app):
     className='divSticky',
     style={
         #'border-bottom': '2px solid #BEBEBE',
-           'backgroundColor': '#A0AEDF'
+           'backgroundColor': '#F4F0F0'
     },
     )
 
