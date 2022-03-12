@@ -41,20 +41,20 @@ def get_header(app):
 
     children=[
         dbc.Row([
+            dbc.Col([
+
+            ], width=1),
+
 
             dbc.Col([
                 html.Div([
                     html.Img(src='/assets/uob.png',
                              height='117', width='249',
-                             style={'textAlign': 'right'}
+                             style={'textAlign': 'left'}
                              ),
                 ]),
-
             ], width=1),
 
-            dbc.Col([],
-
-            width=1),
 
             dbc.Col(
                 children=[
