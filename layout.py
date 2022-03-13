@@ -12,6 +12,7 @@
 #Import Libraries
 from dash import dcc, html
 import dash_bootstrap_components as dbc
+import plotly.express as px
 from dash.dependencies import Input, Output
 import pandas as pd
 import time
@@ -301,7 +302,7 @@ def get_dashboard_layout(app):
 
         if tab == 'tab-1':
             return html.Div([
-                html.H6(''),
+                html.H6('TAB 1'),
                 dcc.Graph(
                     id='graph-1-tabs',
                     figure={
@@ -324,32 +325,20 @@ def get_dashboard_layout(app):
                 )
             ])
         if tab == 'tab-2':
+            fig_data = [
+                {'values': [background, banana, coffee, pint, xrays, ct, home, travel],
+                 'labels': ["Cosmic Background", "Bananas", "Coffee", "Beer", "X-rays", "CT Scans", "Home Location",
+                            "Holidays"],
+                 'color': ['#7393B3', '#0096FF', '#0047AB', '#00A36C', '#ADD8E6', '#0F52BA', '#00FFFF', '#5D3FD3'],
+                 'type': 'pie',
+                 },
+            ]
             return html.Div([
-                html.H6('MAKE A PIE CHART!'),
+                html.H6('Title ? maybe some onfo on the baility to select the key to isolate and cha nge the graph, same for tab2,  just give osme info on what yourlooking at, i like tab 1 '),
                 dcc.Graph(
                     id='graph-2-tabs',
                     figure={
-                        'data': [
-
-                            {'x': ["Total Effective Dose"], 'y': [total], 'type': 'bar', 'name': u'Total Effective Dose', 'marker': {"color": '#eb9628'}},
-                            {'x': ["Cosmic Background"], 'y': [background], 'type': 'bar', 'name': u'Background','marker': {"color": '#7393B3'}},
-                            {'x': ["Bananas"], 'y': [banana], 'type': 'bar', 'name': 'Bananas', 'marker' : {"color": '#0096FF'}},
-                            {'x': ["Coffee"], 'y': [coffee], 'type': 'bar', 'name': u'Coffee', 'marker' : {"color": '#0047AB'}},
-                            {'x': ["Beer"], 'y': [pint], 'type': 'bar', 'name': u'Beer', 'marker' : {"color": '#00A36C'}},
-                            {'x': ["X-rays"], 'y': [xrays], 'type': 'bar', 'name': u'X-rays', 'marker' : {"color": '#ADD8E6'}},
-                            {'x': ["CT Scans"], 'y': [ct], 'type': 'bar', 'name': u'CT', 'marker' : {"color": '#0F52BA'}},
-                            {'x': ["Home Location"], 'y': [home], 'type': 'bar', 'name': u'Home Location', 'marker' : {"color": '#00FFFF'}},
-                            {'x': ["Holidays"], 'y': [travel], 'type': 'bar', 'name': u'Travel', 'marker' : {"color": '#5D3FD3'}},
-                        ],
-                        'layout': {
-                            #'xaxis': {
-                            #    'title': 'Everyday Activity'
-                           # },
-                           # 'yaxis': {
-                           #     'title': 'Effective Dose [mSv]'
-                           # },
-
-                        }
+                        'data': fig_data,
                     }
                 )
             ])
