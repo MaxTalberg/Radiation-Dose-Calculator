@@ -27,6 +27,8 @@ from questions.beer import get_question5, beer_image
 from questions.home import get_question6
 from questions.holiday import get_question7
 from questions.background import get_question8
+from answers.button import get_button
+from answers.results_one import get_result1
 from questions.answer import get_answer
 
 
@@ -77,24 +79,11 @@ def get_dashboard_layout(app):
         html.Br(),
 
         #Create Calculate Button
-        dbc.Row([
-            dbc.Col([
-                html.I('')
-            ], width=1),
-            dbc.Col([
-                dbc.Button('Calculate', id='submit-val', n_clicks=0, style={'textTransform': 'none'}),
-                dcc.Loading(
-                    id="loading-1",
-                    type="default",
-                    children=html.Div(id="loading-output-1")
-                ),
-            ], width=10),
-            dbc.Col([
-                html.I('')
-            ], width=1)
-        ], id='calculate-row'),
-
+        get_button(app=app),
         html.Br(),
+        html.Div(id ='row-one-output'),
+        html.Br(),
+        html.Div(id='row-two-output'),
 
         #Create output graphs
         dbc.Row([
@@ -184,6 +173,7 @@ def get_dashboard_layout(app):
         data_output = [Total_ED, q1, q2, q3, q4, q5, q6, q7]
         return data_output
 
+# Load button
     @app.callback(
         Output(component_id='loading-output-1', component_property='children'),
         [Input(component_id='submit-val', component_property='n_clicks')]
@@ -191,6 +181,80 @@ def get_dashboard_layout(app):
     def load_sign(n_clicks):
         time.sleep(1)
         return
+# Result row 1
+    @app.callback(
+        Output(component_id='row-one-output', component_property='children'),
+        [Input(component_id='submit-val', component_property='n_clicks'),
+         Input(component_id='store-data-output', component_property='data')]
+    )
+    def update_row1(n_clicks, data):
+        time.sleep(1.1)
+        total = data[0]
+        card_content_one = [
+            dbc.CardHeader('one'),
+            dbc.CardBody('hi')
+        ]
+        card_content_two = [
+            dbc.CardHeader('two'),
+            dbc.CardBody('hi')
+        ]
+        layout = html.Div(
+            dbc.Row([
+
+                # Margin 1
+                dbc.Col([
+                    html.I('')
+                ], width=1),
+
+                dbc.Col([
+                    dbc.Card(card_content_one, color="warning", outline=True)
+                ], width=6),
+
+                dbc.Col([
+                    dbc.Card(card_content_two, color="warning", outline=True)
+                ], width=4),
+
+                dbc.Col([
+                    html.I('')
+                ], width=1)
+            ]),
+        )
+
+        while n_clicks != 0:
+            return layout
+# Results row 2
+    @app.callback(
+        Output(component_id='row-two-output', component_property='children'),
+        [Input(component_id='submit-val', component_property='n_clicks'),
+         Input(component_id='store-data-output', component_property='data')]
+    )
+    def update_row2(n_clicks, data):
+        time.sleep(1.11)
+        tabs = html.Div([
+            dbc.Row([
+
+                # Margin 1
+                dbc.Col([
+                    html.I('')
+                ], width=1),
+
+                dbc.Col([html.Div(
+                    dcc.Tabs(id='tab-graph', value='tab-graph-value', children=[
+                        dcc.Tab(label='Results', value='tab-1'),
+                        dcc.Tab(label='Compare to Nuclear Powerplants', value='tab-2')
+                    ])
+                ),
+
+                ], width=10),
+
+                dbc.Col([
+                    html.I('')
+                ], width=1)
+            ]),
+        ])
+        while n_clicks != 0:
+            return tabs
+
 
     @app.callback(
         Output(component_id='tabs-graph', component_property='children'),
@@ -200,27 +264,6 @@ def get_dashboard_layout(app):
     def update_output(n_clicks, data):
         total = data[0]
         time.sleep(1.1)
-
-        #Effective Dose Answer
-        card_answer = html.Div(children=[
-            dbc.CardHeader(
-
-                html.Div(children=[
-                    html.H5(children=['Total Effective Dose'], style={ 'textAlign': 'center'}),
-
-                ])
-            ),
-            dbc.CardBody(
-                dbc.Row(
-                    dbc.Col(children=[
-                        html.Div(children=[
-                            html.H5('{:,} mSv'.format(round(total, 2)).replace(',', ' ,')),
-                        ], style={'textAlign': 'center'}),
-                    ], width=12),
-                ),
-
-                    )
-                ])
 
         # Effective Dose Answer
         card_answer = html.Div(children=[
@@ -247,6 +290,7 @@ def get_dashboard_layout(app):
 
         while n_clicks != 0:
             tabs = html.Div([
+                html.Br(),
                 html.Div(
                     dbc.Row([
 
