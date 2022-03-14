@@ -299,10 +299,14 @@ def get_dashboard_layout(app):
         travel = data[7]
         background = database['Cosmic'][0]
         total = data[0]
+        medical_scans= xrays+ct
+        food_drink = coffee + banana + pint
+
 
         if tab == 'tab-1':
             return html.Div([
-                html.H6('TAB 1'),
+                html.Br(),
+                html.H5('How your exposure compares to living near a nuclear power station or working in a nuclear power station'),
                 dcc.Graph(
                     id='graph-1-tabs',
                     figure={
@@ -326,15 +330,16 @@ def get_dashboard_layout(app):
             ])
         if tab == 'tab-2':
             fig_data = [
-                {'values': [background, banana, coffee, pint, xrays, ct, home, travel],
-                 'labels': ["Cosmic Background", "Bananas", "Coffee", "Beer", "X-rays", "CT Scans", "Home Location",
+                {'values': [background, medical_scans, food_drink, home, travel],
+                 'labels': ["Cosmic Background Radiation", "Medical Scans", "Food and Drink","Home Location",
                             "Holidays"],
-                 'color': ['#7393B3', '#0096FF', '#0047AB', '#00A36C', '#ADD8E6', '#0F52BA', '#00FFFF', '#5D3FD3'],
+                 'color': ['#3bdb66', '#6cc6f0', '#c8f06c', '#1f3e78', '#723db8'],
                  'type': 'pie',
                  },
             ]
             return html.Div([
-                html.H6('Title ? maybe some onfo on the baility to select the key to isolate and cha nge the graph, same for tab2,  just give osme info on what yourlooking at, i like tab 1 '),
+                html.Br(),
+                html.H5('Summary of your sources of radiation exposure'),
                 dcc.Graph(
                     id='graph-2-tabs',
                     figure={
@@ -364,12 +369,13 @@ def get_dashboard_layout(app):
     def render_items(n_clicks):
         while n_clicks != 0:
             radio_items = html.Div([
+                html.Br(),
                 html.H4('Select an option'),
                 dcc.RadioItems(id='radio-items',
                     options=[
-                        {'label': 'Living near a plant', 'value': 'living'},
+                        {'label': 'Living near a nuclear power station', 'value': 'living'},
                         #{'label': 'Bananas', 'value': 'banana'},
-                        {'label': 'Working in a power plant', 'value': 'power-plant'},
+                        {'label': 'Working in a nuclear power station', 'value': 'power-plant'},
                         #{'label': 'Cups of Coffee', 'value': 'coffee'},
                     ], labelStyle={'display': 'block'})
             ])
