@@ -69,18 +69,17 @@ card_content = [
 
                 ]),
 
-            dbc.Row([
-                html.H5(""),
-            ]),
-
             html.Br(),
 
             dbc.Row([
-                html.Br(),
-                html.Div([
-                    html.H6('How many days have you spent on a holiday to Cornwall?', id='cornwall_qu'),
+                dbc.Col([
                     html.Div([
-
+                        html.H6('How many days have you spent on a holiday to Cornwall?', style={'display': 'inline-block'}),
+                        html.Div([
+                            html.I(className="fa fa-info-circle")
+                        ], style={'display': 'inline-block', 'margin-left': '10px'},
+                            id='cornwall_qu'),
+                        html.Div([
                         dcc.Dropdown(id='Q-7c-ddown',
                                      options=[
                                          {"label": value, "value": value} for value in range(11)])
@@ -93,9 +92,9 @@ card_content = [
                         html.I("(This is the same as eating 69,000 bananas in a year vs 13,000 bananas in a year.)"),
                           ]),
                         target='cornwall_qu',
-                        placement='right'
-                )
-                ]),
+                        placement='right')
+                ])
+                ], width=10),
             ]),
         ]
     )
