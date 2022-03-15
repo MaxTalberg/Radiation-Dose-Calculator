@@ -132,7 +132,7 @@ def get_dashboard_layout(app):
 
 
 
-#Running calculations based on the users inputs
+# Data store callback
     @app.callback(
         Output(component_id='store-data-output', component_property='data'),
         [Input(component_id='Q-1a-ddown', component_property='value'),
@@ -190,14 +190,52 @@ def get_dashboard_layout(app):
     def update_row1(n_clicks, data):
         time.sleep(1.1)
         total = data[0]
+        # Effective dose card
         card_content_one = [
-            dbc.CardHeader('one'),
-            dbc.CardBody('hi')
+            dbc.CardHeader(children=[
+                html.H5(children=['Your Total Effective Dose'], style={'display': 'inline-block'}),
+                html.Div(children=[
+                    html.I(className="fa fa-info-circle")
+                ], style={'display': 'inline-block',
+                          'margin-left': '10px'},
+                    id='result-1'),
+                dbc.Tooltip(
+                    html.Div([
+                        "Did you know Funmi is the best project partner in the world!"
+                    ]),
+                    target='result-1',
+                    placement='right'
+                )
+            ]),
+            dbc.CardBody(
+                html.H5('{:,} mSv'.format(round(total, 2)).replace(',', ' ,'))
+            )
         ]
+        # Output content and image card
         card_content_two = [
-            dbc.CardHeader('two'),
-            dbc.CardBody('hi')
+            dbc.CardBody(children=[
+                html.Div(
+                    dbc.Row([
+                        dbc.Col(children=[
+                            html.Div(id='radio-content')
+                        ], width=8),
+                        dbc.Col(children=[
+                            html.Div(id='radio-image')
+                        ], width=4)
+                    ]),
+                ),
+            ])
         ]
+        # Select an option card
+        card_content_three = [
+            dbc.CardHeader(
+                html.H5(children=['Select an option'], style={'display': 'inline-block'})
+            ),
+            dbc.CardBody(
+                html.Div(id='radio-items')
+            ),
+        ]
+        # Result row one layout
         layout = html.Div(
             dbc.Row([
 
@@ -207,12 +245,14 @@ def get_dashboard_layout(app):
                 ], width=1),
 
                 dbc.Col([
-                    dbc.Card(card_content_one, color="warning", outline=True)
-                ], width=6),
+                    dbc.Card(card_content_one, color="warning", outline=True),
+                    html.Br(),
+                    dbc.Card(card_content_three, color="warning", outline=True)
+                ], width=3),
 
                 dbc.Col([
                     dbc.Card(card_content_two, color="warning", outline=True)
-                ], width=4),
+                ], width=7),
 
                 dbc.Col([
                     html.I('')
@@ -255,78 +295,7 @@ def get_dashboard_layout(app):
         while n_clicks != 0:
             return tabs
 
-
-    @app.callback(
-        Output(component_id='tabs-graph', component_property='children'),
-        [Input(component_id='submit-val', component_property='n_clicks'),
-         Input(component_id='store-data-output', component_property='data')]
-    )
-    def update_output(n_clicks, data):
-        total = data[0]
-        time.sleep(1.1)
-
-        # Effective Dose Answer
-        card_answer = html.Div(children=[
-            dbc.CardHeader(
-
-                html.Div(children=[
-                    html.H5(children=['Total Effective Dose'], style={'textAlign': 'center'}),
-
-                ])
-            ),
-            dbc.CardBody(
-                dbc.Row(
-                    dbc.Col(children=[
-                        html.Div(children=[
-                            html.H5('{:,} mSv'.format(round(total, 2)).replace(',', ' ,')),
-                        ], style={'textAlign': 'center'}),
-                    ], width=12),
-                ),
-
-            )
-        ])
-
-
-
-        while n_clicks != 0:
-            tabs = html.Div([
-                html.Br(),
-                html.Div(
-                    dbc.Row([
-
-            #Margin 1
-
-            dbc.Col([
-                html.I('')
-            ], width=1),
-
-            dbc.Col([
-                dbc.Card(card_answer, color="warning", inverse=True)
-            ], width=5),
-
-            dbc.Col([
-                html.I('')
-            ], width=1),
-
-            dbc.Col([
-                html.I('add living near a plant and nuclear worker results here????')
-            ], width=6),
-
-        ]),
-    ),
-                html.Br(),
-                html.Br(),
-                html.Div(
-                    dcc.Tabs(id='tab-graph', value='tab-graph-value', children=[
-                        dcc.Tab(label='Results', value='tab-3'),
-                        dcc.Tab(label='Compare to Nuclear Powerplants', value='tab-1'),
-                        dcc.Tab(label='Breakdown', value='tab-2'),
-                    ])
-                ),
-                             ]),
-
-            return tabs
-
+# Update tabs
     @app.callback(
         Output(component_id='tabs-content', component_property='children'),
         [Input(component_id='tab-graph', component_property='value'),
@@ -345,7 +314,6 @@ def get_dashboard_layout(app):
         total = data[0]
         medical_scans= xrays+ct
         food_drink = coffee + banana + pint
-
 
         if tab == 'tab-1':
             return html.Div([
@@ -391,21 +359,8 @@ def get_dashboard_layout(app):
                     }
                 )
             ])
-        elif tab == 'tab-3':
-            return html.Div([
-                dbc.Row(children=[
-                    dbc.Col(children=[
-                        html.Div(id='radio-items')
-                    ], width=3),
-                    dbc.Col(children=[
-                        html.Div(id='radio-content')
-                    ], width=6),
-                    dbc.Col(children=[
-                        html.Div(id='radio-image')
-                    ], width=3)
-                ]),
-            ])
 
+# Update option card
     @app.callback(
         Output(component_id='radio-items', component_property='children'),
         [Input(component_id='submit-val', component_property='n_clicks')]
@@ -413,18 +368,14 @@ def get_dashboard_layout(app):
     def render_items(n_clicks):
         while n_clicks != 0:
             radio_items = html.Div([
-                html.Br(),
-                html.H4('Select an option'),
                 dcc.RadioItems(id='radio-items',
-                    options=[
-                        {'label': 'Living near a nuclear power station', 'value': 'living'},
-                        #{'label': 'Bananas', 'value': 'banana'},
-                        {'label': 'Working in a nuclear power station', 'value': 'power-plant'},
-                        #{'label': 'Cups of Coffee', 'value': 'coffee'},
-                    ], labelStyle={'display': 'block'})
+                               options=[
+                                   {'label': 'Living near a nuclear power station', 'value': 'living'},
+                                   {'label': 'Working in a nuclear power station', 'value': 'power-plant'},
+                                   ], labelStyle={'display': 'block'})
             ])
             return radio_items
-
+# Update results card
     @app.callback(
         Output(component_id='radio-content', component_property='children'),
         Output(component_id='radio-image', component_property='children'),
@@ -434,15 +385,12 @@ def get_dashboard_layout(app):
     def render_output(value, data_output):
         Total_ED = data_output[0]
         living_near = Total_ED/database['living_plant'][0]
-        pints = Total_ED/database['Pint'][0]
-        bananas = Total_ED/database['Banana'][0]
         pplant = Total_ED/database['nuclear_worker'][0]
-        coffees = Total_ED/database['Coffee'][0]
         if value == 'living':
             out = html.Div([
                 html.Br(),
                 html.Div([
-                    html.H4('Your activities across a year expose you to the same radiation as living near a nuclear power station for')
+                    html.H4('Your activities across a year expose you to the same radiation as')
                 ], style={"textAlign": "center"}),
                 html.Br(),
                 html.Div([
@@ -450,37 +398,18 @@ def get_dashboard_layout(app):
                 ], style={"textAlign": "center"}),
                 html.Br(),
                 html.Div([
-                    html.H4('years')
+                    html.H4('years living near a nuclear power station!')
                 ], style={"textAlign": "center"})
             ])
             image = html.Div([
                 html.Br(),
                 html.Br(),
                 home_image])
-        #elif value == 'banana':
-        #    out = html.Div([
-        #        html.Br(),
-        #        html.Div([
-        #            html.H4('Your activities across a year expose you to the same radiation as:')
-        #        ], style={"textAlign": "center"}),
-        #        html.Br(),
-        #        html.Div([
-        #            html.H1('{:,}'.format(round(bananas)).replace(',', ' ,'))
-        #        ], style={"textAlign": "center"}),
-        #        html.Br(),
-        #        html.Div([
-        #            html.H4('bananas!')
-        #        ], style={"textAlign": "center"})
-        #    ])
-        #    image = html.Div([
-        #        html.Br(),
-        #        html.Br(),
-        #        banana_image])
         elif value == 'power-plant':
             out = html.Div([
                 html.Br(),
                 html.Div([
-                    html.H4('Your activities across a year expose you to the same radiation as working')
+                    html.H4('Your activities across a year expose you to the same radiation as')
                 ], style={"textAlign": "center"}),
                 html.Br(),
                 html.Div([
@@ -488,37 +417,16 @@ def get_dashboard_layout(app):
                 ], style={"textAlign": "center"}),
                 html.Br(),
                 html.Div([
-                    html.H4('years in a nuclear power station!')
+                    html.H4('years working in a nuclear power station!')
                 ], style={"textAlign": "center"})
             ])
             image = html.Div([
                 html.Br(),
                 html.Br(),
                 pplant_image])
-        #elif value == 'coffee':
-        #    out = html.Div([
-        #        html.Br(),
-        #        html.Div([
-        #            html.H4('Your activities across a year expose you to the same radiation as:')
-        #        ], style={"textAlign": "center"}),
-        #        html.Br(),
-        #        html.Div([
-        #            html.H1('{:,}'.format(round(coffees)).replace(',', ' ,'))
-        #        ], style={"textAlign": "center"}),
-        #        html.Br(),
-        #        html.Div([
-        #            html.H4('cups of coffee!')
-        #        ], style={"textAlign": "center"})
-        #    ])
-        #   image = html.Div([
-        #        html.Br(),
-        #        html.Br(),
-        #        coffee_image])
         else:
             out = html.Div([
-                html.Br(),
-                html.Br(),
-                html.I('Select an activity...')
+                html.I('Select an option to find out what your effective dose means...')
             ], style={"textAlign": "center"}),
             image = html.Div([
             ])
