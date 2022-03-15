@@ -47,7 +47,6 @@ clean_location = location.drop(labels=0, axis=0)
 Name = clean_location["County or Area Name"].tolist()
 Dose = clean_location["Effective Dose"].tolist()
 
-print('hello')
 
 #Dashboard
 def get_dashboard_layout(app):
@@ -229,9 +228,21 @@ def get_dashboard_layout(app):
         ]
         # Select an option card
         card_content_three = [
-            dbc.CardHeader(
-                html.H5(children=['Select an option'], style={'display': 'inline-block'})
-            ),
+            dbc.CardHeader(children=[
+                html.H5(children=['Select an option'], style={'display': 'inline-block'}),
+                html.Div(children=[
+                    html.I(className="fa fa-info-circle")
+                ], style={'display': 'inline-block',
+                          'margin-left': '10px'},
+                    id='result-2'),
+                dbc.Tooltip(
+                    html.Div([
+                        "Did you know Funmi is the best project partner in the world!"
+                    ]),
+                    target='result-2',
+                    placement='right'
+                )
+            ]),
             dbc.CardBody(
                 html.Div(id='radio-items')
             ),
@@ -280,9 +291,9 @@ def get_dashboard_layout(app):
                 ], width=1),
 
                 dbc.Col([html.Div(
-                    dcc.Tabs(id='tab-graph', value='tab-graph-value', children=[
-                        dcc.Tab(label='Results', value='tab-1'),
-                        dcc.Tab(label='Compare to Nuclear Powerplants', value='tab-2')
+                    dcc.Tabs(id='tab-graph', value='tab-1', children=[
+                        dcc.Tab(label='XXX', value='tab-1'),
+                        dcc.Tab(label='XXX', value='tab-2')
                     ])
                 ),
 
@@ -317,19 +328,26 @@ def get_dashboard_layout(app):
         food_drink = coffee + banana + pint
 
         if tab == 'tab-1':
+            graph_data = [
+
+                {'x': ["Total Effective Dose"], 'y': [total], 'type': 'bar', 'name': 'Total effective dose',
+                 'marker': {"color": '#eb9628'}},
+                {'x': ["Living Near a Plant"], 'y': [database['living_plant'][0]], 'type': 'bar',
+                 'name': 'Living 50 miles from a nuclear powerplant', 'marker': {"color": '#15bccf'}},
+                {'x': ["Nuclear Plant Worker"], 'y': [database['nuclear_worker'][0]], 'type': 'bar',
+                 'name': u'Working in a nuclear plant', 'marker': {"color": '#3864d1'}},
+                {'x': ["Total Effective Dose", "Living Near a Plant", "Nuclear Plant Worker"],
+                 'y': [database['uk_limit'][0], database['uk_limit'][0], database['uk_limit'][0]],
+                 'type': 'line', 'name': 'UK Limit for Occupational Workers'},
+
+            ]
             return html.Div([
                 html.Br(),
-                html.H5('How your exposure compares to living near a nuclear power station or working in a nuclear power station'),
+                html.H5('HSome info here maybe ! tation or working in a nuclear power station'),
                 dcc.Graph(
                     id='graph-1-tabs',
                     figure={
-                        'data': [
-                            {'x': ["Total Effective Dose"], 'y': [total], 'type': 'bar','name': 'Total effective dose', 'marker' : {"color": '#eb9628'} },
-                            {'x': ["Living Near a Plant"], 'y': [database['living_plant'][0]], 'type': 'bar', 'name': 'Living 50 miles from a nuclear powerplant', 'marker' : {"color": '#15bccf'}},
-                            {'x': ["Nuclear Plant Worker"], 'y': [database['nuclear_worker'][0]], 'type': 'bar', 'name': u'Working in a nuclear plant', 'marker' : {"color": '#3864d1'}},
-                            {'x': ["Total Effective Dose", "Living Near a Plant", "Nuclear Plant Worker"], 'y': [database['uk_limit'][0], database['uk_limit'][0],database['uk_limit'][0]],
-                             'type': 'line', 'name': 'UK Limit for Occupational Workers'},
-                        ],
+                        'data': graph_data,
                         'layout': {
                             'xaxis': {
                                 'title': 'Comparisons'
@@ -352,7 +370,7 @@ def get_dashboard_layout(app):
             ]
             return html.Div([
                 html.Br(),
-                html.H5('Summary of your sources of radiation exposure'),
+                html.H5('SOme INfo heRe pls'),
                 dcc.Graph(
                     id='graph-2-tabs',
                     figure={
@@ -373,7 +391,9 @@ def get_dashboard_layout(app):
                                options=[
                                    {'label': 'Living near a nuclear power station', 'value': 'living'},
                                    {'label': 'Working in a nuclear power station', 'value': 'power-plant'},
-                                   ], labelStyle={'display': 'block'})
+                                   ],
+                               value='power-plant',
+                               labelStyle={'display': 'block'})
             ])
             return radio_items
 # Update results card
@@ -425,12 +445,6 @@ def get_dashboard_layout(app):
                 html.Br(),
                 html.Br(),
                 pplant_image])
-        else:
-            out = html.Div([
-                html.I('Select an option to find out what your effective dose means...')
-            ], style={"textAlign": "center"}),
-            image = html.Div([
-            ])
         return out, image
 
     return layout
