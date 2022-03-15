@@ -84,6 +84,7 @@ def get_dashboard_layout(app):
         html.Div(id ='row-one-output'),
         html.Br(),
         html.Div(id='row-two-output'),
+        html.Br(),
 
         #Create output graphs
         dbc.Row([
@@ -147,7 +148,6 @@ def get_dashboard_layout(app):
          Input(component_id='Q-7a-ddown', component_property='value'),
          Input(component_id='Q-7b-ddown', component_property='value'),
          Input(component_id='Q-7c-ddown', component_property='value')
-
          ]
     )
     def organise_data(dental, wrist, head, chest, abdomen, coffee, bananas, beer, location, long, short, days):
@@ -201,7 +201,9 @@ def get_dashboard_layout(app):
                     id='result-1'),
                 dbc.Tooltip(
                     html.Div([
-                        "Did you know Funmi is the best project partner in the world!"
+                        "Your effective dose measures the effects of radiation to your body."
+                        " The UK limit for radiation exposure for a nuclear power station worker is 20mSv"
+
                     ]),
                     target='result-1',
                     placement='right'
@@ -237,7 +239,8 @@ def get_dashboard_layout(app):
                     id='result-2'),
                 dbc.Tooltip(
                     html.Div([
-                        "Did you know Funmi is the best project partner in the world!"
+                        "Select and option to see how many years you would have to either work in or "
+                        "live 1km from a nuclear power station, to receive the same effective dose as above!"
                     ]),
                     target='result-2',
                     placement='right'
@@ -257,7 +260,7 @@ def get_dashboard_layout(app):
                 ], width=1),
 
                 dbc.Col([
-                    dbc.Card(card_content_one, color="warning", outline=True),
+                    dbc.Card(card_content_one, color="warning", inverse=True),
                     html.Br(),
                     dbc.Card(card_content_three, color="warning", outline=True)
                 ], width=3),
@@ -292,8 +295,8 @@ def get_dashboard_layout(app):
 
                 dbc.Col([html.Div(
                     dcc.Tabs(id='tab-graph', value='tab-1', children=[
-                        dcc.Tab(label='XXX', value='tab-1'),
-                        dcc.Tab(label='XXX', value='tab-2')
+                        dcc.Tab(label='Compare to Nuclear Power Stations', value='tab-1'),
+                        dcc.Tab(label='Everyday Activity Summary', value='tab-2')
                     ])
                 ),
 
@@ -343,7 +346,8 @@ def get_dashboard_layout(app):
             ]
             return html.Div([
                 html.Br(),
-                html.H5('HSome info here maybe ! tation or working in a nuclear power station'),
+                html.I('Nuclear power station workers are subject to small exposures of radiation. Similarly, living close to a'
+                       ' nuclear plant exposures you to a minute amount radiation.'),
                 dcc.Graph(
                     id='graph-1-tabs',
                     figure={
@@ -370,7 +374,7 @@ def get_dashboard_layout(app):
             ]
             return html.Div([
                 html.Br(),
-                html.H5('SOme INfo heRe pls'),
+                html.I('Explore how each activity contributes to your total effective dose'),
                 dcc.Graph(
                     id='graph-2-tabs',
                     figure={
