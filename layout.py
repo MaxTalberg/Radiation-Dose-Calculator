@@ -47,6 +47,7 @@ clean_location = location.drop(labels=0, axis=0)
 Name = clean_location["County or Area Name"].tolist()
 Dose = clean_location["Effective Dose"].tolist()
 
+print('hello')
 
 #Dashboard
 def get_dashboard_layout(app):
