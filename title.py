@@ -9,6 +9,7 @@
 #Imports
 from dash import dcc, html
 import dash_bootstrap_components as dbc
+from dash_extensions import Download
 
 # App layout
 
@@ -37,8 +38,15 @@ def get_title(app):
                 ),
 
                 html.P(
-                    dbc.Button("Link to inforgraphics", color="primary", style={'textTransform': 'none'}), className="lead"
+                    html.Div([
+                        dbc.Button("Link to inforgraphics",
+                               id='infographics-button',
+                               color="primary",
+                               style={'textTransform': 'none'}),
+                    Download(id='download-pdf')]),
+                    className="lead"
                 ),
+                Download(id='download')
             ],
             fluid=True,
             className="py-3",
@@ -47,3 +55,4 @@ def get_title(app):
     )
 
     return layout
+

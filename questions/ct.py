@@ -45,10 +45,6 @@ card_content = [
                     ], width=3),
 
                 dbc.Col([
-                    html.Div([])
-                ], width=1),
-
-                dbc.Col([
                     html.Div([
                         html.I('Chest CT Scan'),
                         dcc.Dropdown(id='Q-2b-ddown',
@@ -64,11 +60,10 @@ card_content = [
                                      options=[
                                          {"label": value, "value": value} for value in range(5)])
                     ], style={"width": "2.5"}),
-                    ], width=3),
+                    ], width=4),
 
                 dbc.Col([
-                    html.Div([])
-                ], width=2),
+                ], width=2)
             ])
 
         ]

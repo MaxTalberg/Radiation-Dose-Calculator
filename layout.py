@@ -12,8 +12,8 @@
 #Import Libraries
 from dash import dcc, html
 import dash_bootstrap_components as dbc
-import plotly.express as px
 from dash.dependencies import Input, Output
+from dash_extensions.snippets import send_file
 import pandas as pd
 import time
 from header import get_header
@@ -47,6 +47,9 @@ clean_location = location.drop(labels=0, axis=0)
 Name = clean_location["County or Area Name"].tolist()
 Dose = clean_location["Effective Dose"].tolist()
 
+#Global variables
+out = html.Div([])
+image = html.Div([])
 
 #Dashboard
 def get_dashboard_layout(app):
@@ -172,7 +175,14 @@ def get_dashboard_layout(app):
         Total_ED = q1 + q2 + q3 + q4 + q5 + q6 + q7 + database['Cosmic'][0]
         data_output = [Total_ED, q1, q2, q3, q4, q5, q6, q7]
         return data_output
-
+# Infogrpahics button
+    @app.callback(
+        Output(component_id='download-pdf', component_property='data'),
+        [Input(component_id='infographics-button', component_property='n_clicks')]
+    )
+    def download_pdf(n_clicks):
+        if n_clicks is not None:
+            return send_file("assets/SizewellC.pdf")
 # Load button
     @app.callback(
         Output(component_id='loading-output-1', component_property='children'),
@@ -408,6 +418,7 @@ def get_dashboard_layout(app):
          Input(component_id='store-data-output', component_property='data')]
     )
     def render_output(value, data_output):
+        global out, image
         Total_ED = data_output[0]
         living_near = Total_ED/database['living_plant'][0]
         pplant = Total_ED/database['nuclear_worker'][0]
@@ -450,5 +461,4 @@ def get_dashboard_layout(app):
                 html.Br(),
                 pplant_image])
         return out, image
-
     return layout

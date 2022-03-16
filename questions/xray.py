@@ -44,11 +44,7 @@ card_content = [
                             options=[
                                 {"label": value, "value": value} for value in range(6)])
                     ], style={"width": "50%", 'align-items': 'center'})
-                ], width=5),
-
-                dbc.Col([
-                    html.Div([])
-                ], width=2),
+                ], width=6),
 
                 dbc.Col([
                     html.Div([
@@ -57,7 +53,7 @@ card_content = [
                                      options=[
                                          {"label": value, "value": value} for value in range(5)])
                     ], style={"width": "50%",'align-items': 'center'})
-                ], width=5)
+                ], width=6)
             ])
 
         ]
