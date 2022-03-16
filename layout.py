@@ -121,14 +121,18 @@ def get_dashboard_layout(app):
                 ),
                 html.Div([
                     html.A("Acknowledgements", href='https://github.com/MaxTalberg/PH30096/blob/master/Acknowledgements', target="_blank")
-                ])
+                ]),
+                html.Div([
+                    html.A("* - source",
+                           href='https://www.gov.uk/government/publications/ionising-radiation-dose-comparisons/ionising-radiation-dose-comparisons',
+                           target="_blank")
+                ]),
+
             ], width=10),
             dbc.Col([
                 html.I('')
             ], width=1)
         ], id='contact-row'),
-
-        html.Br()
 
     ])
 
@@ -306,7 +310,7 @@ def get_dashboard_layout(app):
                 dbc.Col([html.Div(
                     dcc.Tabs(id='tab-graph', value='tab-1', children=[
                         dcc.Tab(label='Compare to Nuclear Power Stations', value='tab-1'),
-                        dcc.Tab(label='Everyday Activity Summary', value='tab-2')
+                        dcc.Tab(label='Activity Breakdown', value='tab-2')
                     ])
                 ),
 
@@ -355,9 +359,35 @@ def get_dashboard_layout(app):
 
             ]
             return html.Div([
+                dbc.Row([
+                    html.Br(),
+                    html.I(
+                        'Nuclear power station workers are subject to small exposures of radiation. Similarly, living close to a'
+                        ' nuclear plant exposures you to a minute amount radiation.'),
+                ]),
+
                 html.Br(),
-                html.I('Nuclear power station workers are subject to small exposures of radiation. Similarly, living close to a'
-                       ' nuclear plant exposures you to a minute amount radiation.'),
+                dbc.Row([
+                    dbc.Col([
+                        html.I('')
+                    ], width=9),
+
+                    dbc.Col([
+                        html.Div([
+                            html.I('Did you know?'),
+                            html.Br(),
+                            html.I('The dose of radiation that would kill 50% of people who recieve it in a month is 5000 mSv *')
+                        ],
+                            style ={
+                                'text_align': 'center',
+                                'font-size': '12px'
+                            }
+                        ),
+
+
+                    ], width=3),
+
+                ]),
                 dcc.Graph(
                     id='graph-1-tabs',
                     figure={
