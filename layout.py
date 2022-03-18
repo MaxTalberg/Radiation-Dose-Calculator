@@ -493,6 +493,7 @@ def get_dashboard_layout(app):
                 html.Br(),
                 html.Br(),
                 home_image])
+
         elif value == 'power-plant':
             out = html.Div([
                 html.Br(),
