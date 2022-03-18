@@ -31,27 +31,20 @@ from answers.button import get_button
 from answers.results_one import get_result1
 from questions.answer import get_answer
 
-
-#Hex Colours
-EDF_BLUE = '#103579'
-EDF_ORANGE = '#ff5716'
-Miles_Blue = '#64c3db'
-Miles_Orange = '#e3652e'
-
-#Database
+#Importing Databases Contained Effective Dose Data
 database = pd.read_csv('assets/database.csv')
 location = pd.read_csv('assets/radon_data.csv')
 
-#Quick clean
+#Cleaning the databases
 clean_location = location.drop(labels=0, axis=0)
 Name = clean_location["County or Area Name"].tolist()
 Dose = clean_location["Effective Dose"].tolist()
 
-#Global variables
+#Creating global variables
 out = html.Div([])
 image = html.Div([])
 
-#Dashboard
+#Dashboard Begins
 def get_dashboard_layout(app):
 
     #Layout begins
@@ -89,13 +82,14 @@ def get_dashboard_layout(app):
         html.Div(id='row-two-output'),
         html.Br(),
 
-        #Create output graphs
+        #Create output graphs and results
         dbc.Row([
             dbc.Col([
                 html.I('')
             ], width=1),
             dbc.Col([
                 html.Div(id='total-radiation'),
+                html.Br(),
                 html.Div(id='tabs-graph'),
                 html.Div(id='tabs-content'),
                 dcc.Store(id='store-data-output')
@@ -110,7 +104,7 @@ def get_dashboard_layout(app):
         dbc.Row(),
         dbc.Row(),
 
-        #Footer (authors and acknowledgements)
+        #Footer (authors, references and acknowledgements)
         dbc.Row([
             dbc.Col([
                 html.I('')
@@ -123,7 +117,7 @@ def get_dashboard_layout(app):
                     html.A("Acknowledgements", href='https://github.com/MaxTalberg/PH30096/blob/master/Acknowledgements', target="_blank")
                 ]),
                 html.Div([
-                    html.A("* - source",
+                    html.A("* ",
                            href='https://www.gov.uk/government/publications/ionising-radiation-dose-comparisons/ionising-radiation-dose-comparisons',
                            target="_blank")
                 ]),
@@ -137,10 +131,10 @@ def get_dashboard_layout(app):
     ])
 
 
+#-----------------------------------------------------------------------------------------------------------------------
 
 
-
-# Data store callback
+#Data store callback
     @app.callback(
         Output(component_id='store-data-output', component_property='data'),
         [Input(component_id='Q-1a-ddown', component_property='value'),
@@ -157,6 +151,8 @@ def get_dashboard_layout(app):
          Input(component_id='Q-7c-ddown', component_property='value')
          ]
     )
+
+    #Organising the data and evaluating effective dose
     def organise_data(dental, wrist, head, chest, abdomen, coffee, bananas, beer, location, long, short, days):
         count = 0
         if location is None:
@@ -179,7 +175,10 @@ def get_dashboard_layout(app):
         Total_ED = q1 + q2 + q3 + q4 + q5 + q6 + q7 + database['Cosmic'][0]
         data_output = [Total_ED, q1, q2, q3, q4, q5, q6, q7]
         return data_output
-# Infogrpahics button
+
+
+#Buttons
+#Infographics button
     @app.callback(
         Output(component_id='download-pdf', component_property='data'),
         [Input(component_id='infographics-button', component_property='n_clicks')]
@@ -187,7 +186,7 @@ def get_dashboard_layout(app):
     def download_pdf(n_clicks):
         if n_clicks is not None:
             return send_file("assets/SizewellC.pdf")
-# Load button
+#Load button
     @app.callback(
         Output(component_id='loading-output-1', component_property='children'),
         [Input(component_id='submit-val', component_property='n_clicks')]
@@ -195,7 +194,8 @@ def get_dashboard_layout(app):
     def load_sign(n_clicks):
         time.sleep(1)
         return
-# Result row 1
+
+#Result row 1
     @app.callback(
         Output(component_id='row-one-output', component_property='children'),
         [Input(component_id='submit-val', component_property='n_clicks'),
@@ -204,7 +204,9 @@ def get_dashboard_layout(app):
     def update_row1(n_clicks, data):
         time.sleep(1.1)
         total = data[0]
-        # Effective dose card
+
+
+#Your Total Effective Dose Card
         card_content_one = [
             dbc.CardHeader(children=[
                 html.H5(children=['Your Total Effective Dose'], style={'display': 'inline-block'}),
@@ -223,11 +225,14 @@ def get_dashboard_layout(app):
                     placement='right'
                 )
             ]),
+
             dbc.CardBody(
                 html.H5('{:,} mSv'.format(round(total, 2)).replace(',', ' ,'))
             )
         ]
-        # Output content and image card
+
+
+#Output in terms of working and living near a nuclear power station card
         card_content_two = [
             dbc.CardBody(children=[
                 html.Div(
@@ -242,7 +247,9 @@ def get_dashboard_layout(app):
                 ),
             ])
         ]
-        # Select an option card
+
+
+# 'Select an option' Card
         card_content_three = [
             dbc.CardHeader(children=[
                 html.H5(children=['Select an option'], style={'display': 'inline-block'}),
@@ -264,11 +271,10 @@ def get_dashboard_layout(app):
                 html.Div(id='radio-items')
             ),
         ]
-        # Result row one layout
+
+#Calling the results
         layout = html.Div(
             dbc.Row([
-
-                # Margin 1
                 dbc.Col([
                     html.I('')
                 ], width=1),
@@ -291,7 +297,8 @@ def get_dashboard_layout(app):
 
         while n_clicks != 0:
             return layout
-# Results row 2
+
+# Callning results (graphs)
     @app.callback(
         Output(component_id='row-two-output', component_property='children'),
         [Input(component_id='submit-val', component_property='n_clicks'),
@@ -300,9 +307,24 @@ def get_dashboard_layout(app):
     def update_row2(n_clicks, data):
         time.sleep(1.11)
         tabs = html.Div([
-            dbc.Row([
 
-                # Margin 1
+            dbc.Row([
+                    dbc.Col([
+                        html.H4('')
+                    ], width=5),
+
+                    dbc.Col([
+                        html.Img(src='/assets/arrow2.png')
+                    ]),
+                ]),
+
+            dbc.Row([
+                html.I(''
+                ),
+            ]),
+
+
+            dbc.Row([
                 dbc.Col([
                     html.I('')
                 ], width=1),
