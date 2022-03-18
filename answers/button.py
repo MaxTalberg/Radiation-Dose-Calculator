@@ -1,6 +1,15 @@
 from dash import dcc, html
 import dash_bootstrap_components as dbc
 
+arrow_image = html.Div([
+    html.Img(id="banana-logo",
+             src='/assets/arrow_test.png',
+             height=100,
+             width=100,
+             style={'align-items': 'center'})
+])
+
+
 def get_button(app):
     layout = html.Div(
         dbc.Row([

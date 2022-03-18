@@ -27,9 +27,8 @@ from questions.beer import get_question5, beer_image
 from questions.home import get_question6
 from questions.holiday import get_question7
 from questions.background import get_question8
-from answers.button import get_button
-from answers.results_one import get_result1
-from questions.answer import get_answer
+from answers.button import get_button, arrow_image
+
 
 #Importing Databases Contained Effective Dose Data
 database = pd.read_csv('assets/database.csv')
@@ -292,7 +291,7 @@ def get_dashboard_layout(app):
                 dbc.Col([
                     html.I('')
                 ], width=1)
-            ]),
+            ])
         )
 
         while n_clicks != 0:
@@ -398,7 +397,8 @@ def get_dashboard_layout(app):
                         html.Div([
                             html.I('Did you know?'),
                             html.Br(),
-                            html.I('The dose of radiation that would kill 50% of people who recieve it in a month is 5000 mSv *')
+                            html.I('The dose of radiation that would kill 50% of people who recieve it in a month is'
+                                   ' 5000 mSv. This is {:,} times your monthly dose, so dont worry! *'.format(round(((5000*12)/total))))
                         ],
                             style ={
                                 'text_align': 'center',
