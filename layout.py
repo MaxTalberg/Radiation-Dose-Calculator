@@ -116,10 +116,11 @@ def get_dashboard_layout(app):
                     html.A("Acknowledgements", href='https://github.com/MaxTalberg/PH30096/blob/master/Acknowledgements', target="_blank")
                 ]),
                 html.Div([
-                    html.A("* ",
-                           href='https://www.gov.uk/government/publications/ionising-radiation-dose-comparisons/ionising-radiation-dose-comparisons',
-                           target="_blank")
-                ]),
+                    html.I('* : Grupen, C., Rodgers, M., Radioactivity and Radiation (2016). p.25 '),
+                    #html.A("* ", href='https://www.gov.uk/government/publications/ionising-radiation-dose-comparisons/ionising-radiation-dose-comparisons', target="_blank")
+                ],
+                style = { 'font-size': '10px' }
+                ),
 
             ], width=10),
             dbc.Col([
@@ -297,7 +298,7 @@ def get_dashboard_layout(app):
         while n_clicks != 0:
             return layout
 
-# Callning results (graphs)
+# Calling results (graphs)
     @app.callback(
         Output(component_id='row-two-output', component_property='children'),
         [Input(component_id='submit-val', component_property='n_clicks'),
@@ -397,8 +398,8 @@ def get_dashboard_layout(app):
                         html.Div([
                             html.I('Did you know?'),
                             html.Br(),
-                            html.I('The dose of radiation that would kill 50% of people who recieve it in a month is'
-                                   ' 5000 mSv. This is {:,} times your monthly dose, so dont worry! *'.format(round(((5000*12)/total))))
+                            html.I('A lethal dose of radiation is'
+                                   ' 4000 mSv. This is {:,} times your calculated dose, so dont worry! *'.format(round(((4000)/total))))
                         ],
                             style ={
                                 'text_align': 'center',
@@ -435,7 +436,6 @@ def get_dashboard_layout(app):
                  },
             ]
             return html.Div([
-                html.Br(),
                 html.I('Explore how each activity contributes to your total effective dose'),
                 dcc.Graph(
                     id='graph-2-tabs',
@@ -462,6 +462,8 @@ def get_dashboard_layout(app):
                                labelStyle={'display': 'block'})
             ])
             return radio_items
+
+
 # Update results card
     @app.callback(
         Output(component_id='radio-content', component_property='children'),
