@@ -39,8 +39,8 @@ card_content = [
                     html.Div([
                         html.H5(' 2.3 mSv'),
 
-                    ], style={"width": "50%"}),
-                ], width=5),
+                    ]),
+                ], width=12),
             ])
 
         ]

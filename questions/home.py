@@ -50,8 +50,8 @@ card_content = [
                                      options=[
                                          {"label": i, "value": i} for i in Name
                                          ])
-                    ], style={"width": "5"}),
-                ], width=7),
+                    ]),
+                ], width=12),
             ])
 
         ]

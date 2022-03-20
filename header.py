@@ -48,7 +48,9 @@ def get_header(app):
                              style={'textAlign': 'left'}
                              ),
                 ]),
-            ], width=1),
+            ], width=2),
+
+            dbc.Col([], width=1),
 
             dbc.Col([
                 html.Div([
@@ -57,7 +59,7 @@ def get_header(app):
                              style={'textAlign': 'left', 'margin-left': '10px'}
                              ),
                 ]),
-            ], width=1),
+            ], width=2),
 
             dbc.Col([
                 html.Div([
@@ -66,7 +68,7 @@ def get_header(app):
                     #         style={'textAlign': 'right'}
                     #         )
                 ])
-            ], width=10),
+            ], width=5),
 
 
 

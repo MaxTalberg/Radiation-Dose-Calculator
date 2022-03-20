@@ -40,8 +40,8 @@ card_content = [
                         dcc.Dropdown(id='Q-4a-ddown',
                                      options=[
                                          {"label": value, "value": value} for value in range(21)])
-                    ], style={"width": "50%"}),
-                ], width=5),
+                    ]),
+                ], width=12),
             ])
 
         ]

@@ -43,17 +43,17 @@ card_content = [
                             id='Q-1a-ddown',
                             options=[
                                 {"label": value, "value": value} for value in range(6)])
-                    ], style={"width": "50%", 'align-items': 'center'})
-                ], width=6),
-
+                    ])
+                ], width=12)]),
+            dbc.Row([
                 dbc.Col([
                     html.Div([
                         html.I('Wrist X-Ray'),
                         dcc.Dropdown(id='Q-1b-ddown',
                                      options=[
                                          {"label": value, "value": value} for value in range(5)])
-                    ], style={"width": "50%",'align-items': 'center'})
-                ], width=6)
+                    ])
+                ], width=12)
             ])
 
         ]

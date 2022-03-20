@@ -38,9 +38,9 @@ card_content = [
                     html.Div([
                         dcc.Dropdown(id='Q-3a-ddown',
                                      options=[
-                                         {"label": value, "value": value} for value in range(25)])
-                    ], style={"width": "50%"}),
-                ], width=5),
+                                         {"label": value, "value": value} for value in range(50)])
+                    ]),
+                ], width=12),
             ])
 
         ]

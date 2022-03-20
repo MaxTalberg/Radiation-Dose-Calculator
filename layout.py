@@ -72,31 +72,21 @@ def get_dashboard_layout(app):
         html.Br(),
         get_question8(app=app),
         html.Br(),
+        dcc.Store(id='store-data-output'),
 
         #Create Calculate Button
         get_button(app=app),
         html.Br(),
-        html.Div(id ='row-one-output'),
+        html.Div(id='row-one-output'),
         html.Br(),
         html.Div(id='row-two-output'),
         html.Br(),
+        html.Div(id='tabs-graph'),
+        html.Div(id='tabs-content'),
 
         #Create output graphs and results
-        dbc.Row([
-            dbc.Col([
-                html.I('')
-            ], width=1),
-            dbc.Col([
-                html.Div(id='total-radiation'),
-                html.Br(),
-                html.Div(id='tabs-graph'),
-                html.Div(id='tabs-content'),
-                dcc.Store(id='store-data-output')
-            ], width=10),
-            dbc.Col([
-                html.I('')
-            ], width=1)
-        ], id='output-row'),
+
+
 
         html.Br(),
         html.Br(),
@@ -127,6 +117,7 @@ def get_dashboard_layout(app):
                 html.I('')
             ], width=1)
         ], id='contact-row'),
+        html.Br()
 
     ])
 
@@ -234,18 +225,18 @@ def get_dashboard_layout(app):
 
 #Output in terms of working and living near a nuclear power station card
         card_content_two = [
-            dbc.CardBody(children=[
+            dbc.CardBody(
                 html.Div(
-                    dbc.Row([
-                        dbc.Col(children=[
+                    dbc.Row(children=[
+                        dbc.Col(
                             html.Div(id='radio-content')
-                        ], width=8),
-                        dbc.Col(children=[
+                        , width=7),
+                        dbc.Col(
                             html.Div(id='radio-image')
-                        ], width=4)
+                        , width=5)
                     ]),
                 ),
-            ])
+            )
         ]
 
 
@@ -273,30 +264,68 @@ def get_dashboard_layout(app):
         ]
 
 #Calling the results
-        layout = html.Div(
+        layout = html.Div([
+
             dbc.Row([
+
+                # Margin 1
                 dbc.Col([
                     html.I('')
                 ], width=1),
 
                 dbc.Col([
-                    dbc.Card(card_content_one, color="warning", inverse=True),
-                    html.Br(),
-                    dbc.Card(card_content_three, color="warning", outline=True)
-                ], width=3),
-
-                dbc.Col([
-                    dbc.Card(card_content_two, color="warning", outline=True),
-                    html.Br(),
-                    html.Div([
-                    html.Img(src='/assets/arrow2.png')], style={"textAlign": "center"})
-                ], width=7),
+                    dbc.Card(card_content_one, color="warning", inverse=True)
+                ], width=6),
 
                 dbc.Col([
                     html.I('')
-                ], width=1)
-            ])
-        )
+                ], width=5),
+
+            ]),
+
+            html.Br(),
+
+            dbc.Row([
+
+                # Margin 1
+                dbc.Col([
+                    html.I('')
+                ], width=1),
+
+                dbc.Col([
+                    dbc.Card(card_content_three, color="warning", outline=True)
+                ], width=10),
+
+                dbc.Col([
+                    html.I('')
+                ], width=1),
+
+            ]),
+            html.Br(),
+            dbc.Row([
+
+                # Margin 1
+                dbc.Col([
+                    html.I('')
+                ], width=1),
+
+                dbc.Col([
+                    dbc.Card(card_content_two, color="warning", outline=True)
+                ], width=10),
+
+                dbc.Col([
+                    html.I('')
+                ], width=1),
+            ]),
+            html.Br(),
+            dbc.Row(
+                dbc.Col([
+                    html.I("Scroll down for graphs...")
+                ], style={"textAlign": "center"})
+            )
+
+
+        ])
 
         while n_clicks != 0:
             return layout
@@ -317,7 +346,7 @@ def get_dashboard_layout(app):
                 ], width=1),
 
                 dbc.Col([html.Div(
-                    dcc.Tabs(id='tab-graph', value='tab-1', children=[
+                    dcc.Tabs(id='tab-graph', value='tab-2', children=[
                         dcc.Tab(label='Compare to Nuclear Power Stations', value='tab-1'),
                         dcc.Tab(label='Activity Breakdown', value='tab-2')
                     ])
@@ -352,35 +381,8 @@ def get_dashboard_layout(app):
         total = data[0]
         medical_scans= xrays+ct
         food_drink = coffee + banana + pint
-
-        if tab == 'tab-1':
-            graph_data = [
-
-                {'x': ["Total Effective Dose"], 'y': [total], 'type': 'bar', 'name': 'Total effective dose',
-                 'marker': {"color": '#eb9628'}},
-                {'x': ["Living Near a Plant"], 'y': [database['living_plant'][0]], 'type': 'bar',
-                 'name': 'Living 50 miles from a nuclear powerplant', 'marker': {"color": '#15bccf'}},
-                {'x': ["Nuclear Plant Worker"], 'y': [database['nuclear_worker'][0]], 'type': 'bar',
-                 'name': u'Working in a nuclear plant', 'marker': {"color": '#3864d1'}},
-                {'x': ["Total Effective Dose", "Living Near a Plant", "Nuclear Plant Worker"],
-                 'y': [database['uk_limit'][0], database['uk_limit'][0], database['uk_limit'][0]],
-                 'type': 'line', 'name': 'UK Limit for Occupational Workers'},
-
-            ]
-            return html.Div([
-                dbc.Row([
-                    html.Br(),
-                    html.I(
-                        'Nuclear power station workers are subject to small exposures of radiation. Similarly, living close to a'
-                        ' nuclear plant exposures you to a minute amount radiation.'),
-                ]),
-
-                html.Br(),
-                dbc.Row([
-                    dbc.Col([
-                        html.I('')
-                    ], width=9),
-
+        fact = dbc.Row([
+            dbc.Col([], width=1),
                     dbc.Col([
                         html.Div([
                             html.I('Did you know?'),
@@ -394,25 +396,72 @@ def get_dashboard_layout(app):
                             }
                         ),
 
+                    ], width=10),
+        dbc.Col([], width=1)
+        ])
 
-                    ], width=3),
 
-                ]),
-                dcc.Graph(
-                    id='graph-1-tabs',
-                    figure={
-                        'data': graph_data,
-                        'layout': {
-                            'xaxis': {
-                                'title': 'Comparisons'
-                            },
-                            'yaxis': {
-                                'title': 'Effective Dose [mSv]'
-                            },
+        if tab == 'tab-1':
+            graph_data = [
+
+                {'x': ["Total Effective Dose"], 'y': [total], 'type': 'bar', 'name': 'Effective dose',
+                 'marker': {"color": '#eb9628'}},
+                {'x': ["Living Near a Plant"], 'y': [database['living_plant'][0]], 'type': 'bar',
+                 'name': '50 miles from a nuclear powerplant', 'marker': {"color": '#15bccf'}},
+                {'x': ["Nuclear Plant Worker"], 'y': [database['nuclear_worker'][0]], 'type': 'bar',
+                 'name': u'Working in a nuclear plant', 'marker': {"color": '#3864d1'}},
+                {'x': ["Total Effective Dose", "Living Near a Plant", "Nuclear Plant Worker"],
+                 'y': [database['uk_limit'][0], database['uk_limit'][0], database['uk_limit'][0]],
+                 'type': 'line', 'name': 'UK Limit for Occupational Workers'},
+
+            ]
+            return html.Div([
+                dbc.Row([
+                    dbc.Col([], width=1),
+                    dbc.Col([
+                    html.Br(),
+                    html.I(
+                        'Nuclear power station workers are subject to small exposures of radiation. Similarly, living close to a'
+                        ' nuclear plant exposures you to a minute amount radiation.'),
+                ],width=10),
+                dbc.Col([], width=1)]),
+                html.Br(),
+                dbc.Row([
+                    dbc.Col([], width=1),
+                    dbc.Col([
+                        html.Div(
+                    dcc.Graph(
+                        id='graph-1-tabs',
+                        figure={
+                            'data': graph_data,
+                            'layout': {
+                                #"showlegend": False,
+
+                                'xaxis': {
+                                    'title': 'Comparisons'
+                                },
+                                'yaxis': {
+                                    'title': 'Effective Dose [mSv]'
+                                },
+                                'legend': {
+                                    'orientation':'h',
+                                    'yanchor':'bottom',
+                                    'y':'1.52',
+                                    'xanchor': "right",
+                                    'x': '0.5'
+                                },
+
+                            }
                         }
-                    }
-                )
-            ])
+                    ))], width=10),
+                    dbc.Col([], width=1)
+                ]),
+                html.Br(),
+                html.Br(),
+                fact,
+                html.Br()
+                ])
+
         if tab == 'tab-2':
             fig_data = [
                 {'values': [background, medical_scans, food_drink, home, travel],
@@ -423,13 +472,28 @@ def get_dashboard_layout(app):
                  },
             ]
             return html.Div([
-                html.I('Explore how each activity contributes to your total effective dose'),
+                dbc.Row([
+                    dbc.Col([], width=1),
+                    dbc.Col([
+                html.Br(),
+                html.I('Explore how each activity contributes to your total effective dose')
+                    ], width=10),
+                dbc.Col([], width=1)
+                ]),
+                html.Br(),
+                dbc.Row([
+                    dbc.Col([], width=1),
+                    dbc.Col([
                 dcc.Graph(
                     id='graph-2-tabs',
                     figure={
                         'data': fig_data,
                     }
-                )
+                )],width=10),
+                dbc.Col([], width=1)]),
+                html.Br(),
+                fact,
+                html.Br()
             ])
 
 # Update option card

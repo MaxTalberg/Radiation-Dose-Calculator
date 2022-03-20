@@ -52,10 +52,11 @@ card_content = [
                             dcc.Dropdown(id='Q-7a-ddown',
                                          options=[
                                              {"label": value, "value": value} for value in range(11)])
-                        ], style={"width": "5"}),
+                        ]),
                     ])
-                ], width=5),
+                ], width=12)]),
 
+                dbc.Row([
                 dbc.Col([
                     html.Div([
                         html.I('Short Haul'),
@@ -63,9 +64,9 @@ card_content = [
                             dcc.Dropdown(id='Q-7b-ddown',
                                          options=[
                                              {"label": value, "value": value} for value in range(11)])
-                        ], style={"width": "5"}),
+                        ]),
                     ])
-                ], width=5),
+                ], width=12),
 
                 ]),
 
@@ -83,7 +84,7 @@ card_content = [
                         dcc.Dropdown(id='Q-7c-ddown',
                                      options=[
                                          {"label": value, "value": value} for value in range(11)])
-                    ], style={"width": "5"}),
+                    ]),
 
                     dbc.Tooltip(
                         html.Div(["Cornwall is known for having higher level of natural radioactive radon gas compared to other locations in the UK", html.Br(),
@@ -94,7 +95,7 @@ card_content = [
                         target='cornwall_qu',
                         placement='right')
                 ])
-                ], width=10),
+                ], width=12),
             ]),
         ]
     )
