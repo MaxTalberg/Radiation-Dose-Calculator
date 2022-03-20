@@ -286,7 +286,10 @@ def get_dashboard_layout(app):
                 ], width=3),
 
                 dbc.Col([
-                    dbc.Card(card_content_two, color="warning", outline=True)
+                    dbc.Card(card_content_two, color="warning", outline=True),
+                    html.Br(),
+                    html.Div([
+                    html.Img(src='/assets/arrow2.png')], style={"textAlign": "center"})
                 ], width=7),
 
                 dbc.Col([
@@ -307,22 +310,6 @@ def get_dashboard_layout(app):
     def update_row2(n_clicks, data):
         time.sleep(1.11)
         tabs = html.Div([
-
-            dbc.Row([
-                    dbc.Col([
-                        html.H4('')
-                    ], width=5),
-
-                    dbc.Col([
-                        html.Img(src='/assets/arrow2.png')
-                    ]),
-                ]),
-
-            dbc.Row([
-                html.I(''
-                ),
-            ]),
-
 
             dbc.Row([
                 dbc.Col([

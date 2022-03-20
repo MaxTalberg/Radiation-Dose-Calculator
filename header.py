@@ -42,35 +42,22 @@ def get_header(app):
     children=[
         dbc.Row([
             dbc.Col([
-
-            ], width=1),
-
-
-            dbc.Col([
                 html.Div([
-                    html.Img(src='/assets/uob.png',
-                             height='117', width='249',
+                    html.Img(src='/assets/university-of-bath-logo-png-transparent.png',
+                             height=110, width=110,
                              style={'textAlign': 'left'}
                              ),
                 ]),
             ], width=1),
 
-
-            dbc.Col(
-                children=[
-                    html.Div([
-                        #html.Img(id="logo",
-                        #         src='/assets/uob.png',
-                        #         height='64', width = '232',
-                        #         style={'textAlign': 'center'}),
-                    ]),
-                ],width=8,
-                className="align-middle d-flex justify-content-center"),
-
             dbc.Col([
-
+                html.Div([
+                    html.Img(src='/assets/uob.png',
+                             height='117', width='249',
+                             style={'textAlign': 'left', 'margin-left': '10px'}
+                             ),
+                ]),
             ], width=1),
-
 
             dbc.Col([
                 html.Div([
@@ -79,7 +66,7 @@ def get_header(app):
                     #         style={'textAlign': 'right'}
                     #         )
                 ])
-            ], width=1),
+            ], width=10),
 
 
 
