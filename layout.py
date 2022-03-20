@@ -399,7 +399,7 @@ def get_dashboard_layout(app):
                             html.I('Did you know?'),
                             html.Br(),
                             html.I('A lethal dose of radiation is'
-                                   ' 4000 mSv. This is {:,} times your calculated dose, so dont worry! *'.format(round(((4000)/total))))
+                                   ' 4000 mSv. This is {:,} times your calculated dose, so do not worry! *'.format(round(((4000)/total))))
                         ],
                             style ={
                                 'text_align': 'center',
@@ -480,7 +480,7 @@ def get_dashboard_layout(app):
             out = html.Div([
                 html.Br(),
                 html.Div([
-                    html.H4('Your activities across a year expose you to the same radiation as')
+                    html.H5('Your radiation exposure is')
                 ], style={"textAlign": "center"}),
                 html.Br(),
                 html.Div([
@@ -488,7 +488,7 @@ def get_dashboard_layout(app):
                 ], style={"textAlign": "center"}),
                 html.Br(),
                 html.Div([
-                    html.H4('years living near a nuclear power station!')
+                    html.H5('times greater than the exposure from living near a nuclear power station for a year!')
                 ], style={"textAlign": "center"})
             ])
             image = html.Div([
@@ -500,15 +500,17 @@ def get_dashboard_layout(app):
             out = html.Div([
                 html.Br(),
                 html.Div([
-                    html.H4('Your activities across a year expose you to the same radiation as')
+                    html.H5('Your radiation exposure is')
                 ], style={"textAlign": "center"}),
                 html.Br(),
                 html.Div([
-                    html.H1('{:,}'.format(round(pplant)).replace(',', ' ,'))
+                    html.H1('{:,}'.format(round(pplant)).replace(',', ' ,'),),
+                    #html.H1('x'),
                 ], style={"textAlign": "center"}),
+
                 html.Br(),
                 html.Div([
-                    html.H4('years working in a nuclear power station!')
+                    html.H5('times greater than the exposure from working in a nuclear power station for a year!')
                 ], style={"textAlign": "center"})
             ])
             image = html.Div([
