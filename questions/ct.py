@@ -33,43 +33,38 @@ card_content = [
 
     dbc.CardBody(
         [
+            dbc.Row([
                 #Drop down 1
-                dbc.Row([
-                    dbc.Col([
+                dbc.Col([
                     html.Div([
                         html.I('Head CT Scan'),
-                        html.Div([
                         dcc.Dropdown(id='Q-2a-ddown',
                                      options=[
                                          {"label": value, "value": value} for value in range(5)])
-                        ])
                     ], style={"width": "2.5"})
-                    ], width=12)]),
+                    ], width=3),
 
-                dbc.Row([
-                    dbc.Col([
+                dbc.Col([
                     html.Div([
                         html.I('Chest CT Scan'),
-                        html.Div([
                         dcc.Dropdown(id='Q-2b-ddown',
                                      options=[
                                          {"label": value, "value": value} for value in range(5)])
-                        ])
                     ], style={"width": "2.5"})
-                ], width=12)]),
+                ], width=3),
 
-                dbc.Row([
-                    dbc.Col([
+                dbc.Col([
                     html.Div([
                         html.I('Abdomen CT Scan'),
-                        html.Div([
                         dcc.Dropdown(id='Q-2c-ddown',
                                      options=[
                                          {"label": value, "value": value} for value in range(5)])
-                        ])
                     ], style={"width": "2.5"}),
-                    ], width=12)]),
+                    ], width=4),
 
+                dbc.Col([
+                ], width=2)
+            ])
 
         ]
     )

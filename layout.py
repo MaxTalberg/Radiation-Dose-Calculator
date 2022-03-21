@@ -422,7 +422,7 @@ def get_dashboard_layout(app):
                     html.Br(),
                     html.I(
                         'Nuclear power station workers are subject to small exposures of radiation. Similarly, living close to a'
-                        ' nuclear plant exposures you to a minute amount radiation.'),
+                        ' nuclear plant exposures you to a tiny amount radiation.'),
                 ],width=10),
                 dbc.Col([], width=1)]),
                 html.Br(),

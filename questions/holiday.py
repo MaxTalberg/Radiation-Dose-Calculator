@@ -88,8 +88,8 @@ card_content = [
 
                     dbc.Tooltip(
                         html.Div(["Cornwall is known for having higher level of natural radioactive radon gas compared to other locations in the UK", html.Br(),
-                          "The levels of radon are of course safe, and are always monitored by the government", html.Br(),
-                          "To compare the average cornish person recieves 6.9 mSv/year and the average person in the UK recieves 1.3 mSv/year",html.Br(),html.Br(),
+                          "The levels of radon are monitored by the government", html.Br(),
+                          "To compare, the average cornish person recieves 6.9 mSv/year and the average person in the UK recieves 1.3 mSv/year",html.Br(),html.Br(),
                         html.I("(This is the same as eating 69,000 bananas in a year vs 13,000 bananas in a year.)"),
                           ]),
                         target='cornwall_qu',

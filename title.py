@@ -27,7 +27,7 @@ def get_title(app):
                     "Radiation is part of our everyday life. It is even present in the food we eat!",
                 ),
                 html.P(
-                    "Did you know, your normal day-to-day activities expose you to more radiation than someone working in a nuclear power plant for a year?",
+                    "Did you know, your normal day-to-day activities over a year expose you to more radiation than someone working in a nuclear power plant for a year?",
                 ),
                 html.P(
 
@@ -39,7 +39,7 @@ def get_title(app):
 
                 html.P(
                     html.Div([
-                        dbc.Button("Link to inforgraphics",
+                        dbc.Button("Link to infographics",
                                id='infographics-button',
                                color="primary",
                                style={'textTransform': 'none'}),
