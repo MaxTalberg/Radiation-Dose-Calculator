@@ -200,7 +200,7 @@ def get_dashboard_layout(app):
 #Your Total Effective Dose Card
         card_content_one = [
             dbc.CardHeader(children=[
-                html.H5(children=['Your Total Effective Dose'], style={'display': 'inline-block'}),
+                html.H5(children=['Your Total Effective Dose from Everyday Activities'], style={'display': 'inline-block'}),
                 html.Div(children=[
                     html.I(className="fa fa-info-circle")
                 ], style={'display': 'inline-block',
