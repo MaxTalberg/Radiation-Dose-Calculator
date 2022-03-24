@@ -11,4 +11,5 @@ Use this space to show useful examples of how a project can be used. Additional 
  ## Contact Details
  #### University of Bath:
  #### Funmi Looi-Somoye - ols27@bath.ac.uk
+  #### Max Talberg - mt913@bath.ac.uk
  
