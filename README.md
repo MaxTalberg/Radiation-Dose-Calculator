@@ -1,6 +1,6 @@
 # Radiation Dose Calculator
 
-The radiation dose calculator is a numerical tool which calculates the users annual effective dose from everyday activities. The results are compared to the exposures experienced by those working in, or living 1km from the Sizewell C power station. Set to be constructed on the Suffolk coast. The web application is written to be accessible to the memembers of the public. 
+The radiation dose calculator is a numerical tool which calculates the user's annual effective dose from everyday activities. The results are compared to the exposures experienced by those working in, or living 1km from the Sizewell C nuclear power station. Set to be constructed on the Suffolk coast. The web application is written to be accessible to the members of the public. 
 
 ## Required Packages
 - Dash
