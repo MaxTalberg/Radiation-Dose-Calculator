@@ -29,6 +29,6 @@ The application consists of 4 main python files:
 
  ## Contact Details
  #### University of Bath:
- #### Funmi Looi-Somoye - ols27@bath.ac.uk
-  #### Max Talberg - mt913@bath.ac.uk
+ - Funmi Looi-Somoye - ols27@bath.ac.uk
+ - Max Talberg - mt913@bath.ac.uk
  
