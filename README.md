@@ -32,3 +32,5 @@ The application consists of 4 main python files:
  - Funmi Looi-Somoye - ols27@bath.ac.uk
  - Max Talberg - mt913@bath.ac.uk
  
+ Screeenshot of Numerical Tool
+![website](https://user-images.githubusercontent.com/92322751/160294803-ab0ef7ea-c0b0-4604-b965-ce0063ece8bc.jpg)
