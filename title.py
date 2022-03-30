@@ -39,7 +39,7 @@ def get_title(app):
 
                 html.P(
                     html.Div([
-                        dbc.Button("Link to infographics",
+                        dbc.Button("Click for infographics",
                                id='infographics-button',
                                color="primary",
                                style={'textTransform': 'none'}),

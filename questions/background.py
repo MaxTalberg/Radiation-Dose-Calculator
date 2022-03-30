@@ -37,7 +37,7 @@ card_content = [
             dbc.Row([
                 dbc.Col([
                     html.Div([
-                        html.H5(' 2.3 mSv'),
+                        html.H5(' 0.68 mSv'),
 
                     ]),
                 ], width=12),
