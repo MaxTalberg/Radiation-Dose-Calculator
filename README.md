@@ -36,7 +36,3 @@ The application consists of 4 main python files:
  ## Screeenshot of Numerical Tool
 ![Screenshot 2022-04-11 at 13 09 54](https://user-images.githubusercontent.com/92322751/162736547-960dea6c-58b5-4702-baa5-84db834233f6.png)
 ![Screenshot 2022-04-11 at 13 10 06](https://user-images.githubusercontent.com/92322751/162736590-f66fec3e-0f0c-4374-ab99-cf305b7d241c.png)
-
-
-![website2](https://user-images.githubusercontent.com/92322751/160294870-dfae4f25-98cd-45b8-9563-feebdbdb21c3.jpg)
-
