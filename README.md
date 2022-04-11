@@ -34,5 +34,8 @@ The application consists of 4 main python files:
  - Max Talberg - mt913@bath.ac.uk
  
  ## Screeenshot of Numerical Tool
-![Screenshot 2022-04-11 at 13 09 54](https://user-images.githubusercontent.com/92322751/162736547-960dea6c-58b5-4702-baa5-84db834233f6.png)
-![Screenshot 2022-04-11 at 13 10 06](https://user-images.githubusercontent.com/92322751/162736590-f66fec3e-0f0c-4374-ab99-cf305b7d241c.png)
+ ![website-1](https://user-images.githubusercontent.com/92322751/162737010-20b1529e-9697-41b2-a1e8-45483a90a9c4.jpg)
+ 
+![website-2](https://user-images.githubusercontent.com/92322751/162737019-160922df-ac64-4397-b688-d82e0c43325e.jpg)
+
+
